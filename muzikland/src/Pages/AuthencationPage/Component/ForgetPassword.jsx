@@ -13,7 +13,7 @@ export function ForgetPW(props){
         </FormContainer>
         
         <Marginer direction="veritcal" margin="1.5em"/>
-        <SubmitButton type="submit" onClick={switchToSignIn}>SignIn</SubmitButton>
+        <SubmitButton type="submit" onClick={switchToSignIn}>Submit</SubmitButton>
         <Marginer direction="veritcal" margin="1em"/>
         <MutedLink href="#">Get Back To <BoldLink href="#" onClick={switchToSignIn}>SignIn!</BoldLink></MutedLink>
     </BoxContainer>
