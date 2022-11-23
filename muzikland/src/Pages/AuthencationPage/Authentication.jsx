@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { SignInForm } from "./Component/SignInForm";
 import {motion} from "framer-motion";
 import { SignUpForm } from "./Component/SignUpForm";
 import {ForgetPW} from "./Component/ForgetPassword";
 import { AccountContext } from "./_AccountContext";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {app} from "./../../config/firebase.config";
+import { useNavigate } from "react-router-dom";
 
 
 const BoxContainer = styled.div`
@@ -127,7 +130,26 @@ export function AccountBox(props){
         }, 400)    
     };
 
-    const contextValue = {switchToSignUp, switchToSignIn, switchToForgetPW};
+    // firebase login with google
+    const navigate = useNavigate();
+    const firebaseAuth = getAuth(app);
+    const [auth, setAuth] = useState(false || window.localStorage.getItem("auth") === true);
+
+    useEffect(() => {
+        firebaseAuth.onAuthStateChanged((userCred) => {
+            if(userCred) {
+                userCred.getIdToken().then((token) => {
+                    console.log(token)
+                })
+            } else {
+                setAuth(false);
+                window.localStorage.setItem("auth", "false");
+                navigate("/login");
+            }
+        })
+    }, [])
+
+    const contextValue = {switchToSignUp, switchToSignIn, switchToForgetPW, setAuth};
 
     return (
     <AccountContext.Provider value={contextValue}>

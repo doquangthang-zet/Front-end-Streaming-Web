@@ -1,7 +1,8 @@
 
 import './App.css';
 import styled from "styled-components";
-import { AccountBox } from './Pages/AuthencationPage/Authentication.jsx';
+import { AccountBox } from './pages/AuthencationPage/Authentication.jsx';
+import { BrowserRouter } from 'react-router-dom';
 
 const AppContainer = styled.div `
 width: 100%;
@@ -13,7 +14,9 @@ justify-content: center;
 `;
 function App() {
   return <AppContainer>
-    <AccountBox/>
+    <BrowserRouter>
+      <AccountBox/>
+    </BrowserRouter>
   </AppContainer>;
 }
 
