@@ -1,148 +1,204 @@
-.App {
-  height: 100vh;
-  display: flex;
-  color: white;
+.imgAttribute {
+  width: 550px;
 }
 
-.appAside {
-  width: 50%;
-  background-color: #6b5b95;
-}
-
-.appForm {
-  width: 50%;
-  background-color: #12130f;
-  padding: 25px 40px;
-  overflow: auto;
-}
-
-.pageSwitcher {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10%;
-}
-
-.pageSwitcherItem {
-  background-color: #40434e;
-  color: #9da6b1;
-  padding: 10px 25px;
+.styleLogo {
+  width: 6%;
+  height: 70%;
   cursor: pointer;
-  font-size: 0.9em;
-  border: none;
+  margin: 10px 20px 0;
+}
+
+.searchInputs {
+  display: flex;
+  margin: 15px 100px 0;
+}
+
+.search input {
+  background-color: white;
+  border: 0;
+  border-radius: 2px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  font-size: 18px;
+  height: 30px;
+  width: 600px;
+}
+
+.searchIcon {
+  height: 30px;
+  width: 50px;
+  background-color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+input:focus {
   outline: none;
-  display: inline-block;
+}
+
+.searchIcon svg {
+  font-size: 25px;
+}
+
+.dataResult {
+  width: 600px;
+  height: 100px;
+  margin-left: 100px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.dataResult::-webkit-scrollbar {
+  display: none;
+}
+
+.dataResult .dataItem {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.dataItem p {
+  margin-left: 0px;
+}
+
+a {
   text-decoration: none;
 }
 
-.pageSwitcherItem-active {
-  background-color: #6b5b95;
-  color: white;
+a:hover {
+  background-color: lightgrey;
 }
 
-.pageSwitcherItem:first-child {
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
+#clearBtn {
+  cursor: pointer;
 }
 
-.pageSwitcherItem:last-child {
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
+.listOption {
+  margin-top: 15px;
+  margin-right: 30px;
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.listOption:focus {
+  outline: none;
+}
+.listOption:hover {
+  cursor: pointer;
 }
 
-.formCenter {
-  margin-bottom: 100px;
+.iconSection {
+  width: 270px;
+  padding-top: 20px;
+}
+.iconSection p {
+  display: inline;
 }
 
-.formTitle {
-  color: #707c8b;
-  font-weight: 300;
-  margin-bottom: 50px;
-}
-
-.formTitleLink {
-  color: #707c8b;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1.7em;
+.iconTag {
+  font-size: 25px;
   margin: 0 10px;
-  padding-bottom: 5px;
 }
 
-.formTitleLink:first-child {
-  margin-left: 0;
+.adverImg {
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  background-color: purple;
+  border-radius: 19px;
 }
 
-.formTitleLink-active {
-  color: white;
-  border-bottom: 1px solid #6b5b95;
+.colChange {
+  flex-grow: 0 !important;
 }
 
-.formField {
-  margin-bottom: 40px;
-}
-
-.formFieldLabel {
-  display: block;
-  text-transform: uppercase;
-  font-size: 0.9em;
-  color: white;
-}
-
-.formFieldInput {
-  width: 85%;
-  background-color: transparent;
-  border: none;
-  color: white;
-  outline: none;
-  border-bottom: 1px solid #445366;
-  font-size: 1em;
-  font-weight: 300;
-  padding-bottom: 10px;
-  margin-top: 10px;
-}
-
-.formFieldInput::placeholder {
-  color: #616e7f;
-}
-
-.formFieldButton {
-  background-color: #6b5b95;
-  color: white;
-  border: none;
-  outline: none;
-  border-radius: 25px;
-  padding: 15px 70px;
-  font-size: 0.8em;
-  font-weight: 500;
-}
-
-.formFieldLink {
-  color: #66707d;
-  text-decoration: none;
-  display: inline-block;
-  border-bottom: 1.5px solid #6b5b95;
-  padding-bottom: 5px;
-}
-
-.formFieldCheckboxLabel {
-  color: #646f7d;
-  font-size: 0.9em;
-}
-
-.formFieldCheckbox {
+.rowAttribute {
   position: relative;
-  top: 1.5px;
 }
 
-.formFieldTermsLink {
+.titleSection {
+  position: absolute;
+  background-color: transparent;
+  margin: 30px;
+  margin-left: 35%;
+}
+.titleSection span {
+  font-size: 25px;
+  margin: 60px;
+  margin-right: 400px;
+}
+.titleSection .seeMore {
+  font-size: 20px;
+  padding-top: 10px;
+  padding: 0 2px;
+}
+.titleSection .seeMore:hover {
+  cursor: pointer;
+}
+
+.smallTitleSection {
+  position: absolute;
+  background-color: transparent;
+  margin: 30px 0;
+}
+.smallTitleSection span {
+  font-size: 25px;
+  margin: 60px 30px;
+  margin-right: 800px;
+}
+.smallTitleSection .seeMore {
+  font-size: 20px;
+  padding-top: 10px;
+  padding: 0 2px;
+}
+.smallTitleSection .seeMore:hover {
+  cursor: pointer;
+}
+
+.songContainer {
+  padding-right: 0 !important;
+  margin-top: 60px;
+}
+
+.songImg {
+  width: 85%;
+  height: 85%;
+  border-radius: 19px;
+}
+
+.songInfo {
+  margin: 5% 5% 0;
   color: white;
-  border-bottom: 1px solid #6b5b95;
-  text-decoration: none;
-  display: inline-block;
-  padding-bottom: 2px;
-  margin-left: 5px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
 }
-
-.socialMediaButtons {
-  padding: 10px 100px 10px 0px;
+.songInfo p {
+  margin: 5px 0 0;
+  text-align: center;
+}
+.songInfo .iconAttribute {
+  position: absolute;
+  font-size: 40px;
+  color: transparent;
+  transition: all 500ms;
+}
+.songInfo:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 500ms;
+}
+.songInfo:hover .iconAttribute {
+  color: green;
 }/*# sourceMappingURL=main.css.map */

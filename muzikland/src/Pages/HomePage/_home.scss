@@ -1,0 +1,202 @@
+.styleLogo{
+    width: 6%;
+    height: 70%;
+    cursor: pointer;
+    margin: 10px 20px 0;
+}
+
+// Header
+.searchInputs {
+    display: flex;
+    margin: 15px 100px 0;
+  }
+  
+  .search input {
+    background-color: white;
+    border: 0;
+    border-radius: 2px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 18px;
+    height: 30px;
+    width: 600px;
+  }
+  
+  .searchIcon {
+    height: 30px;
+    width: 50px;
+    background-color: #fff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  .searchIcon svg {
+    font-size: 25px;
+  }
+  
+  .dataResult {
+    width: 600px;
+    height: 100px;
+    margin-left: 100px;
+
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  
+  .dataResult::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .dataResult .dataItem {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: black;
+  }
+  
+  .dataItem p {
+    margin-left: 0px;
+  }
+  a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    background-color: lightgrey;
+  }
+  
+  #clearBtn {
+    cursor: pointer;
+  }
+
+.listOption{
+    margin-top: 15px;
+    margin-right: 30px;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+    &:focus{
+        outline: none;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.iconSection{
+    width: 270px;
+    padding-top: 20px;
+    p{
+        display: inline;
+    }
+}
+.iconTag{
+    font-size: 25px;
+    margin: 0 10px;
+}
+
+
+
+//Body
+.adverImg{
+    width  : 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    background-color: purple;
+    border-radius: 19px;
+}
+
+.colChange{
+    flex-grow: 0!important;
+}
+
+.rowAttribute{
+    position: relative;
+}
+
+.titleSection{
+    position: absolute;
+    background-color: transparent;
+    margin: 30px;
+    margin-left: 35%;
+    span{
+        font-size: 25px;
+        margin: 60px;
+        margin-right: 400px;
+    }
+    .seeMore{
+        font-size: 20px;
+        padding-top: 10px;
+        padding: 0 2px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+.smallTitleSection{
+    position: absolute;
+    background-color: transparent;
+    margin: 30px 0;
+    span{
+        font-size: 25px;
+        margin: 60px 30px;
+        margin-right: 800px;
+    }
+    .seeMore{
+        font-size: 20px;
+        padding-top: 10px;
+        padding: 0 2px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+.songContainer{
+    padding-right: 0!important;
+    margin-top: 60px;
+}
+
+.songImg{
+    width: 85%;
+    height: 85%;
+    border-radius: 19px;
+}
+
+.songInfo{
+    margin: 5% 5% 0;
+    color: white;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    p{
+        margin: 5px 0 0;
+        text-align: center;
+    }
+    .iconAttribute{
+        position: absolute;
+        font-size: 40px;
+        color: transparent;
+        transition: all 500ms;
+    }
+    &:hover{
+        cursor: pointer;
+        opacity: 0.7;
+        transition: all 500ms;
+        .iconAttribute{
+            color: green;
+        }
+    }
+}
