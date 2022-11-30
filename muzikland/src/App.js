@@ -1,7 +1,8 @@
 import './App.css';
 import styled from "styled-components";
-import { BrowserRouter } from 'react-router-dom';
-import {Home} from './pages/HomePage/Home.jsx';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {Home} from './pages/homePage/Home.jsx';
+import { AccountBox } from './pages/AuthencationPage/Authentication';
 
 const AppContainer = styled.div `
 width: 100%;
@@ -13,7 +14,14 @@ justify-content: center;
 `;
 
 function App() {
-  return <Home/>;
+  return (
+    <body>
+      <Routes>
+        <Route path='/login' element={<AccountBox />} />
+        <Route path='/*' element={<Home />} />
+      </Routes>
+    </body>
+  );
 }
 
 export default App;
