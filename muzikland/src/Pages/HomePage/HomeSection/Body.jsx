@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from 'styled-components';
 import '../../../css/main.css';
 // import { AccountContext } from "../_AccountContext";
@@ -8,6 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faLeftLong, faRightLong } from "@fortawesome/free-solid-svg-icons";
 
 import { Container, Row, Col } from 'react-grid';
+import { useStateValue } from "../../../context/StateProvider";
+import { getAllSongs } from "../../../api";
+import { actionType } from "../../../context/reducer";
 
 const BodyContainer = styled.div`
 margin-top: 40px;
@@ -30,23 +33,41 @@ const SongContainer = styled.div`
 
 
 export function BodySection() {
+
+    const [{allSongs}, dispatch] = useStateValue();
+
+    useEffect(() => {
+        if(!allSongs) {
+            getAllSongs().then((data) => {
+                dispatch({
+                    type: actionType.SET_ALL_SONGS,
+                    allSongs: data.song,
+                });
+            });
+        }
+    }, []);
+
     return (
         <BodyContainer>
             <Container>
                 <Row className="rowAttribute">
                     <Col><img className="adverImg" src={musicImage} alt="" /></Col>
                     <div className="titleSection"> 
-                    <span>Top Trending</span>
-                    <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                    <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
+                        <span>Top Trending</span>
+                        <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
+                        <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
                     </div>
-                    <Col className="songContainer"><SongContainer>
+                    
+                    <SongBox data={allSongs} />
+                    {/* <Col className="songContainer">
+                        <SongContainer>
 
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
+                            <div className="songInfo">
+                                <p>Hello World</p>
+                                <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
+                                <img className="songImg" src={musicImage} alt="" />
+                            </div>
+                        </SongContainer>
                     </Col>
                     <Col className="songContainer"><SongContainer>
 
@@ -63,7 +84,7 @@ export function BodySection() {
                             <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
                             <img className="songImg" src={musicImage} alt="" /></div>
                     </SongContainer>
-                    </Col>
+                    </Col> */}
                 </Row>
                 <Row className="rowAttribute">
                 <div className="smallTitleSection"> 
@@ -176,4 +197,23 @@ export function BodySection() {
             </Container>
         </BodyContainer>
     );
+};
+
+export const SongBox = ({data}) => {
+    return (
+        <div>
+            {data && data.map((song, i) => (
+                <Col className="songContainer">
+                    <SongContainer>
+                        <div className="songInfo">
+                            <p>{song.name}</p>
+                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
+                            <img className="songImg" src={song.imageURL} alt="" referrerPolicy="no-referrer" />
+                        </div>
+                    </SongContainer>
+                </Col>
+            ))}
+        </div>
+        
+    )
 }
