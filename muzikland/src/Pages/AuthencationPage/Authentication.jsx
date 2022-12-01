@@ -6,9 +6,6 @@ import { SignUpForm } from "./Component/SignUpForm";
 import {ForgetPW} from "./Component/ForgetPassword";
 import { AccountContext } from "./_AccountContext";
 import musicImage from "../AuthencationPage/music-cool.gif";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {app} from "./../../config/firebase.config";
-import { useNavigate } from "react-router-dom";
 import imgAttribute from "../../css/main.css";
 
 
@@ -121,7 +118,7 @@ const expandingTransition = {
     stiffness:30,
 };
 
-export function AccountBox(props){
+export function AccountBox({setAuth}){
     const [isExpanded, setExpanded] = useState(false);
     const [active, setActive] = useState("signin");
 
@@ -130,7 +127,7 @@ export function AccountBox(props){
         setTimeout(() => {
             setExpanded(false);
         }, expandingTransition.duration * 1000 - 1500);
-    };
+    }; 
 
     const switchToSignUp = () => {
         playExpandingAnimation();
@@ -153,26 +150,7 @@ export function AccountBox(props){
         }, 400)    
     };
 
-    // firebase login with google
-    const navigate = useNavigate();
-    const firebaseAuth = getAuth(app);
-    const [auth, setAuth] = useState(false || window.localStorage.getItem("auth") === true);
-
-    useEffect(() => {
-        firebaseAuth.onAuthStateChanged((userCred) => {
-            if(userCred) {
-                userCred.getIdToken().then((token) => {
-                    console.log(token)
-                })
-            } else {
-                setAuth(false);
-                window.localStorage.setItem("auth", "false");
-                navigate("/login");
-            }
-        })
-    }, [])
-
-    const contextValue = {switchToSignUp, switchToSignIn, switchToForgetPW, setAuth};
+    const contextValue = {switchToSignUp, switchToSignIn, switchToForgetPW};
 
     return (
     <AccountContext.Provider value={contextValue}>
@@ -200,7 +178,7 @@ export function AccountBox(props){
             </HeaderContainer>}
         </TopContainer>
         <InnerContainer>
-        {active === "signin" && <SignInForm/>}
+        {active === "signin" && <SignInForm setAuth={setAuth} />}
         {active === "signup" && <SignUpForm/>}
         {active === "forgetpw" && <ForgetPW/>}
         </InnerContainer>

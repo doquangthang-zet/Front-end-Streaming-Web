@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from 'styled-components';
 import logo from './MUZIKLAND_free-file.png';
 import '../../../css/main.css';
@@ -6,6 +6,11 @@ import '../../../css/main.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch, faFolderPlus, faHeart} from "@fortawesome/free-solid-svg-icons";
 import Form from 'react-bootstrap/Form';
+import { useStateValue } from "../../../context/StateProvider";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { app } from "../../../config/firebase.config";
+import {motion} from 'framer-motion';
 
 const HeaderContainer = styled.div`
     width: 100%;
@@ -19,6 +24,20 @@ const HeaderContainer = styled.div`
 
 
 export function Header(props) {
+
+  const [{user}, dispatch] = useStateValue();
+  const navigate = useNavigate();
+
+  const [isUserMenu, setIsUserMenu] = useState(false)
+
+  const logOut = () => {
+    const firebaseAuth = getAuth(app);
+    firebaseAuth.signOut().then(() => {
+      window.localStorage.setItem("auth", "false");
+    }).catch((err) => console.log(err));
+    navigate("/login", {replace: true});
+  }
+
     return <HeaderContainer>
         <img className="styleLogo" src={logo}/>
         <div className="search">
@@ -44,6 +63,22 @@ export function Header(props) {
         <FontAwesomeIcon className="iconTag" icon={faHeart}></FontAwesomeIcon><p>Liked Songs</p>
       </div>
       
-      
+      <div 
+        onMouseEnter={() => setIsUserMenu(true)}
+        onMouseLeave={() => setIsUserMenu(false)}
+      >
+        <img src={user?.user?.imageURL} referrerPolicy='no-referrer' />
+        <p>{user?.user?.name}</p>
+        {isUserMenu && (
+          <motion.div
+            initial={{opacity: 0, y : 50}}
+            animate={{opacity: 1, y : 0}}
+            exit={{opacity: 0, y : 50}}
+          >
+            <p onClick={logOut}>Sign out</p>
+          </motion.div>
+        )}
+      </div>
+
     </HeaderContainer>
 }
