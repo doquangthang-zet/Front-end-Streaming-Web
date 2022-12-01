@@ -8,7 +8,7 @@ import {faSearch, faFolderPlus, faHeart} from "@fortawesome/free-solid-svg-icons
 import Form from 'react-bootstrap/Form';
 import { useStateValue } from "../../../context/StateProvider";
 import { getAuth } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { app } from "../../../config/firebase.config";
 import {motion} from 'framer-motion';
 
@@ -75,6 +75,14 @@ export function Header(props) {
             animate={{opacity: 1, y : 0}}
             exit={{opacity: 0, y : 50}}
           >
+            <p>Profile</p>
+            <hr />
+            {user?.user?.role === "admin" && (
+              <NavLink to={"/dashboard/home"}>
+                <p>Dashboard</p>
+              </NavLink>
+            )}
+            
             <p onClick={logOut}>Sign out</p>
           </motion.div>
         )}

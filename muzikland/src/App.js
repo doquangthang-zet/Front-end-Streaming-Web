@@ -10,6 +10,7 @@ import { useStateValue } from './context/StateProvider';
 import { actionType } from './context/reducer';
 import { validateUser } from './api';
 import { AnimatePresence } from 'framer-motion';
+import Admin from './pages/AdminPage/Admin';
 
 const AppContainer = styled.div `
 width: 100%;
@@ -58,6 +59,7 @@ function App() {
         <Routes>
           <Route path='/login' element={<AccountBox setAuth={setAuth} />} />
           <Route path='/*' element={<Home />} />
+          <Route path='/dashboard/*' element={<Admin />} />
         </Routes>
       </div>
     </AnimatePresence>
