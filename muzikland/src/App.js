@@ -13,6 +13,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Admin from './pages/AdminPage/Admin';
 import AdminHome from './pages/AdminPage/AdminHome';
 import MusicPlayer from './pages/MusicPlayer/MusicPlayer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AppContainer = styled.div `
 width: 100%;

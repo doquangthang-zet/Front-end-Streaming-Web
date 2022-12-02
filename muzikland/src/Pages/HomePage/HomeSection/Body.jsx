@@ -11,7 +11,6 @@ import { Container, Row, Col } from 'react-grid';
 import { useStateValue } from "../../../context/StateProvider";
 import { getAllSongs } from "../../../api";
 import { actionType } from "../../../context/reducer";
-// import { type } from "os";
 
 const BodyContainer = styled.div`
 margin-top: 40px;
@@ -202,12 +201,11 @@ export function BodySection() {
 
 export const SongBox = ({data}) => {
     return (
-        <div>
+        <div className="d-flex">
             {data && data.map((song, i) => (
                 <SongCard key={song._id} data={song} index={i} />
             ))}
         </div>
-        
     )
 }
 
