@@ -1,17 +1,17 @@
 import React, { useContext, useState } from "react";
 import styled from 'styled-components';
 import logo from './logomuzik.jpg';
-import '../../../css/main.css';
+import '../../css/main.css';
 // import { AccountContext } from "../_AccountContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch, faFolderPlus, faHeart, faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { useStateValue } from "../../../context/StateProvider";
+import { useStateValue } from "../../context/StateProvider";
 import { getAuth } from "firebase/auth";
 import { NavLink, useNavigate } from "react-router-dom";
-import { app } from "../../../config/firebase.config";
+import { app } from "../../config/firebase.config";
 import {motion} from 'framer-motion';
 
 const HeaderContainer = styled.div`

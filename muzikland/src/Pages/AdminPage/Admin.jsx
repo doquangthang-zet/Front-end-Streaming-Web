@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from '../HomePage/HomeSection/Header'
+import { Header } from '../HeaderComponent/Header'
 
 const Admin = () => {
   return (
