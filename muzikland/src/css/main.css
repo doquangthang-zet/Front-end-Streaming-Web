@@ -11,7 +11,7 @@
 
 .searchInputs {
   display: flex;
-  margin: 15px 100px 0;
+  margin: 35px 100px 0;
 }
 
 .search input {
@@ -42,28 +42,6 @@ input:focus {
   font-size: 25px;
 }
 
-.dataResult {
-  width: 600px;
-  height: 100px;
-  margin-left: 100px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  overflow: hidden;
-  overflow-y: auto;
-}
-
-.dataResult::-webkit-scrollbar {
-  display: none;
-}
-
-.dataResult .dataItem {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  color: black;
-}
-
 .dataItem p {
   margin-left: 0px;
 }
@@ -81,13 +59,10 @@ a:hover {
 }
 
 .listOption {
-  margin-top: 15px;
-  margin-right: 30px;
-  width: 100px;
-  height: 30px;
+  margin: 30px 0;
   font-size: 15px;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: transparent;
 }
 .listOption:focus {
   outline: none;
@@ -98,7 +73,8 @@ a:hover {
 
 .iconSection {
   width: 270px;
-  padding-top: 20px;
+  margin: 30px 0;
+  margin-left: 20px;
 }
 .iconSection p {
   display: inline;
@@ -107,6 +83,32 @@ a:hover {
 .iconTag {
   font-size: 25px;
   margin: 0 10px;
+}
+
+.personalInfo {
+  width: 180px;
+  text-align: center;
+}
+.personalInfo p {
+  display: inline-block;
+}
+
+.iconUser {
+  font-size: 45px;
+  margin: 10px 10px;
+}
+
+.dropdown .btn-primary {
+  background-color: #fff;
+  color: black;
+  border-color: #fff;
+  --bs-btn-active-bg: transparent;
+}
+.dropdown .btn-primary:hover {
+  border-color: black;
+}
+.dropdown .btn-primary:focus {
+  outline: none;
 }
 
 .adverImg {
@@ -201,4 +203,62 @@ a:hover {
 }
 .songInfo:hover .iconAttribute {
   color: green;
+}
+
+.musicDisplay {
+  margin-left: 15%;
+}
+
+.aside-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 1;
+  left: 0;
+  overflow: auto;
+  border-right: 1px solid #e0e0e0;
+}
+.aside-bar .aside-bar-container {
+  background: rgb(238, 174, 202);
+  background: radial-gradient(circle, rgb(238, 174, 202) 0%, rgb(148, 187, 233) 100%);
+}
+.aside-bar .p1 {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 15px;
+  font-weight: bolder;
+  user-select: none;
+}
+.aside-bar .lib-sub {
+  padding: 10px;
+  margin: 7px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.aside-bar .lib-sub .MuiButton-startIcon {
+  color: #07689f;
+}
+.aside-bar .aside-bar-container {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+.aside-bar .playlist {
+  flex: 1;
+}
+.aside-bar .playlist .p1 {
+  border-top: 1px solid #e0e0e0;
+}
+.aside-bar .playlist .lib-sub:hover {
+  background-color: #a2d5f2;
+}
+
+@media only screen and (max-width: 970px) {
+  .aside-bar {
+    display: none;
+  }
 }/*# sourceMappingURL=main.css.map */

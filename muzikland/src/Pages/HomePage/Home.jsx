@@ -1,21 +1,21 @@
 import React from "react";
-import styled from "styled-components";
 //import { useNavigate } from "react-router-dom";
 import {Header} from './HomeSection/Header';
 import {BodySection} from './HomeSection/Body';
-
-
-const HomeContainer = styled.div`
-  width: 100%;
-  height: 100%;
-`
+import {SideBar} from '../SideBarComponent/SideBar';
+import {AboutUs} from '../AboutUsPage/AboutUS';
+import '../../css/main.css';
 
 
 export function Home(){
   return (
-    <HomeContainer>
+    
+    <section>
       <Header/>
-      <BodySection/>
-    </HomeContainer>
+      <SideBar/>
+      <div className="musicDisplay"><BodySection/></div>
+      {/* <AboutUs/> */}
+
+    </section>
   )
 }

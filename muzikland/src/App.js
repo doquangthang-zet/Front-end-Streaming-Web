@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BrowserRouter } from 'react-router-dom';
 import {Home} from './pages/HomePage/Home.jsx';
 
+
 const AppContainer = styled.div `
 width: 100%;
 height: 100%;

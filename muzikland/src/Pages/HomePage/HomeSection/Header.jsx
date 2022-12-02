@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import styled from 'styled-components';
-import logo from './MUZIKLAND_free-file.png';
+import logo from './logomuzik.jpg';
 import '../../../css/main.css';
 // import { AccountContext } from "../_AccountContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSearch, faFolderPlus, faHeart} from "@fortawesome/free-solid-svg-icons";
+import {faSearch, faFolderPlus, faHeart, faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import Form from 'react-bootstrap/Form';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+
 
 const HeaderContainer = styled.div`
     width: 100%;
@@ -21,27 +24,32 @@ const HeaderContainer = styled.div`
 export function Header(props) {
     return <HeaderContainer>
         <img className="styleLogo" src={logo}/>
-        <div className="search">
+      <div className="search">
             <div className="searchInputs">
                 <input type="text" placeholder="Enter a Song or Signer..."/>
                 <div className="searchIcon">
                     <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                 </div>
             </div>
-            <div className="dataResult"></div>
-        </div>
+      </div>
       <div>
-      <Form.Select className="listOption" aria-label="Default select example">
-      <option>Genres</option>
-      <option value="1">POP</option>
-      <option value="2">Classic</option>
-      <option value="3">HipHop</option>
-      <option value="4">Jazz</option>
-    </Form.Select>
+    <DropdownButton id="dropdown-basic-button" className="listOption" title="Genres">
+    <Dropdown.Item href="#/action-1">Jazz</Dropdown.Item>
+    <Dropdown.Item href="#/action-2">Classic</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">POP</Dropdown.Item>
+    <Dropdown.Item href="#/action-4">Hip Hop</Dropdown.Item>
+    </DropdownButton>
       </div>
       <div className="iconSection">
         <FontAwesomeIcon className="iconTag" icon={faFolderPlus}></FontAwesomeIcon><p>Play list</p>
         <FontAwesomeIcon className="iconTag" icon={faHeart}></FontAwesomeIcon><p>Liked Songs</p>
+      </div>
+      <div className="personalInfo">
+      <FontAwesomeIcon className="iconUser" icon={faUserCircle}></FontAwesomeIcon>
+      <DropdownButton id="dropdown-basic-button" title="Username">
+      <Dropdown.Item href="#/action-1">Personal</Dropdown.Item>
+      <Dropdown.Item href="#/action-2">Log Out</Dropdown.Item>
+    </DropdownButton>
       </div>
       
       
