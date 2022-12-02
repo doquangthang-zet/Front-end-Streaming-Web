@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from 'styled-components';
 import logo from './logomuzik.jpg';
 import '../../../css/main.css';
@@ -8,7 +8,11 @@ import {faSearch, faFolderPlus, faHeart, faUserCircle} from "@fortawesome/free-s
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-
+import { useStateValue } from "../../../context/StateProvider";
+import { getAuth } from "firebase/auth";
+import { NavLink, useNavigate } from "react-router-dom";
+import { app } from "../../../config/firebase.config";
+import {motion} from 'framer-motion';
 
 const HeaderContainer = styled.div`
     width: 100%;
@@ -22,6 +26,20 @@ const HeaderContainer = styled.div`
 
 
 export function Header(props) {
+
+  const [{user}, dispatch] = useStateValue();
+  const navigate = useNavigate();
+
+  const [isUserMenu, setIsUserMenu] = useState(false)
+
+  const logOut = () => {
+    const firebaseAuth = getAuth(app);
+    firebaseAuth.signOut().then(() => {
+      window.localStorage.setItem("auth", "false");
+    }).catch((err) => console.log(err));
+    navigate("/login", {replace: true});
+  }
+
     return <HeaderContainer>
         <img className="styleLogo" src={logo}/>
       <div className="search">
@@ -52,6 +70,30 @@ export function Header(props) {
     </DropdownButton>
       </div>
       
-      
+      <div 
+        onMouseEnter={() => setIsUserMenu(true)}
+        onMouseLeave={() => setIsUserMenu(false)}
+      >
+        <img src={user?.user?.imageURL} referrerPolicy='no-referrer' />
+        <p>{user?.user?.name}</p>
+        {isUserMenu && (
+          <motion.div
+            initial={{opacity: 0, y : 50}}
+            animate={{opacity: 1, y : 0}}
+            exit={{opacity: 0, y : 50}}
+          >
+            <p>Profile</p>
+            <hr />
+            {user?.user?.role === "admin" && (
+              <NavLink to={"/dashboard/home"}>
+                <p>Dashboard</p>
+              </NavLink>
+            )}
+            
+            <p onClick={logOut}>Sign out</p>
+          </motion.div>
+        )}
+      </div>
+
     </HeaderContainer>
 }

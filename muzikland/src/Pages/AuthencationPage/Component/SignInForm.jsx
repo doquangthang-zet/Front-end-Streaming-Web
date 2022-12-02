@@ -5,18 +5,22 @@ import { AccountContext } from "../_AccountContext";
 import {app} from "../../../config/firebase.config";
 import {useNavigate} from "react-router-dom";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { validateUser } from "../../../api";
+import { useStateValue } from '../../../context/StateProvider';
+import { actionType } from './../../../context/reducer';
 
-export function SignInForm(props){
+export function SignInForm({setAuth}){
 
     const {switchToSignUp} = useContext(AccountContext);
     const {switchToForgetPW} = useContext(AccountContext);
-    const {setAuth} = useContext(AccountContext);
+    // const {setAuth} = useContext(AccountContext);
 
     //firebase log in with gg
     const firebaseAuth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
     const navigate = useNavigate();
+    const [{user}, dispatch] = useStateValue();
 
     const loginWithGoogle = async () => {
         await signInWithPopup(firebaseAuth, provider).then((userCred) => {
@@ -28,11 +32,22 @@ export function SignInForm(props){
                 firebaseAuth.onAuthStateChanged((userCred) => {
                     if(userCred) {
                         userCred.getIdToken().then((token) => {
-                            console.log(token)
+                            // console.log(token)
+                            // window.localStorage.setItem("auth", "true");
+                            validateUser(token).then((data) => {
+                                dispatch({
+                                type: actionType.SET_USER,
+                                user: data,
+                                });
+                            });
                         })
                         navigate("/", {replace : true});
                     } else {
                         setAuth(false);
+                        dispatch({
+                            type: actionType.SET_USER,
+                            user: null,
+                        });
                         navigate("/login");
                     }
                 })
@@ -42,7 +57,7 @@ export function SignInForm(props){
 
     useEffect(() => {
         if(window.localStorage.getItem("auth") === "true") {
-            navigate("/")
+            navigate("/", {replace: true})
         }
     }, [])
 
