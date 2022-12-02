@@ -9,9 +9,10 @@ import React, { useEffect, useState } from "react";
 import { useStateValue } from './context/StateProvider';
 import { actionType } from './context/reducer';
 import { validateUser } from './api';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Admin from './pages/AdminPage/Admin';
 import AdminHome from './pages/AdminPage/AdminHome';
+import MusicPlayer from './pages/MusicPlayer/MusicPlayer';
 
 const AppContainer = styled.div `
 width: 100%;
@@ -27,7 +28,7 @@ function App() {
   const navigate = useNavigate();
   const firebaseAuth = getAuth(app);
 
-  const [{user}, dispatch] = useStateValue();
+  const [{user, isSongPlaying}, dispatch] = useStateValue();
   const [auth, setAuth] = useState(false || window.localStorage.getItem("auth") === true);
 
   useEffect(() => {
@@ -62,6 +63,16 @@ function App() {
           <Route path='/*' element={<Home />} />
           <Route path='/dashboard/*' element={<AdminHome />} />
         </Routes>
+
+        {isSongPlaying && (
+          <motion.div
+            initial={{opacity: 0, y: 50}}
+            animate={{opacity: 1, y: 0}}
+            className={`fixed min-w-[700px] h-26  inset-x-0 bottom-0  bg-cardOverlay drop-shadow-2xl backdrop-blur-md flex items-center justify-center`}
+          >
+            <MusicPlayer />
+          </motion.div>
+        )}
       </div>
     </AnimatePresence>
     

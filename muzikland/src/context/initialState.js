@@ -4,4 +4,6 @@ export const initialState = {
     allSongs: null,
     allArtists: null,
     allPlaylists: null,
+    isSongPlaying: false,
+    songIndex: 0,
 };
