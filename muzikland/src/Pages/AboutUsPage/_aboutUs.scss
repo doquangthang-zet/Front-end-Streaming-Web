@@ -1,0 +1,41 @@
+.developer {
+    h3 {
+        margin-left: 30px;
+    }
+
+    p {
+        font-size: 19px;
+    }
+
+    .developer-profile {
+        margin-left: 30px;
+        display: flex;
+        flex-wrap: nowrap;
+
+        .profileCard {
+            width: 150%;
+
+            .profilePicture {
+                width: 50px;
+                border-radius: 50px;
+                margin: 20px;
+            }
+        }
+
+        .profileDetails {
+            .cardBtn {
+                .linkImg {
+                    width: 5%;
+                    display: inline-block;
+                    margin: 20px 50px;
+                    transition: all .5s;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+}

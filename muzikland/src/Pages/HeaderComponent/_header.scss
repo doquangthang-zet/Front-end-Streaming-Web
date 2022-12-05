@@ -6,6 +6,9 @@
 }
 
 // Header
+.search{
+    width: 50%;
+}
 .searchInputs {
     display: flex;
     margin: 35px 100px 0;
@@ -71,14 +74,19 @@
     width: 270px;
     margin: 30px 0;
     margin-left: 20px;
-    p{
-        display: inline;
+    display: flex;
+    .playlistBtn,.likedSongsBtn{
+      display: flex;
+      &:hover{
+        cursor: pointer;
+      }
     }
 }
 .iconTag{
-    font-size: 25px;
-    margin: 0 10px;
+  font-size: 25px;
+  margin: 0 10px;
 }
+
 
 .personalInfo{
     width: 180px;
@@ -88,8 +96,9 @@
     }
 }
 .iconUser{
-    font-size: 45px;
-    margin: 10px 10px;
+    width: 40%;
+    border-radius: 50px;
+    margin: 10px 50px;
 }
 .dropdown{
     .btn-primary{

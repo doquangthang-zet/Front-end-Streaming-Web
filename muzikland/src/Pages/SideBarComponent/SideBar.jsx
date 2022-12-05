@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import "../../css/main.css";
 import {ThemeContext} from "../../api/Theme";
-import {faHome, faExplosion, faSearch, faMusic} from "@fortawesome/free-solid-svg-icons";
+import {faHome, faExplosion, faSearch, faMusic, faListDots} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function SideBar() {
@@ -23,6 +23,8 @@ export function SideBar() {
                 <p className={"p1"}>
                     <span>MY PLAYLIST</span>
                 </p>
+                <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faListDots}/> Your Playlist Name</p>
+
             </div>
         </aside>
     );

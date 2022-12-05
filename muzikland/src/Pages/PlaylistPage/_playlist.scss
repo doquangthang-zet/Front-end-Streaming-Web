@@ -1,0 +1,78 @@
+//Albums Playlist
+.albumsContainer{
+    background: rgb(117,140,209);
+    background: radial-gradient(circle, rgba(117,140,209,1) 24%, rgba(97,126,212,1) 52%, rgba(124,146,210,1) 89%, rgba(205,176,189,1) 100%);
+    .albumsGenre{
+        h1{
+            margin-left: 20px;
+        }
+    }
+}
+
+
+
+//Songs Playlist
+.playlistInfo{
+    display: flex;
+    flex-wrap: nowrap;
+    background: rgb(136,148,184);
+background: radial-gradient(circle, rgba(136,148,184,1) 0%, rgba(205,176,189,1) 100%);    
+    .playlistImg{
+        margin: 50px;
+        width: 250px;
+        height: 250px;
+        box-shadow: 50px black;
+    }
+    .playlistDetails{
+        margin: 50px 0;
+        span{
+            font-weight: bold;
+        }
+        h1{
+            font-size: 100px;
+            font-weight: bold;
+        }
+        p{
+            font-size: 20px;
+        }
+    }
+}
+
+.songList{
+    
+    background: rgb(124,146,210);
+background: radial-gradient(circle, rgba(124,146,210,1) 0%, rgba(205,176,189,1) 100%);
+    .oneSong{
+        position: relative;
+        .iconPlay{
+            height:30px;
+            position: absolute;
+            left: 0;
+            margin-left: 8px;
+            color: transparent;
+        }
+        .songDetails{
+            display: flex;
+            align-items: center;
+            .songPicture{
+                width: 60px;
+            }
+            .songName{
+                margin: 10px;
+            }
+        }
+
+        &:hover{
+            opacity: 0.7;
+            .iconPlay{
+                color: black;
+                cursor: pointer;
+            }
+            .songDetails{
+                .songPicture,.songName{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
