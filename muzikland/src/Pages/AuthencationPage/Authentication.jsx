@@ -9,20 +9,13 @@ import musicImage from "../AuthencationPage/music-cool.gif";
 import imgAttribute from "../../css/main.css";
 
 
-const ScreenContainer = styled.div`
-   width : 100%;
-   height: 100%;
-   background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(102,51,153,1) 43%, rgba(0,212,255,1) 100%);;
-`;
-
 const FrameContainer = styled.div`
     width: 1000px;
     min-height: 650px;
     display: flex;
     flex-direction: row;
-    margin: 50px;
-    margin-left: 225px;
+    margin: 80px;
+    margin-left: 300px;
     border-radius: 19px;
 background-color: #fff;
 box-shadow: 0 0 20px rgba(15,15,15, 0.8);
@@ -154,7 +147,7 @@ export function AccountBox({setAuth}){
 
     return (
     <AccountContext.Provider value={contextValue}>
-    <ScreenContainer>
+    
     <FrameContainer>
     <BoxContainer>
         <TopContainer>
@@ -186,7 +179,7 @@ export function AccountBox({setAuth}){
     </BoxContainer>
     <img className="imgAttribute" src={musicImage}/>
     </FrameContainer>
-    </ScreenContainer>
+    
     </AccountContext.Provider>
     );
 }
