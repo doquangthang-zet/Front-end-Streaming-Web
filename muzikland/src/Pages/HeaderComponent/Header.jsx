@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from 'styled-components';
-import logo from './logomuzik.jpg';
+import logo from './logomuzik.png';
 import '../../css/main.css';
 // import { AccountContext } from "../_AccountContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
