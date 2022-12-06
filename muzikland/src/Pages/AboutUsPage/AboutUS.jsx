@@ -9,12 +9,13 @@ export function AboutUs(){
 
     return (
         <div className="developer">
-            <h3>Hello</h3>
+            <h3>Developer Page Where To Know Us</h3>
+            <hr/>
             <div className="developer-profile">
                 <div className="profileCard">
-                    <img src="" alt="profilePicture"/>
+                    <img src="" className="profilePicture" alt="profilePicture_"/>
                     <div className="cardDetails">
-                        <h3>Hello Name</h3>
+                        <h4>Do Quang Thang</h4>
                         <p>Full-stack developer</p>
                         <p>Experienced Coder</p>
                     </div>
@@ -25,14 +26,39 @@ export function AboutUs(){
                     <p>A full-stack web developer and a Competitive coder.</p>
                     <p>I love designing fully responsive websites.</p>
                     <p>I have a keen interest in developing projects, whenever I want to learn something new.</p>
-                    <p>And a blogger.</p>
-                <div className="cardBtn">
-                </div>
+                    <div className="cardBtn">
                 <img src={facebook} className="linkImg" alt="Facebook" />
                 <img src={outlook}  className="linkImg" alt="Outlook" />
                 <img src={github} className="linkImg" alt="Github" />
                 <img src={gmail} className="linkImg" alt="Gmail" />
                 </div>
+                </div>
+                
+            </div>
+            <hr/>
+            <div className="developer-profile">
+                <div className="profileCard">
+                    <img src="" className="profilePicture" alt="profilePicture_"/>
+                    <div className="cardDetails">
+                        <h4>Do Quang Thang</h4>
+                        <p>Full-stack developer</p>
+                        <p>Experienced Coder</p>
+                    </div>
+                </div>
+                <div className="profileDetails">
+                    <p>A Information Technology Student at RMIT University, Ho Chi Minh city.</p>
+                    <p>Graduating in 2022 and looking for a responsible position to gain practical knowledge</p>
+                    <p>A full-stack web developer and a Competitive coder.</p>
+                    <p>I love designing fully responsive websites.</p>
+                    <p>I have a keen interest in developing projects, whenever I want to learn something new.</p>
+                    <div className="cardBtn">
+                <img src={facebook} className="linkImg" alt="Facebook" />
+                <img src={outlook}  className="linkImg" alt="Outlook" />
+                <img src={github} className="linkImg" alt="Github" />
+                <img src={gmail} className="linkImg" alt="Gmail" />
+                </div>
+                </div>
+                
             </div>
         </div>
     )

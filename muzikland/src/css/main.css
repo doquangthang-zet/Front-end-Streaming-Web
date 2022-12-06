@@ -2,115 +2,6 @@
   width: 550px;
 }
 
-.styleLogo {
-  width: 6%;
-  height: 70%;
-  cursor: pointer;
-  margin: 10px 20px 0;
-}
-
-.searchInputs {
-  display: flex;
-  margin: 35px 100px 0;
-}
-
-.search input {
-  background-color: white;
-  border: 0;
-  border-radius: 2px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  font-size: 18px;
-  height: 30px;
-  width: 600px;
-}
-
-.searchIcon {
-  height: 30px;
-  width: 50px;
-  background-color: #fff;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-input:focus {
-  outline: none;
-}
-
-.searchIcon svg {
-  font-size: 25px;
-}
-
-.dataItem p {
-  margin-left: 0px;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  background-color: lightgrey;
-}
-
-#clearBtn {
-  cursor: pointer;
-}
-
-.listOption {
-  margin: 30px 0;
-  font-size: 15px;
-  border-radius: 10px;
-  background-color: transparent;
-}
-.listOption:focus {
-  outline: none;
-}
-.listOption:hover {
-  cursor: pointer;
-}
-
-.iconSection {
-  width: 270px;
-  margin: 30px 0;
-  margin-left: 20px;
-}
-.iconSection p {
-  display: inline;
-}
-
-.iconTag {
-  font-size: 25px;
-  margin: 0 10px;
-}
-
-.personalInfo {
-  width: 180px;
-  text-align: center;
-}
-.personalInfo p {
-  display: inline-block;
-}
-
-.iconUser {
-  font-size: 45px;
-  margin: 10px 10px;
-}
-
-.dropdown .btn-primary {
-  background-color: #fff;
-  color: black;
-  border-color: #fff;
-  --bs-btn-active-bg: transparent;
-}
-.dropdown .btn-primary:hover {
-  border-color: black;
-}
-.dropdown .btn-primary:focus {
-  outline: none;
-}
-
 .adverImg {
   width: 400px;
   height: 500px;
@@ -174,7 +65,8 @@ a:hover {
 
 .songImg {
   width: 85%;
-  height: 85%;
+  height: 60%;
+  margin-bottom: 25px;
   border-radius: 19px;
 }
 
@@ -209,6 +101,11 @@ a:hover {
   margin-left: 15%;
 }
 
+.aboutUsDisplay, .songsDisplay, .albumsDisplay, .profileDisplay, .albumsPlaylistDisplay, .songsPlaylistDisplay {
+  margin-left: 250px;
+  background-color: #fff;
+}
+
 .aside-bar {
   display: flex;
   flex-direction: column;
@@ -217,7 +114,7 @@ a:hover {
   height: 100%;
   width: 250px;
   position: fixed;
-  top: 1;
+  top: 0;
   left: 0;
   overflow: auto;
   border-right: 1px solid #e0e0e0;
@@ -253,8 +150,12 @@ a:hover {
 .aside-bar .playlist .p1 {
   border-top: 1px solid #e0e0e0;
 }
+.aside-bar .playlist .p1:hover {
+  cursor: pointer;
+}
 .aside-bar .playlist .lib-sub:hover {
   background-color: #a2d5f2;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 970px) {
@@ -267,6 +168,10 @@ a:hover {
   height: 70%;
   cursor: pointer;
   margin: 10px 20px 0;
+}
+
+.search {
+  width: 50%;
 }
 
 .searchInputs {
@@ -335,9 +240,13 @@ a:hover {
   width: 270px;
   margin: 30px 0;
   margin-left: 20px;
+  display: flex;
 }
-.iconSection p {
-  display: inline;
+.iconSection .playlistBtn, .iconSection .likedSongsBtn {
+  display: flex;
+}
+.iconSection .playlistBtn:hover, .iconSection .likedSongsBtn:hover {
+  cursor: pointer;
 }
 
 .iconTag {
@@ -354,8 +263,9 @@ a:hover {
 }
 
 .iconUser {
-  font-size: 45px;
-  margin: 10px 10px;
+  width: 40%;
+  border-radius: 50px;
+  margin: 10px 50px;
 }
 
 .dropdown .btn-primary {
@@ -369,4 +279,227 @@ a:hover {
 }
 .dropdown .btn-primary:focus {
   outline: none;
+}
+
+.developer h3 {
+  margin-left: 30px;
+}
+.developer p {
+  font-size: 19px;
+}
+.developer .developer-profile {
+  margin-left: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.developer .developer-profile .profileCard {
+  width: 150%;
+}
+.developer .developer-profile .profileCard .profilePicture {
+  width: 50px;
+  border-radius: 50px;
+  margin: 20px;
+}
+.developer .developer-profile .profileDetails .cardBtn .linkImg {
+  width: 5%;
+  display: inline-block;
+  margin: 20px 50px;
+  transition: all 0.5s;
+}
+.developer .developer-profile .profileDetails .cardBtn .linkImg:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.playlistInfo {
+  display: flex;
+  flex-wrap: nowrap;
+  background: rgb(136, 148, 184);
+  background: radial-gradient(circle, rgb(136, 148, 184) 0%, rgb(205, 176, 189) 100%);
+}
+.playlistInfo .playlistImg {
+  margin: 50px;
+  width: 250px;
+  height: 250px;
+  box-shadow: 50px black;
+}
+.playlistInfo .playlistDetails {
+  margin: 50px 0;
+}
+.playlistInfo .playlistDetails span {
+  font-weight: bold;
+}
+.playlistInfo .playlistDetails h1 {
+  font-size: 100px;
+  font-weight: bold;
+}
+.playlistInfo .playlistDetails p {
+  font-size: 20px;
+}
+
+.songList {
+  background: rgb(124, 146, 210);
+  background: radial-gradient(circle, rgb(124, 146, 210) 0%, rgb(205, 176, 189) 100%);
+}
+.songList .oneSong {
+  position: relative;
+}
+.songList .oneSong .iconPlay {
+  height: 30px;
+  position: absolute;
+  left: 0;
+  margin-left: 8px;
+  color: transparent;
+}
+.songList .oneSong .songDetails {
+  display: flex;
+  align-items: center;
+}
+.songList .oneSong .songDetails .songPicture {
+  width: 60px;
+}
+.songList .oneSong .songDetails .songName {
+  margin: 10px;
+}
+.songList .oneSong:hover {
+  opacity: 0.7;
+}
+.songList .oneSong:hover .iconPlay {
+  color: black;
+  cursor: pointer;
+}
+.songList .oneSong:hover .songDetails .songPicture, .songList .oneSong:hover .songDetails .songName {
+  cursor: pointer;
+}
+
+.albumsContainer {
+  background: rgb(117, 140, 209);
+  background: radial-gradient(circle, rgb(117, 140, 209) 24%, rgb(97, 126, 212) 52%, rgb(124, 146, 210) 89%, rgb(205, 176, 189) 100%);
+}
+.albumsContainer .albumsGenre h1 {
+  margin-left: 20px;
+}
+
+.userProfile .userCard {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.userProfile .userCard .userImg {
+  margin: 50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 19px;
+}
+.userProfile .userCard h1 {
+  margin: 100px 0;
+  font-weight: bold;
+}
+.userProfile .userLoveSongs .iconHeart {
+  color: red;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong {
+  position: relative;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong .iconPlay {
+  height: 30px;
+  position: absolute;
+  left: 0;
+  margin-left: 8px;
+  color: transparent;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong .songDetails {
+  display: flex;
+  align-items: center;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong .songDetails .deleteBtn {
+  border: none;
+  background-color: transparent;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong .songDetails .songPicture {
+  width: 60px;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong .songDetails .songName {
+  margin: 10px;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong:hover {
+  opacity: 0.7;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong:hover .iconPlay {
+  color: black;
+  cursor: pointer;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong:hover .songDetails .deleteBtn {
+  color: black;
+}
+.userProfile .userLoveSongs .lovedSongs .oneSong:hover .songDetails .songPicture, .userProfile .userLoveSongs .lovedSongs .oneSong:hover .songDetails .songName {
+  cursor: pointer;
+}
+
+.albumsContainer {
+  background: rgb(117, 140, 209);
+  background: radial-gradient(circle, rgb(117, 140, 209) 24%, rgb(97, 126, 212) 52%, rgb(124, 146, 210) 89%, rgb(205, 176, 189) 100%);
+}
+.albumsContainer .albumsGenre h1 {
+  margin-left: 20px;
+}
+
+.playlistInfo {
+  display: flex;
+  flex-wrap: nowrap;
+  background: rgb(136, 148, 184);
+  background: radial-gradient(circle, rgb(136, 148, 184) 0%, rgb(205, 176, 189) 100%);
+}
+.playlistInfo .playlistImg {
+  margin: 50px;
+  width: 250px;
+  height: 250px;
+  box-shadow: 50px black;
+}
+.playlistInfo .playlistDetails {
+  margin: 50px 0;
+}
+.playlistInfo .playlistDetails span {
+  font-weight: bold;
+}
+.playlistInfo .playlistDetails h1 {
+  font-size: 100px;
+  font-weight: bold;
+}
+.playlistInfo .playlistDetails p {
+  font-size: 20px;
+}
+
+.songList {
+  background: rgb(124, 146, 210);
+  background: radial-gradient(circle, rgb(124, 146, 210) 0%, rgb(205, 176, 189) 100%);
+}
+.songList .oneSong {
+  position: relative;
+}
+.songList .oneSong .iconPlay {
+  height: 30px;
+  position: absolute;
+  left: 0;
+  margin-left: 8px;
+  color: transparent;
+}
+.songList .oneSong .songDetails {
+  display: flex;
+  align-items: center;
+}
+.songList .oneSong .songDetails .songPicture {
+  width: 60px;
+}
+.songList .oneSong .songDetails .songName {
+  margin: 10px;
+}
+.songList .oneSong:hover {
+  opacity: 0.7;
+}
+.songList .oneSong:hover .iconPlay {
+  color: black;
+  cursor: pointer;
+}
+.songList .oneSong:hover .songDetails .songPicture, .songList .oneSong:hover .songDetails .songName {
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */
