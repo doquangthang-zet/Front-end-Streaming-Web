@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminSongs = () => {
   return (
-    <div>AdminSongs</div>
+    <div className='flex w-screen justify-center text-center'>AdminSongs</div>
   )
 }
 

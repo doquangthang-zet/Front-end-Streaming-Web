@@ -4,6 +4,7 @@ export const actionType = {
     SET_ALL_ARTISTS: "SET_ALL_ARTISTS",
     SET_ALL_PLAYLISTS: "SET_ALL_PLAYLISTS",
     SET_ALL_SONGS: "SET_ALL_SONGS",
+    SET_ALL_ALBUMS: "SET_ALL_ALBUMS",
     SET_ISSONG_PLAYING: "SET_ISSONG_PLAYING",
     SET_SONG_INDEX: "SET_SONG_INDEX",
 }
@@ -41,6 +42,13 @@ const reducer = (state, action) => {
                 ...state,
                 allPlaylists: action.allPlaylists,
             };  
+        
+        case actionType.SET_ALL_ALBUMS:
+            return {
+                ...state,
+                allAlbums: action.allAlbums,
+            };  
+
 
         case actionType.SET_ISSONG_PLAYING:
         return {

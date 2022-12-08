@@ -63,7 +63,7 @@ function App() {
         <Routes>
           <Route path='/login' element={<AccountBox setAuth={setAuth} />} />
           <Route path='/*' element={<Home />} />
-          <Route path='/dashboard/*' element={<AdminHome />} />
+          <Route path='/dashboard/*' element={<Admin />} />
         </Routes>
 
         {isSongPlaying && (

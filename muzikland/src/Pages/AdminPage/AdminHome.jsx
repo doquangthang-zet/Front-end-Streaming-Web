@@ -52,7 +52,7 @@ const AdminHome = () => {
   }, []);
 
   return (
-    <div>AdminHome</div>
+    <div className='flex w-screen justify-center text-center'>AdminHome</div>
   )
 }
 

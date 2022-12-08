@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminUsers = () => {
   return (
-    <div>AdminUsers</div>
+    <div className='flex w-screen justify-center text-center'>AdminUsers</div>
   )
 }
 

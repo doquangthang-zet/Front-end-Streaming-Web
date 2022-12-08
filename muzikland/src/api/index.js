@@ -52,6 +52,15 @@ export const getAllPlaylist = async () => {
     }
 }
 
+export const getAllAlbum = async () => {
+    try {
+        const res = await axios.get(`${baseUrl}api/albums/getAll`);
+        return res.data;
+    } catch (error) {
+        return null;
+    }
+}
+
 export const updateUserRole = async (userId, role) => {
     try {
         const res = axios.put(`${baseUrl}api/users/updateRole/${userId}`, {data: {role: role}});

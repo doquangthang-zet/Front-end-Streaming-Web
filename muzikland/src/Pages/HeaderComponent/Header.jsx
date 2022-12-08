@@ -121,10 +121,10 @@ export function Header(props) {
             <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
             {user?.user?.role === "admin" && (
               <NavLink to={"/dashboard/home"}>
-                <p>Dashboard</p>
+                <Dropdown.Item href="#/action-2">Dashboard</Dropdown.Item>
               </NavLink>
-            )}
-            <Dropdown.Item href="#/action-2" onClick={logOut}>Log Out</Dropdown.Item>
+            )}<hr/>
+            <Dropdown.Item href="#/action-3" onClick={logOut}>Log Out</Dropdown.Item>
           </motion.div>
         )}
       </DropdownButton>
