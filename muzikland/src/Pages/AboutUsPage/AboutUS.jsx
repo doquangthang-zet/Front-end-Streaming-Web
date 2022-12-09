@@ -4,6 +4,7 @@ import facebook from "../../img/Facebook_f_logo_(2019).svg.png";
 import outlook from "../../img/Microsoft_Office_Outlook_(2018–present).svg.png";
 import gmail from "../../img/Gmail-logo.png";
 import github from "../../img/github-logo.png";
+import avaDev from "../../img/music-head-phones.gif";
 
 export function AboutUs(){
 
@@ -13,7 +14,7 @@ export function AboutUs(){
             <hr/>
             <div className="developer-profile">
                 <div className="profileCard">
-                    <img src="" className="profilePicture" alt="profilePicture_"/>
+                    <img src={avaDev} className="profilePicture" alt="profilePicture_"/>
                     <div className="cardDetails">
                         <h4>Do Quang Thang</h4>
                         <p>Full-stack developer</p>
@@ -38,7 +39,7 @@ export function AboutUs(){
             <hr/>
             <div className="developer-profile">
                 <div className="profileCard">
-                    <img src="" className="profilePicture" alt="profilePicture_"/>
+                    <img src={avaDev} className="profilePicture" alt="profilePicture_"/>
                     <div className="cardDetails">
                         <h4>Do Quang Thang</h4>
                         <p>Full-stack developer</p>
@@ -57,8 +58,7 @@ export function AboutUs(){
                 <img src={github} className="linkImg" alt="Github" />
                 <img src={gmail} className="linkImg" alt="Gmail" />
                 </div>
-                </div>
-                
+                </div>  
             </div>
         </div>
     )

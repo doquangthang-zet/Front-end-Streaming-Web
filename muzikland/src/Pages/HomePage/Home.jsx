@@ -39,8 +39,8 @@ export function Home(){
       <div className="musicDisplay"><BodySection/></div>
       {/* <div className="aboutUsDisplay"><AboutUs/></div> */}
       {/* <div className="songsDisplay"><Songs/></div> */}
-      {/* <div className="albumsDisplay"><Albums/></div> */}
-      {/* <div className="profileDisplay"><Profile/></div> */}
+      <div className="albumsDisplay"><Albums/></div>
+      <div className="profileDisplay"><Profile/></div>
       {/* <div className="albumsPlaylistDisplay"><AlbumsPlaylist/></div> */}
       {/* {curPlaylist && (
          

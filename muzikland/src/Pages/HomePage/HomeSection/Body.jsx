@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import styled from 'styled-components';
 import '../../../css/main.css';
 // import { AccountContext } from "../_AccountContext";
-import musicImage from "../../AuthencationPage/music-cool.gif";
+import musicImage from "../../../img/music-head-phones.gif";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faLeftLong, faRightLong } from "@fortawesome/free-solid-svg-icons";
