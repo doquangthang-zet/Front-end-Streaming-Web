@@ -33,7 +33,7 @@ export function Header(props) {
   const [{ user }, dispatch] = useStateValue();
   const navigate = useNavigate();
 
-  const [isUserMenu, setIsUserMenu] = useState(false)
+  const [isUserMenu, setIsUserMenu] = useState(false);
 
   const logOut = () => {
     const firebaseAuth = getAuth(app);
@@ -45,7 +45,6 @@ export function Header(props) {
 
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -68,7 +67,8 @@ export function Header(props) {
       </DropdownButton>
     </div>
     <div className="iconSection">
-      <div className="playlistBtn" onClick={handleShow}>        <FontAwesomeIcon className="iconTag" icon={faFolderPlus}></FontAwesomeIcon><p>Play list</p>
+      <div className="playlistBtn" onClick={handleShow}>        
+      <FontAwesomeIcon className="iconTag" icon={faFolderPlus}></FontAwesomeIcon><p>Play list</p>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Create New Playlist</Modal.Title>

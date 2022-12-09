@@ -24,7 +24,7 @@ export function Home(){
       {/* <div className="albumsDisplay"><Albums/></div> */}
       {/* <div className="profileDisplay"><Profile/></div> */}
       {/* <div className="albumsPlaylistDisplay"><AlbumsPlaylist/></div> */}
-      <div className="songsPlaylistDisplay"><SongsPlaylist/></div>      
+      {/* <div className="songsPlaylistDisplay"><SongsPlaylist/></div>       */}
     </section>
   )
 }

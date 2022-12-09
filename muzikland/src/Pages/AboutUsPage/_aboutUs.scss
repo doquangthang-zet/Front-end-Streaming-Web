@@ -1,10 +1,13 @@
 .developer {
+    background: rgb(173,184,215);
+    background: radial-gradient(circle, rgba(173,184,215,1) 0%, rgba(255,255,255,1) 100%);
     h3 {
+        padding-top: 10px;
         margin-left: 30px;
     }
 
     p {
-        font-size: 19px;
+        font-size: 20px;
     }
 
     .developer-profile {
@@ -14,20 +17,26 @@
 
         .profileCard {
             width: 150%;
-
+            .cardDetails{
+                text-align: center;
+            }
             .profilePicture {
-                width: 50px;
+                width: 500px;
                 border-radius: 50px;
-                margin: 20px;
+                margin: 10px;
             }
         }
 
         .profileDetails {
+            p{
+                margin-left: 40px;
+            }
             .cardBtn {
                 .linkImg {
                     width: 5%;
                     display: inline-block;
                     margin: 20px 50px;
+                    margin-left: 50px;
                     transition: all .5s;
 
                     &:hover {

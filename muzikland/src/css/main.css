@@ -281,11 +281,16 @@ a:hover {
   outline: none;
 }
 
+.developer {
+  background: rgb(173, 184, 215);
+  background: radial-gradient(circle, rgb(173, 184, 215) 0%, rgb(255, 255, 255) 100%);
+}
 .developer h3 {
+  padding-top: 10px;
   margin-left: 30px;
 }
 .developer p {
-  font-size: 19px;
+  font-size: 20px;
 }
 .developer .developer-profile {
   margin-left: 30px;
@@ -295,15 +300,22 @@ a:hover {
 .developer .developer-profile .profileCard {
   width: 150%;
 }
+.developer .developer-profile .profileCard .cardDetails {
+  text-align: center;
+}
 .developer .developer-profile .profileCard .profilePicture {
-  width: 50px;
+  width: 500px;
   border-radius: 50px;
-  margin: 20px;
+  margin: 10px;
+}
+.developer .developer-profile .profileDetails p {
+  margin-left: 40px;
 }
 .developer .developer-profile .profileDetails .cardBtn .linkImg {
   width: 5%;
   display: inline-block;
   margin: 20px 50px;
+  margin-left: 50px;
   transition: all 0.5s;
 }
 .developer .developer-profile .profileDetails .cardBtn .linkImg:hover {
