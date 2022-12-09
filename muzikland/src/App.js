@@ -14,6 +14,7 @@ import Admin from './pages/AdminPage/Admin';
 import AdminHome from './pages/AdminPage/AdminHome';
 import MusicPlayer from './pages/MusicPlayer/MusicPlayer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Albums } from './pages/AlbumsPage/Albums';
 
 
 const AppContainer = styled.div `
@@ -64,6 +65,7 @@ function App() {
           <Route path='/login' element={<AccountBox setAuth={setAuth} />} />
           <Route path='/*' element={<Home />} />
           <Route path='/dashboard/*' element={<Admin />} />
+          <Route path='/album/*' element={<Albums />} />
         </Routes>
 
         {isSongPlaying && (

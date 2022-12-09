@@ -41,9 +41,8 @@ export function SideBar({playlists}) {
                         <p className={"p1"}>
                             <span>LIBRARY</span>
                         </p>
-                        <NavLink to={"/album"}><FontAwesomeIcon className="iconTag" icon={faHome}/> Home</NavLink>
-                        <p className="lib-sub"></p>
-                        <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faExplosion}/> About Us</p>
+                        <NavLink to={"/album"} className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faHome}/> Home</NavLink>
+                        <NavLink to={"/about"}><FontAwesomeIcon className="iconTag" icon={faExplosion}/> About Us</NavLink>
                         <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faSearch}/> Search</p>
                         <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faMusic}/> Sleep Songs</p>
                         <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faMusic}/> Mood Songs</p>
