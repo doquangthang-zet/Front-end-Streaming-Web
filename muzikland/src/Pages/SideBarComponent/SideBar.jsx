@@ -6,8 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
 import { isActiveStyles, isNotActiveStyles } from "../../utils/styles";
+import { useStateValue } from "../../context/StateProvider";
+import { actionType } from "../../context/reducer";
+import { getUserPlaylist } from "../../api";
 
-export function SideBar() {
+export function SideBar({playlists}) {
     const useStyle = useContext(ThemeContext);
     const [URL, setURL] = useState("");
 
@@ -44,12 +47,17 @@ export function SideBar() {
                         <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faMusic}/> Mood Songs</p>
                         <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faMusic}/> Popular New</p>
                     </div>
+                    
                     <div className="aside-bar-container playlist">
                         <p className={"p1"}>
                             <span>MY PLAYLIST</span>
                         </p>
-                        <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faListDots}/> Your Playlist Name</p>
-
+                        {playlists && (
+                            playlists?.map((data,i) => (
+                                <PlaylistContainer data={data} index={i} />
+                            )
+                        )
+                        )}
                     </div>
                 </aside>
             )}
@@ -57,6 +65,19 @@ export function SideBar() {
     );
 }
 
-/*
-*
-* */
+export const PlaylistContainer = (data, index) => {
+    const [{currentPlaylist}, dispatch] = useStateValue();
+
+    const chosePlaylist = (data) => {
+        dispatch({
+            type: actionType.SET_CURRENT_PLAYLIST,
+            currentPlaylist: data.data,
+        })
+    }
+    
+    return (
+        <div onClick={() => {chosePlaylist(data)}}>
+            <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faListDots}/> {data.data.name}</p>
+        </div>
+    )
+}

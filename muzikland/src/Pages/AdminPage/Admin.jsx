@@ -5,6 +5,7 @@ import { SideBar } from '../SideBarComponent/SideBar'
 import AdminAlbums from './AdminAlbums'
 import AdminArtists from './AdminArtists'
 import AdminHome from './AdminHome'
+import AdminNewSong from './AdminNewSong'
 import AdminSongs from './AdminSongs'
 import AdminUsers from './AdminUsers'
 
@@ -14,13 +15,14 @@ const Admin = () => {
         <Header />
         <SideBar />
         
-        <div>
+        <div className='pl-64'>
           <Routes>
             <Route path='/home' element={<AdminHome />} />
             <Route path='/users' element={<AdminUsers />} />
             <Route path='/songs' element={<AdminSongs />} />
             <Route path='/artists' element={<AdminArtists />} />
             <Route path='/albums' element={<AdminAlbums />} />
+            <Route path='/newSong' element={<AdminNewSong />} />
           </Routes>
         </div>
     </div>

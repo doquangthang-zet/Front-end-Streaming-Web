@@ -49,6 +49,9 @@ export function Header(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [playlistName, setplaylistName] = useState("");
+  const [playlistDescription, setPlaylistDescription] = useState("");
+
   return <HeaderContainer>
     <img className="styleLogo" src={logo} />
     <div className="search">
@@ -81,6 +84,9 @@ export function Header(props) {
                 type="text"
                 placeholder="Enter Your Playlist Name"
                 autoFocus
+                value={playlistName}
+                onChange={(e) => setplaylistName(e.target.value)}
+                required
               />
             </Form.Group>
             <Form.Group
@@ -88,7 +94,8 @@ export function Header(props) {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Playlist Description</Form.Label>
-              <Form.Control as="textarea" rows={2} />
+              <Form.Control as="textarea" rows={2} value={playlistDescription}
+                onChange={(e) => setPlaylistDescription(e.target.value)} />
             </Form.Group>
           </Form>
         </Modal.Body>

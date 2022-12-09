@@ -78,3 +78,30 @@ export const removeUser = async (userId) => {
         return null;
     }
 }
+
+export const saveNewSong = async (data) => {
+    try {
+        const res = axios.post(`${baseUrl}api/songs/save`, {...data});
+        return (await res).data.savedSong;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const getUserPlaylist = async (userId) => {
+    try {
+        const res = await axios.get(`${baseUrl}api/playlists/getUserPlaylist/${userId}`);
+        return res.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const saveNewPlaylist = async (data) => {
+    try {
+        const res = axios.post(`${baseUrl}api/playlists/save`, {...data});
+        return (await res).data.savedPlaylist;
+    } catch (error) {
+        return null;
+    }
+}

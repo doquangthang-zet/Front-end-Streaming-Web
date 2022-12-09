@@ -5,6 +5,16 @@ export const actionType = {
     SET_ALL_PLAYLISTS: "SET_ALL_PLAYLISTS",
     SET_ALL_SONGS: "SET_ALL_SONGS",
     SET_ALL_ALBUMS: "SET_ALL_ALBUMS",
+    SET_USER_PLAYLIST: "SET_USER_PLAYLIST",
+    SET_CURRENT_PLAYLIST: "SET_CURRENT_PLAYLIST",
+
+    //Filter types
+    SET_FILTER_TERM: "SET_FILTER_TERM",
+    SET_ARTIST_FILTER: "SET_ARTIST_FILTER",
+    SET_ALBUM_FILTER: "SET_ALBUM_FILTER",
+    SET_LANGUAGE_FILTER: "SET_LANGUAGE_FILTER",
+
+    //Player types
     SET_ISSONG_PLAYING: "SET_ISSONG_PLAYING",
     SET_SONG_INDEX: "SET_SONG_INDEX",
 }
@@ -13,6 +23,7 @@ const reducer = (state, action) => {
     console.log(action);
 
     switch(action.type) {
+        // Data cases
         case actionType.SET_USER:
             return {
                 ...state,
@@ -61,6 +72,43 @@ const reducer = (state, action) => {
             ...state,
             songIndex: action.songIndex,
         }; 
+
+        case actionType.SET_USER_PLAYLIST:
+            return {
+                ...state,
+                userPlaylists: action.userPlaylists,
+            }; 
+
+        case actionType.SET_CURRENT_PLAYLIST:
+            return {
+                ...state,
+                currentPlaylist: action.currentPlaylist,
+            }; 
+
+        // Filter cases
+        case actionType.SET_FILTER_TERM:
+            return {
+            ...state,
+            filterTerm: action.filterTerm,
+            };
+    
+        case actionType.SET_ARTIST_FILTER:
+            return {
+            ...state,
+            artistFilter: action.artistFilter,
+            };
+
+        case actionType.SET_ALBUM_FILTER:
+            return {
+                ...state,
+                albumFilter: action.albumFilter,
+            };
+    
+        case actionType.SET_LANGUAGE_FILTER:
+            return {
+            ...state,
+            languageFilter: action.languageFilter,
+            };
         
         default :
             return state;

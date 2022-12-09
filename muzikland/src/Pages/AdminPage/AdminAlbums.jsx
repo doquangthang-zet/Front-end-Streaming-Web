@@ -2,7 +2,7 @@ import React from 'react'
 
 function AdminAlbums() {
   return (
-    <div className='flex w-screen justify-center text-center'>AdminAlbums</div>
+    <div className='p-6 w-full flex items-center justify-center flex-col'>AdminAlbums</div>
   )
 }
 

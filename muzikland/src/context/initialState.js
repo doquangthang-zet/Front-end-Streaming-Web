@@ -5,6 +5,12 @@ export const initialState = {
     allArtists: null,
     allPlaylists: null,
     allAlbums: null,
+    filterTerm: "all",
+    artistFilter: null,
+    languageFilter: null,
+    albumFilter: null,
     isSongPlaying: false,
     songIndex: 0,
+    userPlaylists: null,
+    currentPlaylist: null,
 };
