@@ -52,6 +52,15 @@ export const getAllPlaylist = async () => {
     }
 }
 
+export const getAllAlbum = async () => {
+    try {
+        const res = await axios.get(`${baseUrl}api/albums/getAll`);
+        return res.data;
+    } catch (error) {
+        return null;
+    }
+}
+
 export const updateUserRole = async (userId, role) => {
     try {
         const res = axios.put(`${baseUrl}api/users/updateRole/${userId}`, {data: {role: role}});
@@ -65,6 +74,33 @@ export const removeUser = async (userId) => {
     try {
         const res = axios.delete(`${baseUrl}api/users/delete/${userId}`);
         return res;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const saveNewSong = async (data) => {
+    try {
+        const res = axios.post(`${baseUrl}api/songs/save`, {...data});
+        return (await res).data.savedSong;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const getUserPlaylist = async (userId) => {
+    try {
+        const res = await axios.get(`${baseUrl}api/playlists/getUserPlaylist/${userId}`);
+        return res.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const saveNewPlaylist = async (data) => {
+    try {
+        const res = axios.post(`${baseUrl}api/playlists/save`, {...data});
+        return (await res).data.savedPlaylist;
     } catch (error) {
         return null;
     }

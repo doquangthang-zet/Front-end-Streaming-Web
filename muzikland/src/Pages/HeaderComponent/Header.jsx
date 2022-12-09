@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from 'styled-components';
-import logo from './logomuzik.jpg';
+import logo from './logomuzik.png';
 import '../../css/main.css';
 // import { AccountContext } from "../_AccountContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -48,6 +48,9 @@ export function Header(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [playlistName, setplaylistName] = useState("");
+  const [playlistDescription, setPlaylistDescription] = useState("");
+
   return <HeaderContainer>
     <img className="styleLogo" src={logo} />
     <div className="search">
@@ -81,6 +84,9 @@ export function Header(props) {
                 type="text"
                 placeholder="Enter Your Playlist Name"
                 autoFocus
+                value={playlistName}
+                onChange={(e) => setplaylistName(e.target.value)}
+                required
               />
             </Form.Group>
             <Form.Group
@@ -88,7 +94,8 @@ export function Header(props) {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Playlist Description</Form.Label>
-              <Form.Control as="textarea" rows={2} />
+              <Form.Control as="textarea" rows={2} value={playlistDescription}
+                onChange={(e) => setPlaylistDescription(e.target.value)} />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -121,10 +128,10 @@ export function Header(props) {
             <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
             {user?.user?.role === "admin" && (
               <NavLink to={"/dashboard/home"}>
-                <p>Dashboard</p>
+                <Dropdown.Item href="#/action-2">Dashboard</Dropdown.Item>
               </NavLink>
-            )}
-            <Dropdown.Item href="#/action-2" onClick={logOut}>Log Out</Dropdown.Item>
+            )}<hr/>
+            <Dropdown.Item href="#/action-3" onClick={logOut}>Log Out</Dropdown.Item>
           </motion.div>
         )}
       </DropdownButton>
