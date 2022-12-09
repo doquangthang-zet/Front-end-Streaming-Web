@@ -13,6 +13,7 @@ import '../../css/main.css';
 import { useStateValue } from "../../context/StateProvider";
 import { getUserPlaylist } from "../../api";
 import { actionType } from "../../context/reducer";
+import { Route, Routes } from "react-router-dom";
 
 
 export function Home(){
@@ -35,16 +36,19 @@ export function Home(){
     <section>
       <Header/>
       <SideBar playlists={userPlaylists} />
-      {/* <div className="musicDisplay"><BodySection/></div> */}
+      <div className="musicDisplay"><BodySection/></div>
       {/* <div className="aboutUsDisplay"><AboutUs/></div> */}
       {/* <div className="songsDisplay"><Songs/></div> */}
       {/* <div className="albumsDisplay"><Albums/></div> */}
       {/* <div className="profileDisplay"><Profile/></div> */}
       {/* <div className="albumsPlaylistDisplay"><AlbumsPlaylist/></div> */}
-      {curPlaylist && (
-        <div className="songsPlaylistDisplay"><SongsPlaylist /></div> 
-      )}
-           
+      {/* {curPlaylist && (
+         
+//       )} */}
+// <div className="songsPlaylistDisplay"><SongsPlaylist /></div>
+      <Routes>
+        <Route path="/album" element={<Albums />} />
+      </Routes>   
     </section>
   )
 }

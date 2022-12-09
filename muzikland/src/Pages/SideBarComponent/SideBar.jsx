@@ -9,6 +9,7 @@ import { isActiveStyles, isNotActiveStyles } from "../../utils/styles";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
 import { getUserPlaylist } from "../../api";
+import { Albums } from "../AlbumsPage/Albums";
 
 export function SideBar({playlists}) {
     const useStyle = useContext(ThemeContext);
@@ -40,7 +41,8 @@ export function SideBar({playlists}) {
                         <p className={"p1"}>
                             <span>LIBRARY</span>
                         </p>
-                        <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faHome}/> Home</p>
+                        <NavLink to={"/album"}><FontAwesomeIcon className="iconTag" icon={faHome}/> Home</NavLink>
+                        <p className="lib-sub"></p>
                         <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faExplosion}/> About Us</p>
                         <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faSearch}/> Search</p>
                         <p className="lib-sub"><FontAwesomeIcon className="iconTag" icon={faMusic}/> Sleep Songs</p>
