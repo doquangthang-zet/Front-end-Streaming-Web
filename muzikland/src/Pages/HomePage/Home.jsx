@@ -35,10 +35,10 @@ export function Home(){
     <section>
       <Header/>
       <SideBar playlists={userPlaylists} />
-      {/* <div className="musicDisplay"><BodySection/></div> */}
+      <div className="musicDisplay"><BodySection/></div>
       {/* <div className="aboutUsDisplay"><AboutUs/></div> */}
       {/* <div className="songsDisplay"><Songs/></div> */}
-      <div className="albumsDisplay"><Albums/></div>
+      {/* <div className="albumsDisplay"><Albums/></div> */}
       <div className="profileDisplay"><Profile/></div>
       {/* <div className="albumsPlaylistDisplay"><AlbumsPlaylist/></div> */}
       {curPlaylist && (

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPlay, faHeart, faEllipsis} from '@fortawesome/free-solid-svg-icons';
 import Table from 'react-bootstrap/Table';
 import Dropdown from 'react-bootstrap/Dropdown';
+import {AiOutlineHeart} from "react-icons/ai";
 
 
 
@@ -19,7 +20,8 @@ export function Profile(){
             </div>
             </div>
             <div className="userLoveSongs">
-                <h3>Your Loved Songs <FontAwesomeIcon className="iconHeart" icon={faHeart}></FontAwesomeIcon></h3>
+                <h3>Your Loved Songs <FontAwesomeIcon className="iconHeart" icon={faHeart}></FontAwesomeIcon>
+                </h3>
                 <div className="lovedSongs">
                 <Table striped="columns">
       <thead>
