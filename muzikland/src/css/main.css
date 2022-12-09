@@ -101,7 +101,7 @@
   margin-left: 15%;
 }
 
-.aboutUsDisplay, .songsDisplay, .albumsDisplay, .profileDisplay, .albumsPlaylistDisplay, .songsPlaylistDisplay {
+.aboutUsDisplay, .songsDisplay, .profileDisplay, .albumsPlaylistDisplay, .songsPlaylistDisplay {
   margin-left: 250px;
   background-color: #fff;
 }
@@ -135,6 +135,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  text-decoration: none;
+  color: black;
 }
 .aside-bar .lib-sub .MuiButton-startIcon {
   color: #07689f;
@@ -385,6 +387,7 @@ a:hover {
 }
 
 .albumsContainer {
+  margin-left: 250px;
   background: rgb(117, 140, 209);
   background: radial-gradient(circle, rgb(117, 140, 209) 24%, rgb(97, 126, 212) 52%, rgb(124, 146, 210) 89%, rgb(205, 176, 189) 100%);
 }

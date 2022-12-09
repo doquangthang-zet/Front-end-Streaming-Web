@@ -10,8 +10,8 @@ import { actionType } from "../../context/reducer";
 
 
 export function SongsPlaylist(){
-    const [{currentPlaylist}, dispatch] = useStateValue();
-    console.log(currentPlaylist)
+    // const [{currentPlaylist}, dispatch] = useStateValue();
+    // console.log(currentPlaylist)
 
 
     return (
@@ -22,8 +22,8 @@ export function SongsPlaylist(){
             </div>
             <div className="playlistDetails">
                 <span>PLAYLIST</span>
-                <h1>{currentPlaylist.name}</h1>
-                <p>{currentPlaylist.description}</p>
+                {/* <h1>{currentPlaylist.name}</h1>
+                <p>{currentPlaylist.description}</p> */}
             </div>
         </div>
         <div className="songList">
