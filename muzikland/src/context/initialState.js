@@ -9,8 +9,9 @@ export const initialState = {
     artistFilter: null,
     languageFilter: null,
     albumFilter: null,
-    isSongPlaying: false,
-    songIndex: 0,
     userPlaylists: null,
     currentPlaylist: null,
+    alertType: null,
+    isSongPlaying: false,
+    songIndex: 0,
 };

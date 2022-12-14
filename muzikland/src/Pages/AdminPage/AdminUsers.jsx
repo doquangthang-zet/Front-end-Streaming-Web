@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useStateValue } from '../../context/StateProvider'
 import { motion } from 'framer-motion'
 import moment from 'moment'
@@ -8,6 +8,15 @@ import { MdDelete } from 'react-icons/md'
 
 const AdminUsers = () => {
   const [{allUsers}, dispatch] = useStateValue();
+  
+  useEffect(() => {
+    getAllUsers().then((data) => {
+      dispatch({
+        type: actionType.SET_ALL_USERS,
+        allUsers: data.users
+      })
+    })
+  }, []);
 
   return (
     <div className='p-6 w-full flex items-center justify-center flex-col'>
@@ -18,7 +27,7 @@ const AdminUsers = () => {
         {/* total count of the users */}
         <div className='absolute top-4 left-4'>
           <p className='text-xl font-semibold text-yellow-50'>
-            Count <span className='text-sm font-bold text-yellow-50'>{allUsers?.length}</span>
+            Count <span className='text-xl font-bold text-yellow-50'>{allUsers?.length}</span>
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { useEffect } from 'react';
-import { getAllAlbum, getAllArtists, getAllSongs, saveNewSong } from '../../api';
+import { getAllAlbum, getAllArtists, getAllSongs, saveNewAlbum, saveNewSong } from '../../api';
 import { actionType } from '../../context/reducer';
 import { useStateValue } from '../../context/StateProvider';
 import { filterByLanguage, filters } from '../../utils/supportFunction';
@@ -14,6 +14,7 @@ import {motion} from 'framer-motion';
 const AdminNewSong = () => {
   // Images upload
   const [songName, setSongName] = useState("");
+  const [artistName, setArtistName] = useState("");
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [songImageCover, setSongImageCover] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(0);
@@ -23,7 +24,13 @@ const AdminNewSong = () => {
   const [audioUploadProgress, setAudioUploadProgress] = useState(0);
   const [isAudioLoading, setIsAudioLoading] = useState(false);
 
-  const [{allArtists, allAlbums, allSongs, artistFilter, albumFilter, filterTerm, languageFilter}, dispatch] = useStateValue();
+  // Album states
+  const [albumImageCover, setAlbumImageCover] = useState(null);
+  const [albumUploadingProgress, setAlbumUploadingProgress] = useState(0);
+  const [isAlbumLoding, setIsAlbumLoding] = useState(false);
+  const [albumName, setAlbumName] = useState("");
+
+  const [{allArtists, allAlbums, allSongs, artistFilter, albumFilter, filterTerm, languageFilter, alertType}, dispatch] = useStateValue();
 
   useEffect(() => {
     if (!allArtists) {
@@ -49,20 +56,58 @@ const AdminNewSong = () => {
     if(isImage) {
       setIsImageUploading(true);
       setIsAudioLoading(true);
+      setIsAlbumLoding(true);
+
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "success",
+      })
+
+      setInterval(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
     }
 
     const deleteRef = ref(storage, url);
     deleteObject(deleteRef).then(() => {
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "danger",
+      })
+
+      setInterval(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
       setSongImageCover(null);
-      setIsImageUploading(false);
       setAudioImageCover(null);
+      setAlbumImageCover(null);
+
+      setIsImageUploading(false);
       setIsAudioLoading(false);
+      setIsAlbumLoding(false);
     })
   };
 
   const saveSong = () => {
-    if(!songImageCover || !audioImageCover) {
+    if(!songImageCover || !audioImageCover || !songName) {
       // Throw alert 
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "danger",
+      })
+
+      setInterval(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
     } else {
       // Save the song
       setIsAudioLoading(true);
@@ -72,7 +117,7 @@ const AdminNewSong = () => {
         imageURL: songImageCover,
         songURL: audioImageCover,
         playlist: albumFilter,
-        artist: artistFilter,
+        artist: artistName,
         language: languageFilter,
         category: filterTerm,
       };
@@ -84,6 +129,18 @@ const AdminNewSong = () => {
           })
         })
       });
+
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "success",
+      })
+
+      setInterval(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
 
       setSongName(null);
       setIsAudioLoading(false);
@@ -98,8 +155,60 @@ const AdminNewSong = () => {
     }
   };
 
+  const saveAlbum = () => {
+    if(!albumImageCover || !albumName) {
+      // Throw alert 
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "danger",
+      })
+
+      setInterval(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
+    } else {
+      // Save the album
+      setIsAlbumLoding(true);
+      
+      const data = {
+        name: albumName,
+        imageURL: albumImageCover,
+      };
+
+      saveNewAlbum(data).then(res => {
+        getAllAlbum().then((albums) => {
+          dispatch({
+            type: actionType.SET_ALL_ALBUMS,
+            allAlbums: albums.album,
+          })
+        })
+      });
+
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "success",
+      })
+
+      setInterval(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
+
+      setAlbumName("");
+      setIsAlbumLoding(false);
+      setAlbumImageCover(null);
+    }
+  };
+
   return (
     <div className='flex flex-col items-center justify-center p-4 border border-gray-300 rounded-md gap-4'>
+      <p className='text-xl font-semibold text-headingColor'>Song uploading section</p>
+      {/* Song name */}
       <input 
         type="text" 
         placeholder='Type your song name'
@@ -109,8 +218,18 @@ const AdminNewSong = () => {
         onChange={(e) => {setSongName(e.target.value)}}
       />
 
+      {/* Artist name */}
+      <input 
+        type="text" 
+        placeholder='Type the artist name'
+        className='p-3 w-full rounded-md text-base font-semibold text-yellow-50 outline-none
+         shadow-sm border border-gray-300 bg-transparent'
+        value={artistName}
+        onChange={(e) => {setArtistName(e.target.value)}}
+      />
+
       <div className='flex w-full justify-between items-center flex-wrap gap-4'>
-        <FilterButton filterData={allArtists} flag={"Artist"} />
+        {/* <FilterButton filterData={allArtists} flag={"Artist"} /> */}
         <FilterButton filterData={allAlbums} flag={"Album"} />
         <FilterButton filterData={filterByLanguage} flag={"Language"} />
         <FilterButton filterData={filters} flag={"Category"} />
@@ -118,7 +237,7 @@ const AdminNewSong = () => {
 
       {/* Song image uploaidng */}
       <div className='bg-card backdrop:blur-md w-full h-300 rounded-md border-2 border-dotted border-gray-300 cursor-pointer'>
-        {isImageUploading && <ImageLoader progress={imageUploadProgress} />}
+        {isImageUploading && (<ImageLoader progress={imageUploadProgress} />)}
         {!isImageUploading && (
           <>
             {!songImageCover ? (
@@ -139,7 +258,7 @@ const AdminNewSong = () => {
 
       {/* Audio file uploading */}
       <div className='bg-card backdrop:blur-md w-full h-300 rounded-md border-2 border-dotted border-gray-300 cursor-pointer'>
-        {isAudioLoading && <ImageLoader progress={audioUploadProgress} />}
+        {isAudioLoading && (<ImageLoader progress={audioUploadProgress} />)}
         {!isAudioLoading && (
           <>
             {!audioImageCover ? (
@@ -168,15 +287,57 @@ const AdminNewSong = () => {
           </motion.div>
         )}
       </div>
+
+      {/* Album uploading */}
+      <p className='text-xl font-semibold text-headingColor'>Album uploading section</p>
+      <div className='bg-card backdrop:blur-md w-full h-300 rounded-md border-2 border-dotted border-gray-300 cursor-pointer'>
+        {isAlbumLoding && <ImageLoader progress={albumUploadingProgress} />}
+        {!isAlbumLoding && (
+          <>
+            {!albumImageCover ? (
+              <FileUploader updateState={setAlbumImageCover} setProgress={setAlbumUploadingProgress} isLoading={setIsAlbumLoding} isImage={true} />
+            ) : (
+              <div className='relative w-full h-full overflow-hidden rounded-md'>
+                <img src={albumImageCover} className="w-full h-full object-cover" alt="" />
+                <button type='button' className='absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl 
+                cursor-pointer outline-none border-none hover:shadow-md duration-200 transition-all ease-in-out'
+                onClick={() => {deleteFileObject(albumImageCover, true)}}>
+                  <MdDelete className='text-white' />
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+
+      <input 
+        type="text" 
+        placeholder='Type album name'
+        className='p-3 w-full rounded-md text-base font-semibold text-yellow-50 outline-none
+         shadow-sm border border-gray-300 bg-transparent'
+        value={albumName}
+        onChange={(e) => {setAlbumName(e.target.value)}}
+      />
+
+      {/* Save album button */}
+      <div className='flex items-center justify-center w-60 p-4'>
+        {isAlbumLoding ? (
+          <DisableButton />
+        ) : (
+          <motion.div onClick={saveAlbum} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg' whileTap={{scale: 0.75}}>
+            Save Album
+          </motion.div>
+        )}
+      </div>
     </div>
   )
 }
 
 export const ImageLoader = (progress) => {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
-      <p className="text-xl font-semibold text-textColor">
-        {Math.round(progress) > 0 && <>{`${Math.round(progress)}%`}</>}
+    <div className="w-full h-full flex flex-col items-center justify-center bg-black">
+      <p className="text-xl font-semibold text-yellow-200 z-10">
+        {Math.round(progress) >= 0 && <>{`${Math.round(progress)}%`}</>}
       </p>
       <div className="w-20 h-20 min-w-[40px] bg-red-600  animate-ping  rounded-full flex items-center justify-center relative">
         <div className="absolute inset-0 rounded-full bg-red-600 blur-xl "></div>
@@ -193,6 +354,7 @@ export const FileUploader = ({updateState, setProgress, isLoading, isImage}) => 
     const uploadTask = uploadBytesResumable(storageRef, uploadedFile);
 
     uploadTask.on("state_changed", (snapshot) => {
+      // console.log((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
     },
     (err) => {
