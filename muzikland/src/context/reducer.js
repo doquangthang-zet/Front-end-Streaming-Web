@@ -17,6 +17,9 @@ export const actionType = {
     //Player types
     SET_ISSONG_PLAYING: "SET_ISSONG_PLAYING",
     SET_SONG_INDEX: "SET_SONG_INDEX",
+
+    //Alert Types
+    SET_ALERT_TYPE: "SET_ALERT_TYPE",
 }
 
 const reducer = (state, action) => {
@@ -110,6 +113,12 @@ const reducer = (state, action) => {
             languageFilter: action.languageFilter,
             };
         
+        case actionType.SET_ALERT_TYPE:
+            return {
+            ...state,
+            alertType: action.alertType,
+        };
+
         default :
             return state;
     }

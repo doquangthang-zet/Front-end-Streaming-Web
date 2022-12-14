@@ -45,11 +45,11 @@ const AdminSongs = () => {
       </div>
 
       {/* Main container */}
-      <div className='relative w-full my-4 p-4 border border-gray-300 rounded-md'> 
+      <div className='relative w-full my-4 py-16 border border-gray-300 rounded-md'> 
         {/* Count */}
         <div className='absolute top-4 left-4'>
           <p className='text-xl font-bold text-yellow-50'>
-            <span className='text-sm font-semibold'>Count: </span>
+            <span className='text-xl font-semibold'>Count: </span>
             {allSongs && allSongs?.length}
           </p>
         </div>
@@ -64,7 +64,7 @@ export const SongContainer = ({data}) => {
   return (
     <div className='w-full flex flex-wrap gap-3 items-center justify-evenly'>
       {data && data.map((song, i) => (
-        <SongCard key={song._id} data={song} index={i} />
+        <SongCard key={song._id} data={song} index={i} type="song" />
       ))}
     </div>
   )

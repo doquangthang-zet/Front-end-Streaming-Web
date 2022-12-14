@@ -5,6 +5,7 @@ import {faHome, faExplosion, faSearch, faMusic, faListDots, faUserMusic, faUsers
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
+import { MdAlbum } from "react-icons/md"
 import { isActiveStyles, isNotActiveStyles } from "../../utils/styles";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
@@ -31,8 +32,8 @@ export function SideBar({playlists}) {
                         <NavLink to={"/dashboard/home"} className={({isActive}) => isActive ? isActiveStyles: isNotActiveStyles}><IoHome className="iconTag" /> Home</NavLink>
                         <NavLink to={"/dashboard/users"} className={({isActive}) => isActive ? isActiveStyles: isNotActiveStyles}><FontAwesomeIcon className="iconTag" icon={faUsers}/> Users</NavLink>
                         <NavLink to={"/dashboard/songs"} className={({isActive}) => isActive ? isActiveStyles: isNotActiveStyles}><FontAwesomeIcon className="iconTag" icon={faMusic}/> Songs</NavLink>
-                        <NavLink to={"/dashboard/artists"} className={({isActive}) => isActive ? isActiveStyles: isNotActiveStyles}><FontAwesomeIcon className="iconTag" icon={faUsers}/> Artists</NavLink>
-                        <NavLink to={"/dashboard/albums"} className={({isActive}) => isActive ? isActiveStyles: isNotActiveStyles}><FontAwesomeIcon className="iconTag" icon={faMusic}/> Albums</NavLink>
+                        {/* <NavLink to={"/dashboard/artists"} className={({isActive}) => isActive ? isActiveStyles: isNotActiveStyles}><FontAwesomeIcon className="iconTag" icon={faUsers}/> Artists</NavLink> */}
+                        <NavLink to={"/dashboard/albums"} className={({isActive}) => isActive ? isActiveStyles: isNotActiveStyles}><MdAlbum className="iconTag text-3xl"/> Albums</NavLink>
                     </div>
                 </aside>
             ) : (
