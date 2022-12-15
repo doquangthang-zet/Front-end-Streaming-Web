@@ -11,47 +11,95 @@ import { AlbumsPlaylist } from "../PlaylistPage/AlbumsPlaylist";
 import { SongsPlaylist } from "../PlaylistPage/SongsPlaylist";
 import '../../css/main.css';
 import { useStateValue } from "../../context/StateProvider";
-import { getUserPlaylist } from "../../api";
+import { getAllAlbum, getAllPlaylist, getAllSongs, getAllUsers, getUserPlaylist } from "../../api";
 import { actionType } from "../../context/reducer";
 import { Route, Routes } from "react-router-dom";
+import Alert from "../AdminPage/Alert";
 
 
 export function Home(){
-  const [{user, userPlaylists, curPlaylist}, dispatch] = useStateValue();
+  const [{user, allUsers, allSongs, allPlaylists, allAlbums, curPlaylist, alertType}, dispatch] = useStateValue();
 
   useEffect(() => {
-      if(!userPlaylists) {
-        getUserPlaylist("63887239c68435a012001a69").then((res) => {
-          console.log(res)
-          dispatch({
-          type: actionType.SET_USER_PLAYLIST,
-          userPlaylists: res.playlists,
-          })
+    // if(!allUsers) {
+    //   getAllUsers().then((data) => {
+    //     console.log(data);
+    //     dispatch({
+    //       type: actionType.SET_ALL_USERS,
+    //       allUsers: data.users
+    //     })
+    //   })
+    // }
+
+    // if(!allArtists) {
+    //   getAllArtists().then((data) => {
+    //     console.log(data);
+    //     dispatch({
+    //       type: actionType.SET_ALL_ARTISTS,
+    //       allArtists: data.artists
+    //     })
+    //   })
+    // }
+
+    if(!allSongs) {
+      getAllSongs().then((data) => {
+        console.log(data);
+        dispatch({
+          type: actionType.SET_ALL_SONGS,
+          allSongs: data.song
         })
-      }
+      })
+    }
+
+    if(!allAlbums) {
+      getAllAlbum().then((data) => {
+        console.log(data);
+        dispatch({
+          type: actionType.SET_ALL_ALBUMS,
+          allAlbums: data.album
+        })
+      })
+    }
+
+    if(!allPlaylists) {
+      getAllPlaylist().then((data) => {
+        console.log(data);
+        dispatch({
+          type: actionType.SET_ALL_PLAYLISTS,
+          allPlaylists: data.playlist
+        })
+      })
+    }
+
   }, []);
 
   return (
     
     <section>
       <Header/>
-      <SideBar playlists={userPlaylists} />
+      <SideBar playlists={allPlaylists} />
       {/* <div className="musicDisplay"><BodySection/></div>  */}
       {/* <div className="aboutUsDisplay"><AboutUs/></div> */}
       {/* <div className="songsDisplay"><Songs/></div> */}
       {/* <div className="albumsDisplay"><Albums/></div> */}
-      <div className="profileDisplay"><Profile/></div>
+      {/* <div className="profileDisplay"><Profile/></div> */}
       {/* <div className="albumsPlaylistDisplay"><AlbumsPlaylist/></div>
       {/* {curPlaylist && (
          
 //       )} */}
 {/* // <div className="songsPlaylistDisplay"><SongsPlaylist /></div> */}
-      <Routes>
-        <Route path="/" element={<BodySection />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/album" element={<Albums />} />
-        <Route path="/album" element={<Albums />} />
-      </Routes>   
+      <div className="pl-64">
+        <Routes>
+          <Route path="/" element={<BodySection />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/album" element={<Albums />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/song" element={<Songs />} />
+          <Route path="/playlist" element={<SongsPlaylist />} />
+        </Routes>  
+      </div>
+
+      {alertType && (<Alert type={alertType} />)}
     </section>
   )
 }

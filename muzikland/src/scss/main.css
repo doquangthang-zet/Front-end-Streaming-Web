@@ -127,7 +127,10 @@
   border-bottom: 1px solid #e0e0e0;
   padding: 15px;
   font-weight: bolder;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .aside-bar .lib-sub {
   padding: 10px;
@@ -387,7 +390,6 @@ a:hover {
 }
 
 .albumsContainer {
-  /* margin-left: 250px; */
   background: rgb(117, 140, 209);
   background: radial-gradient(circle, rgb(117, 140, 209) 24%, rgb(97, 126, 212) 52%, rgb(124, 146, 210) 89%, rgb(205, 176, 189) 100%);
 }

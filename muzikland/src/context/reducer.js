@@ -113,6 +113,8 @@ const reducer = (state, action) => {
             languageFilter: action.languageFilter,
             };
         
+
+        //Alert cases
         case actionType.SET_ALERT_TYPE:
             return {
             ...state,

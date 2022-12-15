@@ -9,7 +9,7 @@ import avaDev from "../../img/music-head-phones.gif";
 export function AboutUs(){
 
     return (
-        <div className="developer">
+        <div className="developer left-64">
             <h3>Developer Page Where To Know Us</h3>
             <hr/>
             <div className="developer-profile">
