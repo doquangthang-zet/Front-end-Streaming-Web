@@ -220,10 +220,10 @@ export const SongCard = ({data, index}) => {
             })
         }
 
-        if (songIndex !== index) {
+        if (songIndex !== data._id) {
             dispatch({
                 type: actionType.SET_SONG_INDEX,
-                songIndex: index,
+                songIndex: data._id,
             })
         }
     }

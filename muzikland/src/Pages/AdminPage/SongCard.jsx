@@ -104,7 +104,7 @@ const SongCard = ({data, index, type}) => {
         // if(!songIndex) {
             dispatch({
                 type: actionType.SET_SONG_INDEX,
-                songIndex: index,
+                songIndex: data._id,
             })
         // }
     }

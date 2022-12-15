@@ -32,7 +32,7 @@ export function SideBar({playlists}) {
             {URL.indexOf("dashboard") > -1 ? (
                 <aside style={useStyle.component} className={"aside-bar flex items-center justify-center"}>
                     <div className="aside-bar-container h-screen">
-                        <img className="w-1/3 mx-auto mt-3" src={logo} />
+                        <NavLink to={"/"}><img className="w-1/3 mx-auto mt-3" src={logo} /></NavLink>
                         <p className={"p1 mt-16"}>
                             <span>ADMIN DASHBOARD</span>
                         </p>
@@ -46,7 +46,8 @@ export function SideBar({playlists}) {
             ) : (
                 <aside style={useStyle.component} className={"aside-bar"}>
                     <div className="aside-bar-container">
-                        <img className="w-1/3 mx-auto mt-3" src={logo} />
+                        <NavLink to={"/"}><img className="w-1/3 mx-auto mt-3" src={logo} /></NavLink>
+                        
                         <p className={"p1"}>
                             <span>LIBRARY</span>
                         </p>

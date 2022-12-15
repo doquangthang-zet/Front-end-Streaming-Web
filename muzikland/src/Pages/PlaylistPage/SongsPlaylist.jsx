@@ -28,7 +28,7 @@ export function SongsPlaylist(){
                 </div>
             </div>
           
-            <SongTable  />
+            <SongTable page="playlist"  />
             
         </div>
     )

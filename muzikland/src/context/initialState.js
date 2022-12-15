@@ -13,5 +13,6 @@ export const initialState = {
     currentPlaylist: null,
     alertType: null,
     isSongPlaying: false,
-    songIndex: 0,
+    songIndex: "",
+    miniPlayer: false,
 };
