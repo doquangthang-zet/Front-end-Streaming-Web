@@ -8,6 +8,8 @@ import { MdDelete } from 'react-icons/md'
 
 const AdminUsers = () => {
   const [{allUsers}, dispatch] = useStateValue();
+  const [userFilter, setUserFilter] = useState("");
+  const [focus, setfocus] = useState(false);
   
   useEffect(() => {
     getAllUsers().then((data) => {
@@ -21,7 +23,17 @@ const AdminUsers = () => {
   return (
     <div className='p-6 w-full flex items-center justify-center flex-col'>
       {/* filter */}
-
+      <div className='w-full flex justify-center gap-20 items-center'>
+        <input 
+          type="text" 
+          className={`w-96 px-4 py-3 ${focus ? "border-gray-500 shadow-md" : "border-gray-300"} rounded-md bg-white outline-none duration-150 transition-all ease-in-out text-base}`} 
+          placeholder='Search by name/email' 
+          value={userFilter} 
+          onChange={(e) => {setUserFilter(e.target.value)}}
+          onBlur={() => {setfocus(false)}}
+          onFocus={() => {setfocus(true)}}
+        />
+      </div>
       {/* tabular data form */}
       <div className="relative w-full py-16 min-h-[400px] overflow-x-scroll scrollbar-thin scrollbar-track-slate-300 scrollbar-thumb-slate-400 my-4 flex flex-col items-center justify-start p-4 border border-gray-300 rounded-md gap-3">
         {/* total count of the users */}
@@ -43,11 +55,18 @@ const AdminUsers = () => {
 
         {/* table body content */}
         {
-          allUsers && (
-            allUsers?.map((data, i) => (
-              <AdminUserCard data={data} index={i} />
-            ))
-          )
+          allUsers && 
+            // allUsers?.map((data, i) => (
+            //   <AdminUserCard data={data} index={i} />
+            // ))
+            userFilter ? 
+              allUsers.filter((user) => user.name.toLowerCase().includes(userFilter.toLowerCase()) || user.email.toLowerCase().includes(userFilter.toLowerCase()))
+              .map((user, i) =>
+                (<AdminUserCard data={user} index={i} />)
+              )
+              : allUsers?.map((data, i) => (
+                <AdminUserCard data={data} index={i} />
+              ))
         }
       </div>
     </div>

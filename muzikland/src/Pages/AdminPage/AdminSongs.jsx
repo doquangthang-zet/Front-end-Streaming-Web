@@ -33,14 +33,14 @@ const AdminSongs = () => {
         <input 
           type="text" 
           className={`w-52 px-4 py-3 ${focus ? "border-gray-500 shadow-md" : "border-gray-300"} rounded-md bg-white outline-none duration-150 transition-all ease-in-out text-base}`} 
-          placeholder='Search here' 
+          placeholder='Search song by name' 
           value={songFilter} 
           onChange={(e) => {setSongFilter(e.target.value)}}
           onBlur={() => {setfocus(false)}}
           onFocus={() => {setfocus(true)}}
         />
         <i>
-          <AiOutlineClear className='text-3xl text-textColor cursor-pointer' />
+          {/* <AiOutlineClear className='text-3xl text-textColor cursor-pointer' /> */}
         </i>
       </div>
 
@@ -54,16 +54,21 @@ const AdminSongs = () => {
           </p>
         </div>
 
-        <SongContainer data={allSongs} />
+        <SongContainer data={allSongs} songFilter={songFilter} />
       </div>
     </div>
   )
 }
 
-export const SongContainer = ({data}) => {
+export const SongContainer = ({data, songFilter}) => {
   return (
     <div className='w-full flex flex-wrap gap-3 items-center justify-evenly'>
-      {data && data.map((song, i) => (
+      {data && songFilter ? 
+      data.filter((song) => song.name.toLowerCase().includes(songFilter.toLowerCase()))
+      .map((song, i) =>
+      (<SongCard key={song._id} data={song} index={i} type="song" />))
+      : data.map((song, i) => 
+      (
         <SongCard key={song._id} data={song} index={i} type="song" />
       ))}
     </div>
