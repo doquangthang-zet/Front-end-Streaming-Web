@@ -3,9 +3,6 @@ import "../../css/main.css";
 import picture from '../../img/Facebook_f_logo_(2019).svg.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPlay, faHeart, faEllipsis} from '@fortawesome/free-solid-svg-icons';
-import Table from 'react-bootstrap/Table';
-import Dropdown from 'react-bootstrap/Dropdown';
-import {AiOutlineHeart} from "react-icons/ai";
 import SongTable from "../SongTable/SongTable";
 
 
