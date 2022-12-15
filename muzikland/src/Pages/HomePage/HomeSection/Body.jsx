@@ -14,6 +14,7 @@ import { actionType } from "../../../context/reducer";
 
 const BodyContainer = styled.div`
 margin-top: 40px;
+margin-left: 100px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -220,10 +221,10 @@ export const SongCard = ({data, index}) => {
             })
         }
 
-        if (songIndex !== index) {
+        if (songIndex !== data._id) {
             dispatch({
                 type: actionType.SET_SONG_INDEX,
-                songIndex: index,
+                songIndex: data._id,
             })
         }
     }

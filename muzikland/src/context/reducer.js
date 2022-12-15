@@ -17,6 +17,10 @@ export const actionType = {
     //Player types
     SET_ISSONG_PLAYING: "SET_ISSONG_PLAYING",
     SET_SONG_INDEX: "SET_SONG_INDEX",
+    SET_MINI_PLAYER: "SET_MINI_PLAYER",
+
+    //Alert Types
+    SET_ALERT_TYPE: "SET_ALERT_TYPE",
 }
 
 const reducer = (state, action) => {
@@ -73,6 +77,12 @@ const reducer = (state, action) => {
             songIndex: action.songIndex,
         }; 
 
+        case actionType.SET_MINI_PLAYER:
+        return {
+            ...state,
+            miniPlayer: action.miniPlayer,
+        };
+
         case actionType.SET_USER_PLAYLIST:
             return {
                 ...state,
@@ -110,6 +120,14 @@ const reducer = (state, action) => {
             languageFilter: action.languageFilter,
             };
         
+
+        //Alert cases
+        case actionType.SET_ALERT_TYPE:
+            return {
+            ...state,
+            alertType: action.alertType,
+        };
+
         default :
             return state;
     }

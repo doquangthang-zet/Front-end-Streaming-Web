@@ -101,6 +101,11 @@
   margin-left: 15%;
 }
 
+.aboutUsDisplay, .songsDisplay, .profileDisplay, .albumsPlaylistDisplay, .songsPlaylistDisplay {
+  margin-left: 250px;
+  background-color: #fff;
+}
+
 .aside-bar {
   display: flex;
   flex-direction: column;
@@ -122,7 +127,10 @@
   border-bottom: 1px solid #e0e0e0;
   padding: 15px;
   font-weight: bolder;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .aside-bar .lib-sub {
   padding: 10px;
@@ -279,7 +287,6 @@ a:hover {
 }
 
 .developer {
-  margin-left: 250px;
   background: rgb(173, 184, 215);
   background: radial-gradient(circle, rgb(173, 184, 215) 0%, rgb(255, 255, 255) 100%);
 }
@@ -319,10 +326,6 @@ a:hover {
 .developer .developer-profile .profileDetails .cardBtn .linkImg:hover {
   cursor: pointer;
   opacity: 0.7;
-}
-
-.playlistSong {
-  margin-left: 250px;
 }
 
 .playlistInfo {
@@ -387,7 +390,6 @@ a:hover {
 }
 
 .albumsContainer {
-  margin-left: 250px;
   background: rgb(117, 140, 209);
   background: radial-gradient(circle, rgb(117, 140, 209) 24%, rgb(97, 126, 212) 52%, rgb(124, 146, 210) 89%, rgb(205, 176, 189) 100%);
 }
@@ -395,9 +397,6 @@ a:hover {
   margin-left: 20px;
 }
 
-.userProfile {
-  margin-left: 250px;
-}
 .userProfile .userCard {
   display: flex;
   flex-wrap: nowrap;
@@ -454,16 +453,11 @@ a:hover {
 }
 
 .albumsContainer {
-  margin-left: 250px;
   background: rgb(117, 140, 209);
   background: radial-gradient(circle, rgb(117, 140, 209) 24%, rgb(97, 126, 212) 52%, rgb(124, 146, 210) 89%, rgb(205, 176, 189) 100%);
 }
 .albumsContainer .albumsGenre h1 {
   margin-left: 20px;
-}
-
-.playlistSong {
-  margin-left: 250px;
 }
 
 .playlistInfo {
@@ -524,51 +518,5 @@ a:hover {
   cursor: pointer;
 }
 .songList .oneSong:hover .songDetails .songPicture, .songList .oneSong:hover .songDetails .songName {
-  cursor: pointer;
-}
-
-.oneSong {
-  position: relative;
-}
-.oneSong .iconPlay {
-  height: 30px;
-  position: absolute;
-  left: 0;
-  margin-left: 8px;
-  color: transparent;
-}
-.oneSong .songDetails {
-  display: flex;
-  align-items: center;
-}
-.oneSong .songDetails .songPicture {
-  width: 60px;
-}
-.oneSong .songDetails .songName {
-  margin: 10px;
-}
-.oneSong .songDetails .songIcons {
-  display: flex;
-  text-align: left;
-  padding-left: 100px;
-}
-.oneSong .songDetails .songIcons .songIconHeart {
-  font-size: 30px;
-  margin: 30px;
-  color: transparent;
-}
-.oneSong:hover {
-  opacity: 0.7;
-}
-.oneSong:hover .iconPlay {
-  color: black;
-  cursor: pointer;
-}
-.oneSong:hover .songDetails .songPicture,
-.oneSong:hover .songDetails .songName {
-  cursor: pointer;
-}
-.oneSong:hover .songDetails .songIconHeart {
-  color: black;
   cursor: pointer;
 }/*# sourceMappingURL=main.css.map */
