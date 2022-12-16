@@ -29,6 +29,7 @@ export function AboutUs(){
                     <p>I have a keen interest in developing projects, whenever I want to learn something new.</p>
                     <div className="cardBtn">
                 <img src={facebook} className="linkImg" alt="Facebook" />
+                
                 <img src={outlook}  className="linkImg" alt="Outlook" />
                 <img src={github} className="linkImg" alt="Github" />
                 <img src={gmail} className="linkImg" alt="Gmail" />

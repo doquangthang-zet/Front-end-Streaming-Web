@@ -2,12 +2,15 @@
   width: 550px;
 }
 
+.bodyHomepage {
+  margin-left: 350px;
+}
+
 .adverImg {
   width: 400px;
   height: 500px;
   display: flex;
   flex-direction: row;
-  background-color: purple;
   border-radius: 19px;
 }
 
@@ -118,6 +121,9 @@
   background: rgb(238, 174, 202);
   background: radial-gradient(circle, rgb(238, 174, 202) 0%, rgb(148, 187, 233) 100%);
 }
+.aside-bar .aside-bar-container a:hover {
+  background-color: transparent;
+}
 .aside-bar .p1 {
   border-bottom: 1px solid #e0e0e0;
   padding: 15px;
@@ -173,7 +179,7 @@
 
 .searchInputs {
   display: flex;
-  margin: 35px 100px 0;
+  margin: 50px 100px 0;
 }
 
 .search input {
@@ -221,7 +227,7 @@ a:hover {
 }
 
 .listOption {
-  margin: 30px 0;
+  margin: 45px 0;
   font-size: 15px;
   border-radius: 10px;
   background-color: transparent;
@@ -235,7 +241,7 @@ a:hover {
 
 .iconSection {
   width: 270px;
-  margin: 30px 0;
+  margin: 50px 0;
   margin-left: 20px;
   display: flex;
 }
@@ -244,6 +250,16 @@ a:hover {
 }
 .iconSection .playlistBtn:hover, .iconSection .likedSongsBtn:hover {
   cursor: pointer;
+}
+
+.likedSongsBtn a {
+  text-decoration: none;
+  color: black;
+}
+.likedSongsBtn a:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: black;
 }
 
 .iconTag {
@@ -412,6 +428,9 @@ a:hover {
   margin: 100px 0;
   font-weight: bold;
 }
+.userProfile .userLoveSongs h3 {
+  margin-left: 20px;
+}
 .userProfile .userLoveSongs .iconHeart {
   color: red;
 }
@@ -540,6 +559,7 @@ a:hover {
 .oneSong .songDetails {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .oneSong .songDetails .songPicture {
   width: 60px;
@@ -551,8 +571,10 @@ a:hover {
   display: flex;
   text-align: left;
   padding-left: 100px;
+  position: absolute;
+  right: 0;
 }
-.oneSong .songDetails .songIcons .songIconHeart {
+.oneSong .songDetails .songIcons .songIconHeart, .oneSong .songDetails .songIcons .songIconTrash {
   font-size: 30px;
   margin: 30px;
   color: transparent;
@@ -568,7 +590,7 @@ a:hover {
 .oneSong:hover .songDetails .songName {
   cursor: pointer;
 }
-.oneSong:hover .songDetails .songIconHeart {
+.oneSong:hover .songDetails .songIconHeart, .oneSong:hover .songDetails .songIconTrash {
   color: black;
   cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

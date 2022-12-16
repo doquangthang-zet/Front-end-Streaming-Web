@@ -13,6 +13,12 @@ import { actionType } from '../../context/reducer';
 import { BiAddToQueue } from 'react-icons/bi';
 import {motion} from 'framer-motion';
 
+
+//test modal add to playlist
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 const SongTable = ({page}) => {
   const [{currentPlaylist, allSongs}, dispatch] = useStateValue();
 
@@ -52,7 +58,11 @@ export const SongCard = ({data, index}) => {
   const [{isSongPlaying, songIndex}, dispatch] = useStateValue();
   const [URL, setURL] = useState("");
 
-  
+  //test modal add to playlist
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const addToContext = () => {
     if(!isSongPlaying) {
         dispatch({
@@ -73,6 +83,12 @@ export const SongCard = ({data, index}) => {
     setURL(window.location.href); // dispay different section depend on URL
   }, [URL]);
 
+  //testing fucntion change color
+  const [active, setActive] = useState(false);
+  const handleClick = () => {
+    setActive(!active);
+  };
+
   return (
     <tr className="oneSong" onClick={addToContext}>
       <td className="">
@@ -82,21 +98,50 @@ export const SongCard = ({data, index}) => {
       <td className="songDetails">
         <img className="songPicture" src={data.imageURL} alt="songPicture" />
         <p className="songName">{data.name} <br />{data.artist}</p> 
+        <div className='songIcons'>
+        <FiHeart className='songIconHeart' onClick={handleClick}
+        style={{ color: active ? "Red" : "Black" }}/>
+        <BsTrash className='songIconTrash'/>
+        </div>
       </td>
       <td>{createdAt}</td>
       <td>{data.album}</td>
       <td>{data.category}</td>    
 
       {/* Button to add song to playlist */}
-      {URL.indexOf("playlist") <= -1 && 
+      {URL.indexOf("playList") <= -1 && 
         <motion.div 
           initial={{opacity: 0, scale: 0.5}} 
           animate={{opacity: 1, scale: 1}}
           exit={{opacity: 0, scale: 0.5}}           
           className=' absolute right-1 flex items-start flex-col bg-transparent shadow-xl rounded-md cursor-pointer'>
-            <BiAddToQueue className='text-3xl' />
+            <BiAddToQueue className='text-3xl' onClick={handleShow}/> 
+            <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add to Playlist</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Do you want to add this song to your Playlist?</Modal.Body>
+        <Modal.Body>
+        <Form.Select>
+        <option>Please Select Your Playlist</option>
+        <option>Default select</option>
+        <option>Default select</option>
+        <option>Default select</option>
+      </Form.Select>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button  onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button  onClick={handleClose}>
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>  
         </motion.div>
       }      
+    
+      
     </tr>
   )
 }

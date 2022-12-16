@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import '../../css/main.css';
 // import { AccountContext } from "../_AccountContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faFolderPlus, faHeart, faExplosion} from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faFolderPlus, faHeart} from "@fortawesome/free-solid-svg-icons";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useStateValue } from "../../context/StateProvider";
@@ -122,6 +122,7 @@ export function Header(props) {
     }
   };
 
+
   return <HeaderContainer>
     
     {/* Search part */}
@@ -229,7 +230,8 @@ export function Header(props) {
         
       {/* Liked Songs part */}
       <div className="likedSongsBtn">        
-        <FontAwesomeIcon className="iconTag" icon={faHeart}></FontAwesomeIcon><p>Liked Songs</p>
+      <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FontAwesomeIcon className="iconTag" icon={faHeart}></FontAwesomeIcon>Liked Songs</NavLink>
+        
       </div>
     </div>
 

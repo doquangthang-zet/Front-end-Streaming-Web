@@ -14,7 +14,6 @@ import { actionType } from "../../../context/reducer";
 
 const BodyContainer = styled.div`
 margin-top: 40px;
-margin-left: 100px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -50,7 +49,7 @@ export function BodySection() {
 
     return (
         <BodyContainer>
-            <Container>
+            <div className="bodyHomepage">
                 <Row className="rowAttribute">
                     <Col><img className="adverImg" src={musicImage} alt="" /></Col>
                     <div className="titleSection"> 
@@ -194,7 +193,7 @@ export function BodySection() {
                     </SongContainer>
                     </Col>
                 </Row>
-            </Container>
+            </div>
         </BodyContainer>
     );
 };
