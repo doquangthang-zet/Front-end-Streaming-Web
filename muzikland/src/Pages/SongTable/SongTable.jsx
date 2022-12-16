@@ -98,13 +98,13 @@ export const SongCard = ({data, index}) => {
       <td className="songDetails">
         <img className="songPicture" src={data.imageURL} alt="songPicture" />
         <p className="songName">{data.name} <br />{data.artist}</p> 
-        <div className='songIcons'>
+      </td>
+      <td>{createdAt}
+      <div className='songIcons'>
         <FiHeart className='songIconHeart' onClick={handleClick}
         style={{ color: active ? "Red" : "Black" }}/>
         <BsTrash className='songIconTrash'/>
-        </div>
-      </td>
-      <td>{createdAt}</td>
+        </div></td>
       <td>{data.album}</td>
       <td>{data.category}</td>    
 
