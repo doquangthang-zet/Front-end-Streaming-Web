@@ -230,14 +230,14 @@ export function Header(props) {
         
       {/* Liked Songs part */}
       <div className="likedSongsBtn">        
-      <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FontAwesomeIcon className="iconTag" icon={faHeart}></FontAwesomeIcon>Liked Songs</NavLink>
+        <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FontAwesomeIcon className="iconTag" icon={faHeart}></FontAwesomeIcon>Liked Songs</NavLink>
         
       </div>
     </div>
 
     <div className="personalInfo">
       <img className="iconUser" src={user?.user?.imageURL} referrerPolicy='no-referrer' />
-      <DropdownButton id="dropdown-basic-button" title={user?.user?.name}>
+      <DropdownButton id="dropdown-basic-button" title={user?.user?.name} >
           <motion.div>
             <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><Dropdown.Item href="#/action-1">Profile</Dropdown.Item></NavLink>
             {user?.user?.role === "admin" && (

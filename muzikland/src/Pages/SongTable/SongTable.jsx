@@ -109,7 +109,7 @@ export const SongCard = ({data, index}) => {
       <td>{data.category}</td>    
 
       {/* Button to add song to playlist */}
-      {URL.indexOf("playList") <= -1 && 
+      {URL.indexOf("playList") > -1 && 
         <motion.div 
           initial={{opacity: 0, scale: 0.5}} 
           animate={{opacity: 1, scale: 1}}
@@ -117,31 +117,29 @@ export const SongCard = ({data, index}) => {
           className=' absolute right-1 flex items-start flex-col bg-transparent shadow-xl rounded-md cursor-pointer'>
             <BiAddToQueue className='text-3xl' onClick={handleShow}/> 
             <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add to Playlist</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Do you want to add this song to your Playlist?</Modal.Body>
-        <Modal.Body>
-        <Form.Select>
-        <option>Please Select Your Playlist</option>
-        <option>Default select</option>
-        <option>Default select</option>
-        <option>Default select</option>
-      </Form.Select>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button  onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button  onClick={handleClose}>
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>  
+              <Modal.Header closeButton>
+                <Modal.Title>Add to Playlist</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Do you want to add this song to your Playlist?</Modal.Body>
+              <Modal.Body>
+                <Form.Select>
+                  <option>Please Select Your Playlist</option>
+                  <option>Default select</option>
+                  <option>Default select</option>
+                  <option>Default select</option>
+                </Form.Select>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button  onClick={handleClose}>
+                  Cancel
+                </Button>
+                <Button  onClick={handleClose}>
+                  OK
+                </Button>
+              </Modal.Footer>
+            </Modal>  
         </motion.div>
       }      
-    
-      
     </tr>
   )
 }
