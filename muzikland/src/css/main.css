@@ -161,6 +161,10 @@
   cursor: pointer;
 }
 
+.aside-bar::-webkit-scrollbar {
+  display: none;
+}
+
 @media only screen and (max-width: 970px) {
   .aside-bar {
     display: none;
@@ -409,6 +413,10 @@ a:hover {
 }
 .albumsContainer .albumsGenre h1 {
   margin-left: 20px;
+}
+.albumsContainer .albumsList .css-1gqikdj-Row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .userProfile {

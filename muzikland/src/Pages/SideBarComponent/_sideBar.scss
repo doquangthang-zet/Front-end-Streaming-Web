@@ -58,6 +58,10 @@
   }
 }
 
+.aside-bar::-webkit-scrollbar{
+  display: none;
+}
+
 @media only screen and (max-width: 970px) {
   .aside-bar {
     display: none;
