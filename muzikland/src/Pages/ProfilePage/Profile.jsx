@@ -6,9 +6,6 @@ import {faPlay, faHeart, faEllipsis} from '@fortawesome/free-solid-svg-icons';
 import SongTable from "../SongTable/SongTable";
 import { useStateValue } from "../../context/StateProvider";
 
-
-
-
 export function Profile(){
     const [{user, allSongs}, dispatch] = useStateValue();
     return (
@@ -24,7 +21,7 @@ export function Profile(){
                     Your Loved Songs <FontAwesomeIcon className="iconHeart" icon={faHeart}></FontAwesomeIcon>
                 </h3>
                 <div className="lovedSongs">
-                    <SongTable/>
+                    <SongTable page="likedSongs"/>
                 </div>
             </div>
             

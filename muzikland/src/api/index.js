@@ -132,3 +132,21 @@ export const deleteAlbumById = async (id) => {
         return null;
     }
 }
+
+export const updatePlaylist = async (playlistId, songId) => {
+    try {
+        const res = axios.put(`${baseUrl}api/playlists/updateSongs/${playlistId}/${songId}`);
+        return res;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const updateLikedSongs = async (userId, songId) => {
+    try {
+        const res = axios.put(`${baseUrl}api/users/updateLikedSongs/${userId}/${songId}`);
+        return res;
+    } catch (error) {
+        return null;
+    }
+}

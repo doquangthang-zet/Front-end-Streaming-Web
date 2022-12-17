@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import {FiHeart} from "react-icons/fi";
 import {BsTrash} from "react-icons/bs";
+import { AiFillHeart } from "react-icons/ai";
 
 import Table from 'react-bootstrap/Table';
 import { useStateValue } from '../../context/StateProvider';
@@ -18,9 +19,10 @@ import {motion} from 'framer-motion';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { getAllPlaylist, updatePlaylist } from '../../api';
 
 const SongTable = ({page}) => {
-  const [{currentPlaylist, allSongs}, dispatch] = useStateValue();
+  const [{currentPlaylist, allSongs, user}, dispatch] = useStateValue();
 
   return (
     <div className='songList'>
@@ -36,15 +38,24 @@ const SongTable = ({page}) => {
         </thead>
         <tbody >
           {
-            allSongs && currentPlaylist && allSongs.filter((song) => currentPlaylist.songs.includes(song._id))
+            allSongs && currentPlaylist && page == "playlist" && allSongs.filter((song) => currentPlaylist.songs.includes(song._id))
             .map((data, i) => (
-              <SongCard data={data} index={i} />
+              <SongCard data={data} index={i} page={page} />
             ))
           }
 
-          {allSongs && page == "allSongs" && allSongs.map((data, i) => (
-            <SongCard data={data} index={i} />
-          ))} 
+          {
+            allSongs && page == "allSongs" && allSongs.map((data, i) => (
+              <SongCard data={data} index={i} page={page} />
+            ))
+          } 
+
+          {
+            allSongs && user && page == "likedSongs" && allSongs.filter((song) => user?.user.likedSongs.includes(song._id))
+            .map((data, i) => (
+              <SongCard data={data} index={i} page={page} />
+            ))
+          } 
         </tbody>
       </Table>
     </div>
@@ -53,10 +64,11 @@ const SongTable = ({page}) => {
 
 export default SongTable;
 
-export const SongCard = ({data, index}) => {
+export const SongCard = ({data, index, page}) => {
   const createdAt = moment(new Date(data.createdAt)).format('MMMM Do YYYY, h:mm:ss a');
-  const [{isSongPlaying, songIndex}, dispatch] = useStateValue();
+  const [{isSongPlaying, songIndex, allPlaylists, alertType, user}, dispatch] = useStateValue();
   const [URL, setURL] = useState("");
+  const [playlistToAdd, setPlaylistToAdd] = useState("");
 
   //test modal add to playlist
   const [show, setShow] = useState(false);
@@ -79,61 +91,124 @@ export const SongCard = ({data, index}) => {
     // }
   }
 
+  const saveSongToPlaylist = () => {
+    if(!playlistToAdd) {
+
+      // Throw alert 
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "danger",
+      })
+
+      setTimeout(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
+    } else {
+      // Save the song to playlist\
+      updatePlaylist(playlistToAdd, data._id).then(res => {
+        getAllPlaylist().then((playlists) => {
+          dispatch({
+            type: actionType.SET_ALL_PLAYLISTS,
+            allPlaylists: playlists.playlist,
+          })
+        })
+      });
+
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "success",
+      })
+
+      setTimeout(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
+
+      setPlaylistToAdd("");
+      setShow(false);
+    }
+  }
+
   useEffect(() => {
     setURL(window.location.href); // dispay different section depend on URL
   }, [URL]);
 
   //testing fucntion change color
   const [active, setActive] = useState(false);
-  const handleClick = () => {
+  const like = () => {
+    setActive(!active);
+  };
+
+  const dislike = () => {
     setActive(!active);
   };
 
   return (
-    <tr className="oneSong" onClick={addToContext}>
-      <td className="">
+    <tr className="oneSong">
+      <td className="" onClick={addToContext}>
         {index + 1}
         <FontAwesomeIcon className="iconPlay" icon={faPlay}></FontAwesomeIcon>
       </td>
-      <td className="songDetails">
+      <td className="songDetails"  onClick={addToContext}>
         <img className="songPicture" src={data.imageURL} alt="songPicture" />
         <p className="songName">{data.name} <br />{data.artist}</p> 
       </td>
-      <td>{createdAt}
-      <div className='songIcons'>
-        <FiHeart className='songIconHeart' onClick={handleClick}
-        style={{ color: active ? "Red" : "Black" }}/>
-        <BsTrash className='songIconTrash'/>
-        </div></td>
-      <td>{data.album}</td>
-      <td>{data.category}</td>    
+      <td>
+        {createdAt}
+        <div className='songIcons'>
+          {
+            page !== "likedSongs" && (
+              user?.user.likedSongs.includes(data._id) ? <AiFillHeart className='songIconHeart text-pink-600' onClick={dislike} /> : <FiHeart className='songIconHeart' onClick={like} />
+            )
+          }
+          
+          {
+            page !== "allSongs" && 
+              <BsTrash className='songIconTrash'/>
+          }
+        </div>
+      </td>
+      <td onClick={addToContext}>{data.album}</td>
+      <td onClick={addToContext}>{data.category}</td>    
 
       {/* Button to add song to playlist */}
-      {URL.indexOf("playList") > -1 && 
+      {page !== "playlist" && 
         <motion.div 
           initial={{opacity: 0, scale: 0.5}} 
           animate={{opacity: 1, scale: 1}}
           exit={{opacity: 0, scale: 0.5}}           
           className=' absolute right-1 flex items-start flex-col bg-transparent shadow-xl rounded-md cursor-pointer'>
             <BiAddToQueue className='text-3xl' onClick={handleShow}/> 
+
             <Modal show={show} onHide={handleClose}>
+
               <Modal.Header closeButton>
                 <Modal.Title>Add to Playlist</Modal.Title>
               </Modal.Header>
+
               <Modal.Body>Do you want to add this song to your Playlist?</Modal.Body>
+
               <Modal.Body>
-                <Form.Select>
+                <Form.Select onChange={(e) => setPlaylistToAdd(e.target.value)}>
                   <option>Please Select Your Playlist</option>
-                  <option>Default select</option>
-                  <option>Default select</option>
-                  <option>Default select</option>
+                  {
+                    allPlaylists && 
+                    allPlaylists.filter((pl) => pl.user_id == user?.user._id)
+                    .map((playlist, i) =>
+                    (<option value={playlist._id}>{playlist.name}</option>))
+                  }
                 </Form.Select>
               </Modal.Body>
               <Modal.Footer>
                 <Button  onClick={handleClose}>
                   Cancel
                 </Button>
-                <Button  onClick={handleClose}>
+                <Button  onClick={saveSongToPlaylist}>
                   OK
                 </Button>
               </Modal.Footer>
