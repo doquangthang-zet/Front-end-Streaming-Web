@@ -99,7 +99,7 @@ export const SongCard = ({data, index}) => {
         <img className="songPicture" src={data.imageURL} alt="songPicture" />
         <p className="songName">{data.name} <br />{data.artist}</p> 
       </td>
-      <td>{createdAt}
+      <td className='songDate'>{createdAt}
       <div className='songIcons'>
         <FiHeart className='songIconHeart' onClick={handleClick}
         style={{ color: active ? "Red" : "Black" }}/>

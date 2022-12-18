@@ -18,7 +18,7 @@ export function SongsPlaylist(){
         <div className="playlistSong">
             <div className="playlistInfo">
                 <div className="playlistImg">
-                    <img src={currentPlaylist.imageURL} alt="playlistImg_" />
+                    <img src={currentPlaylist.imageURL} alt="playlistImg_" className="h-100" />
                 </div>
                 <div className="playlistDetails">
                     <span>PLAYLIST</span>

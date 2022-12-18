@@ -14,7 +14,7 @@ export function Profile(){
     return (
         <div className="userProfile">
             <div className="userCard">
-                <div className="userImg"><img src={user?.user.imageURL} alt="userImage" /></div>
+                <div className="userImg"><img src={user?.user.imageURL} alt="userImage" className="w-100"/></div>
                 <div className="userName">
                     <h1>{user?.user.name}</h1>
                 </div>
