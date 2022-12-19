@@ -19,10 +19,10 @@ import {motion} from 'framer-motion';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { getAllPlaylist, getUser, removeLikedSongs, removePlaylistSongs, updateLikedSongs, updatePlaylist } from '../../api';
+import { decLikes, getAllChartSongs, getAllPlaylist, getAllSongs, getUser, incLikes, removeLikedSongs, removePlaylistSongs, updateLikedSongs, updatePlaylist } from '../../api';
 
 const SongTable = ({page}) => {
-  const [{currentPlaylist, allSongs, user}, dispatch] = useStateValue();
+  const [{currentPlaylist, allSongs, user, allChartSongs}, dispatch] = useStateValue();
 
   return (
     <div className='songList'>
@@ -53,6 +53,12 @@ const SongTable = ({page}) => {
           {
             allSongs && user && page == "likedSongs" && allSongs.filter((song) => user?.user.likedSongs.includes(song._id))
             .map((data, i) => (
+              <SongCard data={data} index={i} page={page} />
+            ))
+          } 
+
+          {
+            allChartSongs && page == "musicChart" && allChartSongs.map((data, i) => (
               <SongCard data={data} index={i} page={page} />
             ))
           } 
@@ -170,6 +176,16 @@ export const SongCard = ({data, index, page}) => {
         })
       });
 
+      //Increase the likes
+      incLikes(data._id).then((res) => {
+        getAllChartSongs().then((res) => {
+          dispatch({
+            type: actionType.SET_ALL_CHARTSONGS,
+            allChartSongs: res.song,
+          })
+        })
+      });
+
       dispatch({
         type: actionType.SET_ALERT_TYPE,
         alertType: "success",
@@ -208,6 +224,16 @@ export const SongCard = ({data, index, page}) => {
           dispatch({
             type: actionType.SET_USER,
             user: curUser,
+          })
+        })
+      });
+
+      //Decrease the likes
+      decLikes(data._id).then((res) => {
+        getAllChartSongs().then((res) => {
+          dispatch({
+            type: actionType.SET_ALL_CHARTSONGS,
+            allChartSongs: res.song,
           })
         })
       });
@@ -301,6 +327,7 @@ export const SongCard = ({data, index, page}) => {
                   exit={{opacity: 0, scale: 0.5}}   
                 >
                   <AiFillHeart className='songIconHeart text-pink-600 text-2xl' onClick={dislike} />
+                  {/* <p>{data.likes}</p> */}
                 </motion.div> : 
                 <motion.div
                   initial={{opacity: 0, scale: 0.5}} 
@@ -308,6 +335,7 @@ export const SongCard = ({data, index, page}) => {
                   exit={{opacity: 0, scale: 0.5}}     
                 >
                   <FiHeart className='songIconHeart text-2xl' onClick={like} />
+                  {/* <p>{data.likes}</p> */}
                 </motion.div>
             )
           }

@@ -5,7 +5,7 @@ import {faHome, faExplosion, faSearch, faMusic, faListDots, faUserMusic, faUsers
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { IoHome, IoTrash } from "react-icons/io5";
-import { MdAlbum } from "react-icons/md"
+import { MdAlbum, MdInsertChartOutlined } from "react-icons/md"
 import { TbPlaylist } from "react-icons/tb"
 import { ImProfile } from "react-icons/im"
 import { isActiveStyles, isNotActiveStyles } from "../../utils/styles";
@@ -18,6 +18,7 @@ import { FaTeamspeak } from "react-icons/fa";
 import logo from './logomuzik.png';
 import { BsTrash } from "react-icons/bs";
 import {motion} from 'framer-motion';
+import { AiOutlineHome } from "react-icons/ai";
 
 export function SideBar({playlists}) {
     const useStyle = useContext(ThemeContext);
@@ -53,11 +54,12 @@ export function SideBar({playlists}) {
                         <p className={"p1"}>
                             <span>LIBRARY</span>
                         </p>
-                        <NavLink to={"/"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FontAwesomeIcon className="iconTag" icon={faHome}/> Home</NavLink>
+                        <NavLink to={"/"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><AiOutlineHome className="iconTag"/> Home</NavLink>
                         <NavLink to={"/about"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FaTeamspeak className="iconTag" /> About Us</NavLink>
                         <NavLink to={"/song"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><GiLoveSong className="iconTag" /> Songs</NavLink>
                         <NavLink to={"/album"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><MdAlbum className="iconTag" /> Albums</NavLink>
                         <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><ImProfile className='iconTag' /> Profile</NavLink>
+                        <NavLink to={"/musicChart"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><MdInsertChartOutlined className='iconTag' /> Music Chart</NavLink>
                     </div>
                     
                     <div className="aside-bar-container playlist">

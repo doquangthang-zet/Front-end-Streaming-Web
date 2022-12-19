@@ -11,14 +11,15 @@ import { AlbumsPlaylist } from "../PlaylistPage/AlbumsPlaylist";
 import { SongsPlaylist } from "../PlaylistPage/SongsPlaylist";
 import '../../css/main.css';
 import { useStateValue } from "../../context/StateProvider";
-import { getAllAlbum, getAllPlaylist, getAllSongs, getAllUsers, getUserPlaylist } from "../../api";
+import { getAllAlbum, getAllChartSongs, getAllPlaylist, getAllSongs, getAllUsers, getUserPlaylist } from "../../api";
 import { actionType } from "../../context/reducer";
 import { Route, Routes } from "react-router-dom";
 import Alert from "../AdminPage/Alert";
+import { MusicChart } from "../MusicChartPage/MusicChart";
 
 
 export function Home(){
-  const [{user, allUsers, allSongs, allPlaylists, allAlbums, curPlaylist, alertType}, dispatch] = useStateValue();
+  const [{user, allUsers, allSongs, allPlaylists, allAlbums, curPlaylist, alertType, allChartSongs}, dispatch] = useStateValue();
 
   useEffect(() => {
     // if(!allUsers) {
@@ -31,15 +32,15 @@ export function Home(){
     //   })
     // }
 
-    // if(!allArtists) {
-    //   getAllArtists().then((data) => {
-    //     console.log(data);
-    //     dispatch({
-    //       type: actionType.SET_ALL_ARTISTS,
-    //       allArtists: data.artists
-    //     })
-    //   })
-    // }
+    if(!allChartSongs) {
+      getAllChartSongs().then((data) => {
+        console.log(data);
+        dispatch({
+          type: actionType.SET_ALL_CHARTSONGS,
+          allChartSongs: data.song
+        })
+      })
+    }
 
     if(!allSongs) {
       getAllSongs().then((data) => {
@@ -96,6 +97,7 @@ export function Home(){
           <Route path="/profile" element={<Profile />} />
           <Route path="/song" element={<Songs />} />
           <Route path="/playlist" element={<SongsPlaylist />} />
+          <Route path="/musicChart" element={<MusicChart />} />
         </Routes>  
       </div>
 

@@ -2,6 +2,7 @@ export const initialState = {
     user: null,
     allUsers: null,
     allSongs: null,
+    allChartSongs: null,
     allArtists: null,
     allPlaylists: null,
     allAlbums: null,

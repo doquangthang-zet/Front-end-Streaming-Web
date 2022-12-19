@@ -34,6 +34,15 @@ export const getAllSongs = async () => {
     }
 }
 
+export const getAllChartSongs = async () => {
+    try {
+        const res = await axios.get(`${baseUrl}api/songs/getChart`);
+        return res.data;
+    } catch (error) {
+        return null;
+    }
+}
+
 export const getAllArtists = async () => {
     try {
         const res = await axios.get(`${baseUrl}api/artists/getAll`);
@@ -181,6 +190,24 @@ export const deletePlaylistById = async (id) => {
 export const removePlaylistSongs = async (playlistId, songId) => {
     try {
         const res = axios.put(`${baseUrl}api/playlists/removeSongs/${playlistId}/${songId}`);
+        return res;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const incLikes = async (songId) => {
+    try {
+        const res = axios.put(`${baseUrl}api/songs/gainLike/${songId}`);
+        return res;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const decLikes = async (songId) => {
+    try {
+        const res = axios.put(`${baseUrl}api/songs/decreaseLike/${songId}`);
         return res;
     } catch (error) {
         return null;
