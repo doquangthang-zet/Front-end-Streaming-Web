@@ -11,6 +11,7 @@ import { Container, Row, Col } from 'react-grid';
 import { useStateValue } from "../../../context/StateProvider";
 import { getAllSongs } from "../../../api";
 import { actionType } from "../../../context/reducer";
+import { NavLink } from "react-router-dom";
 
 const BodyContainer = styled.div`
 margin-top: 40px;
@@ -53,75 +54,28 @@ export function BodySection() {
                 <Row className="rowAttribute">
                     <Col><img className="adverImg" src={musicImage} alt="" /></Col>
                     <div className="titleSection"> 
-                    <span>Top Trending</span>
-                    <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                    <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
+                        <span>Top Trending</span>
+                        <NavLink to={"/album"} className=" no-underline text-black">
+                            <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
+                            <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
+                        </NavLink>
+                        
                     </div>
                     
                     <SongBox data={allSongs} />
-                    {/* <Col className="songContainer">
-                        <SongContainer>
-
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col> */}
+                    
                 </Row>
                 <Row className="rowAttribute">
-                <div className="smallTitleSection"> 
-                    <span>Sleep Albums</span>
-                    <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                    <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
+                    <div className="smallTitleSection"> 
+                        <span>Sleep Albums</span>
+                        <NavLink to={"/album"} className=" no-underline text-black">
+                            <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
+                            <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
+                        </NavLink>
                     </div>
-                    <Col className="songContainer"><SongContainer>
-
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
+                    <SongBox data={allSongs} />
                 </Row>
-                <Row className="rowAttribute">
+                {/* <Row className="rowAttribute">
                 <div className="smallTitleSection"> 
                     <span>Mood Albums</span>
                     <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
@@ -192,7 +146,7 @@ export function BodySection() {
                             <img className="songImg" src={musicImage} alt="" /></div>
                     </SongContainer>
                     </Col>
-                </Row>
+                </Row> */}
             </div>
         </BodyContainer>
     );
