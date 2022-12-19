@@ -11,8 +11,6 @@ import SongTable from "../SongTable/SongTable";
 
 export function SongsPlaylist(){
     const [{currentPlaylist, allSongs}, dispatch] = useStateValue();
-    // console.log(currentPlaylist)
-
 
     return (
         <div className="playlistSong">

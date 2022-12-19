@@ -19,7 +19,7 @@ import {motion} from 'framer-motion';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { getAllPlaylist, updatePlaylist } from '../../api';
+import { getAllPlaylist, getUser, removeLikedSongs, removePlaylistSongs, updateLikedSongs, updatePlaylist } from '../../api';
 
 const SongTable = ({page}) => {
   const [{currentPlaylist, allSongs, user}, dispatch] = useStateValue();
@@ -66,7 +66,7 @@ export default SongTable;
 
 export const SongCard = ({data, index, page}) => {
   const createdAt = moment(new Date(data.createdAt)).format('MMMM Do YYYY, h:mm:ss a');
-  const [{isSongPlaying, songIndex, allPlaylists, alertType, user}, dispatch] = useStateValue();
+  const [{isSongPlaying, songIndex, allPlaylists, alertType, user, currentPlaylist}, dispatch] = useStateValue();
   const [URL, setURL] = useState("");
   const [playlistToAdd, setPlaylistToAdd] = useState("");
 
@@ -140,13 +140,144 @@ export const SongCard = ({data, index, page}) => {
 
   //testing fucntion change color
   const [active, setActive] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+
   const like = () => {
-    setActive(!active);
+    if(!user) {
+
+      // Throw alert 
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "danger",
+      })
+
+      setTimeout(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
+    } else {
+      // Save the song to user liked songs
+      updateLikedSongs(user?.user._id, data._id).then(res => {
+        getUser(user?.user._id).then((curUser) => {
+          console.log(user)
+          console.log(curUser)
+          dispatch({
+            type: actionType.SET_USER,
+            user: curUser,
+          })
+        })
+      });
+
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "success",
+      })
+
+      setTimeout(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
+    }
   };
 
   const dislike = () => {
-    setActive(!active);
+    if(!user) {
+
+      // Throw alert 
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "danger",
+      })
+
+      setTimeout(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
+    } else {
+      // Remove the song from user liked songs
+      removeLikedSongs(user?.user._id, data._id).then(res => {
+        getUser(user?.user._id).then((curUser) => {
+          console.log(user)
+          console.log(curUser)
+          dispatch({
+            type: actionType.SET_USER,
+            user: curUser,
+          })
+        })
+      });
+
+      dispatch({
+        type: actionType.SET_ALERT_TYPE,
+        alertType: "success",
+      })
+
+      setTimeout(() => {
+        dispatch({
+          type: actionType.SET_ALERT_TYPE,
+          alertType: null,
+        })
+      }, 4000);
+    }
   };
+
+  const deleteSongPlaylist = () => {
+    removePlaylistSongs(currentPlaylist._id, data._id).then((res) => {
+      if(res.data) {
+          dispatch({
+              type: actionType.SET_ALERT_TYPE,
+              alertType: "success",
+          })
+
+          setInterval(() => {
+              dispatch({
+                  type: actionType.SET_ALERT_TYPE,
+                  alertType: null,
+              })
+          }, 4000)
+
+          dispatch({
+            type: actionType.SET_CURRENT_PLAYLIST,
+            currentPlaylist: res.data.playlist,
+          })
+
+          getAllPlaylist().then((pl) => {
+            dispatch({
+              type: actionType.SET_ALL_PLAYLISTS,
+              allPlaylists: pl.playlist,
+            })
+          })
+      } else {
+          dispatch({
+              type: actionType.SET_ALERT_TYPE,
+              alertType: "danger",
+          })
+
+          setInterval(() => {
+              dispatch({
+                  type: actionType.SET_ALERT_TYPE,
+                  alertType: null,
+              })
+          }, 4000)
+      }
+    })
+  
+    removePlaylistSongs(currentPlaylist._id, data._id).then((res) => {
+      if(res.data) {
+          dispatch({
+            type: actionType.SET_CURRENT_PLAYLIST,
+            currentPlaylist: res.data.playlist,
+          })
+      }
+    })
+
+    setIsDelete(false);
+  }
 
   return (
     <tr className="oneSong">
@@ -160,16 +291,95 @@ export const SongCard = ({data, index, page}) => {
       </td>
       <td>
         {createdAt}
-        <div className='songIcons'>
+        <div className='songIcons flex'>
           {
             page !== "likedSongs" && (
-              user?.user.likedSongs.includes(data._id) ? <AiFillHeart className='songIconHeart text-pink-600' onClick={dislike} /> : <FiHeart className='songIconHeart' onClick={like} />
+              user?.user.likedSongs.includes(data._id) ? 
+                <motion.div
+                  initial={{opacity: 0, scale: 0.5}} 
+                  animate={{opacity: 1, scale: 1}}
+                  exit={{opacity: 0, scale: 0.5}}   
+                >
+                  <AiFillHeart className='songIconHeart text-pink-600 text-2xl' onClick={dislike} />
+                </motion.div> : 
+                <motion.div
+                  initial={{opacity: 0, scale: 0.5}} 
+                  animate={{opacity: 1, scale: 1}}
+                  exit={{opacity: 0, scale: 0.5}}     
+                >
+                  <FiHeart className='songIconHeart text-2xl' onClick={like} />
+                </motion.div>
             )
           }
           
           {
             page !== "allSongs" && 
-              <BsTrash className='songIconTrash'/>
+              page === "likedSongs" &&
+              <>
+                <div className='flex items-center justify-evenly mr-3'>
+                    <motion.i whileTap={{scale: 0.75}} className='text-black drop-shadow-md hover:text-purple-600 text-xl' onClick={() => {setIsDelete(true)}}>
+                        <BsTrash />
+                    </motion.i>
+                </div>
+
+                {isDelete && 
+                <motion.div className='absolute bottom-16 inset-x rounded-md backdrop:blur-md bg-white flex flex-col px-4 py-2 gap-0 items-center justify-center'>
+                    <p className='text-xl font-semibold text-center text-headingColor'>Do you want to delete this card?</p>
+                    <div className='flex items-center gap-4'>
+                        <motion.button 
+                            className='px-2 py-2 text-sm uppercase bg-red-300 rounded-md hover:bg-red-500 cursor-pointer'
+                            whileTap={{scale: 0.7}}   
+                            onClick={dislike} 
+                        >
+                            Yes
+                        </motion.button>
+                        <motion.button 
+                            className='px-2 py-2 text-sm uppercase bg-green-300 rounded-md hover:bg-green-500 cursor-pointer'
+                            whileTap={{scale: 0.7}}  
+                            onClick={() => {setIsDelete(false)}}  
+                        >
+                            No
+                        </motion.button>
+                    </div>
+                </motion.div>
+                }
+              </>
+              
+          }
+
+          {
+            page !== "allSongs" && 
+              page === "playlist" &&
+              <>
+                <div className='flex items-center justify-evenly mr-3'>
+                    <motion.i whileTap={{scale: 0.75}} className='text-black drop-shadow-md hover:text-purple-600 text-xl' onClick={() => {setIsDelete(true)}}>
+                        <BsTrash />
+                    </motion.i>
+                </div>
+
+                {isDelete && 
+                <motion.div className='absolute bottom-16 inset-x rounded-md backdrop:blur-md bg-white flex flex-col px-4 py-2 gap-0 items-center justify-center'>
+                    <p className='text-xl font-semibold text-center text-headingColor'>Do you want to delete this card?</p>
+                    <div className='flex items-center gap-4'>
+                        <motion.button 
+                            className='px-2 py-2 text-sm uppercase bg-red-300 rounded-md hover:bg-red-500 cursor-pointer'
+                            whileTap={{scale: 0.7}}   
+                            onClick={deleteSongPlaylist} 
+                        >
+                            Yes
+                        </motion.button>
+                        <motion.button 
+                            className='px-2 py-2 text-sm uppercase bg-green-300 rounded-md hover:bg-green-500 cursor-pointer'
+                            whileTap={{scale: 0.7}}  
+                            onClick={() => {setIsDelete(false)}}  
+                        >
+                            No
+                        </motion.button>
+                    </div>
+                </motion.div>
+                }
+              </>
+              
           }
         </div>
       </td>

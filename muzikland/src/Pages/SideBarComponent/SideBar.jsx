@@ -4,18 +4,20 @@ import {ThemeContext} from "../../api/Theme";
 import {faHome, faExplosion, faSearch, faMusic, faListDots, faUserMusic, faUsers} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
-import { IoHome } from "react-icons/io5";
+import { IoHome, IoTrash } from "react-icons/io5";
 import { MdAlbum } from "react-icons/md"
 import { TbPlaylist } from "react-icons/tb"
 import { ImProfile } from "react-icons/im"
 import { isActiveStyles, isNotActiveStyles } from "../../utils/styles";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
-import { getUserPlaylist } from "../../api";
+import { deletePlaylistById, getAllPlaylist, getUserPlaylist } from "../../api";
 import { Albums } from "../AlbumsPage/Albums";
 import { GiLoveSong } from "react-icons/gi";
 import { FaTeamspeak } from "react-icons/fa";
 import logo from './logomuzik.png';
+import { BsTrash } from "react-icons/bs";
+import {motion} from 'framer-motion';
 
 export function SideBar({playlists}) {
     const useStyle = useContext(ThemeContext);
@@ -77,6 +79,7 @@ export function SideBar({playlists}) {
 
 export const PlaylistContainer = (data, index) => {
     const [{currentPlaylist}, dispatch] = useStateValue();
+    const [isDelete, setIsDelete] = useState(false);
 
     const chosePlaylist = (data) => {
         console.log(data)
@@ -85,10 +88,76 @@ export const PlaylistContainer = (data, index) => {
             currentPlaylist: data.data,
         })
     }
+
+    const deleteCard = (data) => {
+        deletePlaylistById(data._id).then((res) => {
+            if(res.data) {
+                dispatch({
+                    type: actionType.SET_ALERT_TYPE,
+                    alertType: "success",
+                })
+
+                setInterval(() => {
+                    dispatch({
+                        type: actionType.SET_ALERT_TYPE,
+                        alertType: null,
+                    })
+                }, 4000)
+
+                getAllPlaylist().then((playlist) => {
+                    dispatch({
+                        type: actionType.SET_ALL_PLAYLISTS,
+                        allPlaylists: playlist.playlist,
+                    })
+                })
+            } else {
+                dispatch({
+                    type: actionType.SET_ALERT_TYPE,
+                    alertType: "danger",
+                })
+
+                setInterval(() => {
+                    dispatch({
+                        type: actionType.SET_ALERT_TYPE,
+                        alertType: null,
+                    })
+                }, 4000)
+            }
+        })
+        setIsDelete(false);
+    }
     
     return (
-        <div onClick={() => {chosePlaylist(data)}}>
+        <div onClick={() => {chosePlaylist(data)}} className="flex items-center justify-between relative">
             <NavLink to={"/playlist"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><TbPlaylist className="iconTag" /> {data.data.name}</NavLink>
+
+            <div className='flex items-center justify-evenly mr-3'>
+                <motion.i whileTap={{scale: 0.75}} className='text-black drop-shadow-md hover:text-purple-600 text-xl' onClick={() => {setIsDelete(true)}}>
+                    <BsTrash />
+                </motion.i>
+            </div>
+
+            {isDelete && 
+            <motion.div className='absolute bottom-14 right-1 left-1 rounded-md backdrop:blur-md bg-white flex flex-col px-4 py-2 gap-0 items-center justify-center'>
+                <p className='text-xl font-semibold text-center text-headingColor'>Do you want to delete this card?</p>
+                <div className='flex items-center gap-4'>
+                    <motion.button 
+                        className='px-2 py-2 text-sm uppercase bg-red-300 rounded-md hover:bg-red-500 cursor-pointer'
+                        whileTap={{scale: 0.7}}   
+                        onClick={() => deleteCard(currentPlaylist)} 
+                    >
+                        <NavLink to={"/"} className=" no-underline text-black"> Yes</NavLink>
+                    </motion.button>
+                    <motion.button 
+                        className='px-2 py-2 text-sm uppercase bg-green-300 rounded-md hover:bg-green-500 cursor-pointer'
+                        whileTap={{scale: 0.7}}  
+                        onClick={() => {setIsDelete(false)}}  
+                    >
+                        No
+                    </motion.button>
+                </div>
+            </motion.div>
+            }
         </div>
     )
 }
