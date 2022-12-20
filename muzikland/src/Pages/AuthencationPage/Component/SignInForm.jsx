@@ -32,7 +32,7 @@ export function SignInForm({setAuth}){
                 firebaseAuth.onAuthStateChanged((userCred) => {
                     if(userCred) {
                         userCred.getIdToken().then((token) => {
-                            // console.log(token)
+                            console.log(token)
                             // window.localStorage.setItem("auth", "true");
                             validateUser(token).then((data) => {
                                 dispatch({

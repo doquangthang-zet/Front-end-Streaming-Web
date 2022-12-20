@@ -40,6 +40,50 @@ const MusicPlayer = () => {
         }
     };
 
+    let idx;
+    allSongs.forEach((element, i) => {
+        if(element._id == songIndex) {
+            idx = i;
+        }
+    });
+
+    const nextTrack = () => {
+        if (idx == allSongs.length-1) {
+          dispatch({
+            type: actionType.SET_SONG_INDEX,
+            songIndex: allSongs[0]._id,
+          });
+        } else {
+          dispatch({
+            type: actionType.SET_SONG_INDEX,
+            songIndex: allSongs[idx+1]._id,
+          });
+        }
+    };
+
+    const previousTrack = () => {
+        if (idx == 0) {
+            dispatch({
+                type: actionType.SET_SONG_INDEX,
+                songIndex: allSongs[0]._id,
+            });
+        } else {
+            dispatch({
+                type: actionType.SET_SONG_INDEX,
+                songIndex: allSongs[idx-1]._id,
+            });
+        }
+    };
+
+    useEffect(() => {
+        if (idx > allSongs.length) {
+          dispatch({
+            type: actionType.SET_SONG_INDEX,
+            songIndex: allSongs[0]._id,
+          });
+        }
+    }, [songIndex]);
+
 return (
     <div className='w-full flex items-center gap-3'>
         <div className={`w-full full items-center gap-3 p-4 ${
@@ -77,6 +121,8 @@ return (
                     onPlay={() => {console.log("is playing")}}
                     autoPlay={false}
                     showSkipControls={true}
+                    onClickNext={nextTrack}
+                    onClickPrevious={previousTrack}
                 />
             </div>
 

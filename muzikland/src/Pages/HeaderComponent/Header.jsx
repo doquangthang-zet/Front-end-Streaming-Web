@@ -17,7 +17,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { isActiveStyles, isNotActiveStyles } from "../../utils/styles";
 import { DisableButton, FileUploader, ImageLoader } from "../AdminPage/AdminNewSong";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdPlaylistAdd } from "react-icons/md";
 import { actionType } from "../../context/reducer";
 import { deleteObject, ref } from "firebase/storage";
 import { getAllPlaylist, saveNewPlaylist } from "../../api";
@@ -149,8 +149,9 @@ export function Header(props) {
     <div className="iconSection">
       <div className="playlistBtn" onClick={() => setShow(true)}>    
 
-        <FontAwesomeIcon className="iconTag" icon={faFolderPlus}></FontAwesomeIcon><p>New Playlist</p>
-
+        {/* <FontAwesomeIcon className="iconTag" icon={faFolderPlus}></FontAwesomeIcon><p>New Playlist</p> */}
+        <MdPlaylistAdd className="iconTag text-2xl" />
+        <p>New Playlist</p>
       </div>
 
       <Modal show={show} onHide={() => setShow(false)}>
@@ -230,14 +231,14 @@ export function Header(props) {
         
       {/* Liked Songs part */}
       <div className="likedSongsBtn">        
-      <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FontAwesomeIcon className="iconTag" icon={faHeart}></FontAwesomeIcon>Liked Songs</NavLink>
+        <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FontAwesomeIcon className="iconTag text-pink-600" icon={faHeart}></FontAwesomeIcon>Liked Songs</NavLink>
         
       </div>
     </div>
 
     <div className="personalInfo">
       <img className="iconUser" src={user?.user?.imageURL} referrerPolicy='no-referrer' />
-      <DropdownButton id="dropdown-basic-button" title={user?.user?.name}>
+      <DropdownButton id="dropdown-basic-button" title={user?.user?.name} >
           <motion.div>
             <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><Dropdown.Item href="#/action-1">Profile</Dropdown.Item></NavLink>
             {user?.user?.role === "admin" && (
