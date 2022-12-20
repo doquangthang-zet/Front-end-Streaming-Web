@@ -29,6 +29,7 @@ const AdminNewSong = () => {
   const [albumUploadingProgress, setAlbumUploadingProgress] = useState(0);
   const [isAlbumLoding, setIsAlbumLoding] = useState(false);
   const [albumName, setAlbumName] = useState("");
+  const [albumCategory, setAlbumCategory] = useState("")
 
   const [{allArtists, allAlbums, allSongs, artistFilter, albumFilter, filterTerm, languageFilter, alertType}, dispatch] = useStateValue();
 
@@ -98,6 +99,7 @@ const AdminNewSong = () => {
         artist: artistName,
         language: languageFilter,
         category: filterTerm,
+        album: albumFilter,
       };
       saveNewSong(data).then(res => {
         getAllSongs().then((songs) => {
@@ -154,6 +156,7 @@ const AdminNewSong = () => {
       const data = {
         name: albumName,
         imageURL: albumImageCover,
+        category: albumCategory,
       };
 
       saveNewAlbum(data).then(res => {
@@ -178,6 +181,7 @@ const AdminNewSong = () => {
       }, 5000);
 
       setAlbumName("");
+      setAlbumCategory("");
       setIsAlbumLoding(false);
       setAlbumImageCover(null);
     }
@@ -295,6 +299,15 @@ const AdminNewSong = () => {
          shadow-sm border border-gray-300 bg-transparent'
         value={albumName}
         onChange={(e) => {setAlbumName(e.target.value)}}
+      />
+
+      <input 
+        type="text" 
+        placeholder='Type album name'
+        className='p-3 w-full rounded-md text-base font-semibold text-yellow-50 outline-none
+         shadow-sm border border-gray-300 bg-transparent'
+        value={albumCategory}
+        onChange={(e) => {setAlbumCategory(e.target.value)}}
       />
 
       {/* Save album button */}
