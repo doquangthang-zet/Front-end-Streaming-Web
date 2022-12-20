@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Row, Col } from 'react-grid';
 import { useStateValue } from "../../context/StateProvider";
 import { NavLink } from "react-router-dom";
+import { actionType } from "../../context/reducer";
 
 const SongContainer = styled.div`
     width: 200px;
@@ -25,7 +26,7 @@ export function Albums() {
     return (
         <div className="albumsContainer">
             <div className="albumsGenre">
-                <h1>Top Trending</h1>
+                <h1>All Albums</h1>
             </div>
             
             <AlbumContainer />
@@ -34,13 +35,21 @@ export function Albums() {
 }
 
 export const AlbumContainer = () => {
-    const [{allAlbums}, dispatch] = useStateValue();
+    const [{allAlbums, currentAlbum}, dispatch] = useStateValue();
+
+    const choseAlbum = (data) => {
+        console.log(data)
+        dispatch({
+            type: actionType.SET_CURRENT_ALBUM,
+            currentAlbum: data.data,
+        })
+    }
 
     return (
         <div className="albumsList">
             <Row className="rowAttribute">
                 {allAlbums && allAlbums.map((album, i) => (
-                    <NavLink to={"/song"} className=" no-underline text-black">
+                    <NavLink to={"/song"} className=" no-underline text-black" onClick={choseAlbum(album)}>
                         <Col className="songContainer">
                             <SongContainer>
                                 <div className="songInfo">

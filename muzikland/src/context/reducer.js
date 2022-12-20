@@ -8,6 +8,7 @@ export const actionType = {
     SET_ALL_ALBUMS: "SET_ALL_ALBUMS",
     SET_USER_PLAYLIST: "SET_USER_PLAYLIST",
     SET_CURRENT_PLAYLIST: "SET_CURRENT_PLAYLIST",
+    SET_CURRENT_ALBUM: "SET_CURRENT_ALBUM",
 
     //Filter types
     SET_FILTER_TERM: "SET_FILTER_TERM",
@@ -100,6 +101,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 currentPlaylist: action.currentPlaylist,
+            }; 
+        
+        case actionType.SET_CURRENT_ALBUM:
+            return {
+                ...state,
+                currentAlbum: action.currentAlbum,
             }; 
 
         // Filter cases

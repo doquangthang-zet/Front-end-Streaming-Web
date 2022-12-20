@@ -12,6 +12,7 @@ export const initialState = {
     albumFilter: null,
     userPlaylists: null,
     currentPlaylist: null,
+    currentAlbum: null,
     alertType: null,
     isSongPlaying: false,
     songIndex: "",
