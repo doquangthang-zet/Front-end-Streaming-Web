@@ -317,7 +317,7 @@ export const SongCard = ({data, index, page}) => {
       </td>
       <td>
         {createdAt}
-        <div className='songIcons flex'>
+        <div className='songIcons flex justify-end'>
           {
             page !== "likedSongs" && (
               user?.user.likedSongs.includes(data._id) ? 

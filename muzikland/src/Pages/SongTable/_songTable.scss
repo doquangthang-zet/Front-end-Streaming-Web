@@ -30,13 +30,15 @@
         .songIcons{
             display: flex;
             text-align: left;
-            position: absolute;
+            position: relative;
             right: 0;
            
             .songIconHeart, .songIconTrash{
                 font-size: 30px;
                 margin-right: 30px;
                 color: transparent;
+                position: absolute;
+                
             }
         }
     }

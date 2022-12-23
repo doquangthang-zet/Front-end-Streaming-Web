@@ -179,6 +179,7 @@
 
 .search {
   width: 50%;
+  margin-left: 100px;
 }
 
 .searchInputs {
@@ -584,13 +585,14 @@ a:hover {
 .oneSong .songDate .songIcons {
   display: flex;
   text-align: left;
-  position: absolute;
+  position: relative;
   right: 0;
 }
 .oneSong .songDate .songIcons .songIconHeart, .oneSong .songDate .songIcons .songIconTrash {
   font-size: 30px;
   margin-right: 30px;
   color: transparent;
+  position: absolute;
 }
 .oneSong:hover {
   opacity: 0.7;

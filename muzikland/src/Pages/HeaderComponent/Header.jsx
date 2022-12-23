@@ -136,14 +136,6 @@ export function Header(props) {
     </div>
 
     {/* Genres part */}
-    <div>
-      <DropdownButton id="dropdown-basic-button" className="listOption" title="Genres">
-        <Dropdown.Item href="#/action-1">Jazz</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Classic</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">POP</Dropdown.Item>
-        <Dropdown.Item href="#/action-4">Hip Hop</Dropdown.Item>
-      </DropdownButton>
-    </div>
 
     {/* Playlist part */}
     <div className="iconSection">
