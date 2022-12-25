@@ -18,6 +18,6 @@ export function SignUpForm(props){
         <Marginer direction="veritcal" margin="1.5em"/>
         <SubmitButton type="submit">SignUp</SubmitButton>
         <Marginer direction="veritcal" margin="1em"/>
-        <MutedLink href="#">Already have an account <BoldLink href="#" onClick={switchToSignIn}>SignIn!</BoldLink></MutedLink>
+        <div className="signUpNoAccount"><MutedLink href="#" onClick={switchToSignIn}>Already have an account <span className="text-black">SignIn!</span></MutedLink></div>
     </BoxContainer>
 }

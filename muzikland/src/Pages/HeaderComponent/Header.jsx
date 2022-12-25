@@ -208,7 +208,7 @@ export function Header(props) {
             {isPlaylistUploading ? (
               <DisableButton />
             ) : (
-              <motion.div onClick={savePlaylist} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg' whileTap={{scale: 0.75}}>
+              <motion.div onClick={savePlaylist} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg cursor-pointer' whileTap={{scale: 0.75}}>
                 Save Playlist
               </motion.div>
             )}

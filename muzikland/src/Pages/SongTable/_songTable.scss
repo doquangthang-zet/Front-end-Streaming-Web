@@ -1,67 +1,73 @@
-.oneSong {
-    position: relative;
-
-    .iconPlay {
-        height: 30px;
-        position: absolute;
-        left: 0;
-        margin-left: 8px;
-        color: transparent;
-    }
-
-    .songDetails {
-        display: flex;
-        align-items: center;
+.songList{
+    .oneSong {
         position: relative;
-
-        .songPicture {
-            width: 60px;
-        }
-
-        .songName {
-            margin: 10px;
-        }
-        
-       
-    }
-
-    .songDate{
-        position: relative;
-        .songIcons{
-            display: flex;
-            text-align: left;
-            position: relative;
-            right: 0;
-           
-            .songIconHeart, .songIconTrash{
-                font-size: 30px;
-                margin-right: 30px;
-                color: transparent;
-                position: absolute;
-                
-            }
-        }
-    }
-    &:hover {
-        opacity: 0.7;
-
+    
         .iconPlay {
-            color: black;
-            cursor: pointer;
+            height: 30px;
+            position: absolute;
+            left: 0;
+            margin-left: 8px;
+            color: transparent;
         }
-        
+    
         .songDetails {
-
-            .songPicture,
+            display: flex;
+            align-items: center;
+            position: relative;
+    
+            .songPicture {
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+            }
+    
             .songName {
-                cursor: pointer;
+                margin: 10px;
+            }
+            
+           
+        }
+    
+        .songDate{
+            position: relative;
+            .songIcons{
+                display: flex;
+                text-align: left;
+                position: relative;
+                right: 0;
+               
+                .songIconHeart, .songIconTrash{
+                    font-size: 30px;
+                    margin-right: 30px;
+                    color: transparent;
+                    position: absolute;
+                    
+                }
             }
         }
-        .songDate{
-            .songIconHeart, .songIconTrash{
+        &:hover {
+            opacity: 0.7;
+    
+            .iconPlay {
                 color: black;
                 cursor: pointer;
             }
+            
+            .songDetails {
+    
+                .songPicture,
+                .songName {
+                    cursor: pointer;
+                }
+            }
+            .songDate{
+                .songIconHeart, .songIconTrash{
+                    color: black;
+                    cursor: pointer;
+                }
+            }
         }
-    }
 }
+
+}
+

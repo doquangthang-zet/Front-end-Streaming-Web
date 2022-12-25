@@ -1,8 +1,7 @@
 import React from "react";
 import "../../css/main.css";
-import picture from '../../img/Facebook_f_logo_(2019).svg.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faPlay, faHeart, faEllipsis} from '@fortawesome/free-solid-svg-icons';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import SongTable from "../SongTable/SongTable";
 import { useStateValue } from "../../context/StateProvider";
 

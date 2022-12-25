@@ -1,3 +1,25 @@
 .imgAttribute{
     width: 550px;
 }
+.googleLogin{
+    margin-top: 20px;
+    padding: 6px;
+    border: 2px solid transparent;
+    border-radius: 23px;
+    background: linear-gradient(90deg, rgba(2,0,36,0.5) 0%, rgba(9,9,121,1) 64%, rgba(0,212,255,1) 100%);
+    cursor: pointer;
+    .iconGooglePlus{
+        display: inline-block;
+        font-size: 25px;
+        margin-bottom: 3px;
+    }
+}
+.signUpNoAccount{
+    a{
+        &:hover{
+            background-color: transparent;
+            font-size: 16px;
+        }
+    }
+}
+

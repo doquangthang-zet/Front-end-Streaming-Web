@@ -345,8 +345,8 @@ export const SongCard = ({data, index, page}) => {
               page === "likedSongs" &&
               <>
                 <div className='flex items-center justify-evenly mr-3'>
-                    <motion.i whileTap={{scale: 0.75}} className='text-black drop-shadow-md hover:text-purple-600 text-xl' onClick={() => {setIsDelete(true)}}>
-                        <BsTrash />
+                    <motion.i whileTap={{scale: 0.75}} className='text-black songIconTrash drop-shadow-md hover:text-purple-600' onClick={() => {setIsDelete(true)}}>
+                        <BsTrash/>
                     </motion.i>
                 </div>
 
@@ -380,7 +380,7 @@ export const SongCard = ({data, index, page}) => {
               page === "playlist" &&
               <>
                 <div className='flex items-center justify-evenly mr-3'>
-                    <motion.i whileTap={{scale: 0.75}} className='text-black drop-shadow-md hover:text-purple-600 text-xl' onClick={() => {setIsDelete(true)}}>
+                    <motion.i whileTap={{scale: 0.75}} className='text-black drop-shadow-md hover:text-purple-600 text-2xl' onClick={() => {setIsDelete(true)}}>
                         <BsTrash />
                     </motion.i>
                 </div>

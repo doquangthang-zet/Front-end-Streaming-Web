@@ -6,15 +6,15 @@ import gmail from "../../img/Gmail-logo.png";
 import github from "../../img/github-logo.png";
 import avaDev from "../../img/music-head-phones.gif";
 
-export function AboutUs(){
+export function AboutUs() {
 
     return (
         <div className="developer">
             <h3>Developer Page Where To Know Us</h3>
-            <hr/>
+            <hr />
             <div className="developer-profile">
                 <div className="profileCard">
-                    <img src={avaDev} className="profilePicture" alt="profilePicture_"/>
+                    <img src={avaDev} className="profilePicture" alt="profilePicture_" />
                     <div className="cardDetails">
                         <h4>Do Quang Thang</h4>
                         <p>Full-stack developer</p>
@@ -28,19 +28,16 @@ export function AboutUs(){
                     <p>I love designing fully responsive websites.</p>
                     <p>I have a keen interest in developing projects, whenever I want to learn something new.</p>
                     <div className="cardBtn">
-                <img src={facebook} className="linkImg" alt="Facebook" />
-                
-                <img src={outlook}  className="linkImg" alt="Outlook" />
-                <img src={github} className="linkImg" alt="Github" />
-                <img src={gmail} className="linkImg" alt="Gmail" />
+                        <a href="https://www.facebook.com/profile.php?id=100024779797519" target="_blank"><img src={facebook} className="linkImg" alt="Facebook" /></a>
+                        <a href="" target="_blank"><img src={github} className="linkImg" alt="Facebook" /></a>
+                    </div>
                 </div>
-                </div>
-                
+
             </div>
-            <hr/>
+            <hr />
             <div className="developer-profile">
                 <div className="profileCard">
-                    <img src={avaDev} className="profilePicture" alt="profilePicture_"/>
+                    <img src={avaDev} className="profilePicture" alt="profilePicture_" />
                     <div className="cardDetails">
                         <h4>Do Quang Thang</h4>
                         <p>Full-stack developer</p>
@@ -54,12 +51,10 @@ export function AboutUs(){
                     <p>I love designing fully responsive websites.</p>
                     <p>I have a keen interest in developing projects, whenever I want to learn something new.</p>
                     <div className="cardBtn">
-                <img src={facebook} className="linkImg" alt="Facebook" />
-                <img src={outlook}  className="linkImg" alt="Outlook" />
-                <img src={github} className="linkImg" alt="Github" />
-                <img src={gmail} className="linkImg" alt="Gmail" />
+                        <img src={facebook} className="linkImg" alt="Facebook" />
+                        <img src={github} className="linkImg" alt="Github" />
+                    </div>
                 </div>
-                </div>  
             </div>
         </div>
     )
