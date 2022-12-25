@@ -232,9 +232,9 @@ export function Header(props) {
       <img className="iconUser" src={user?.user?.imageURL} referrerPolicy='no-referrer' />
       <DropdownButton id="dropdown-basic-button" title={user?.user?.name} >
           <motion.div>
-            <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><Dropdown.Item href="#/action-1">Profile</Dropdown.Item></NavLink>
+            <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub no-underline`}><Dropdown.Item href="#/action-1">Profile</Dropdown.Item></NavLink>
             {user?.user?.role === "admin" && (
-              <NavLink to={"/dashboard/home"}>
+              <NavLink to={"/dashboard/home"} className="no-underline">
                 <Dropdown.Item href="#/action-2">Dashboard</Dropdown.Item>
               </NavLink>
             )}<hr/>

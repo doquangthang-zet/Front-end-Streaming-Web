@@ -326,7 +326,7 @@ export const SongCard = ({data, index, page}) => {
                   animate={{opacity: 1, scale: 1}}
                   exit={{opacity: 0, scale: 0.5}}   
                 >
-                  <AiFillHeart className='songIconHeart text-pink-600 text-2xl' onClick={dislike} />
+                  <AiFillHeart className='songIconHeart mr-4 text-pink-600 text-2xl cursor-pointer' onClick={dislike} />
                   {/* <p>{data.likes}</p> */}
                 </motion.div> : 
                 <motion.div
@@ -334,7 +334,7 @@ export const SongCard = ({data, index, page}) => {
                   animate={{opacity: 1, scale: 1}}
                   exit={{opacity: 0, scale: 0.5}}     
                 >
-                  <FiHeart className='songIconHeart text-2xl' onClick={like} />
+                  <FiHeart className='songIconHeart text-2xl mr-4' onClick={like} />
                   {/* <p>{data.likes}</p> */}
                 </motion.div>
             )

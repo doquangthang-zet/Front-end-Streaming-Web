@@ -127,3 +127,11 @@
         }
     }
 }
+
+.dropdown-item{
+  a{
+    &:focus{
+      outline: none;
+    }
+  }
+}

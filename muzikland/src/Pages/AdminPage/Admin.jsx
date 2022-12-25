@@ -18,7 +18,7 @@ const Admin = () => {
         <Header />
         <SideBar />
         
-        <div className='pl-64'>
+        <div className="pl-60">
           <Routes>
             <Route path='/home' element={<AdminHome />} />
             <Route path='/users' element={<AdminUsers />} />

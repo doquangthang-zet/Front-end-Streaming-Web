@@ -21,7 +21,7 @@ const AdminUsers = () => {
   }, []);
 
   return (
-    <div className='p-6 w-full flex items-center justify-center flex-col'>
+    <div className='adminUsers p-6 w-full flex items-center justify-center flex-col'>
       {/* filter */}
       <div className='w-full flex justify-center gap-20 items-center'>
         <input 
