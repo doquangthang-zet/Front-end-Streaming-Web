@@ -25,7 +25,7 @@ const AdminAlbumSongs = () => {
   }, []);
 
   return (
-    <div className=' left-64 p-4 flex items-center justify-center flex-col bg-black'>
+    <div className='adminNewSongs left-64 p-4 flex items-center justify-center flex-col'>
       <div className='w-full flex justify-center gap-20 items-center'>
         <input 
           type="text" 

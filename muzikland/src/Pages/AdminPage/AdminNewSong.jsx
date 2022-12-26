@@ -127,7 +127,7 @@ const AdminNewSong = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center p-4 border border-gray-300 rounded-md gap-4 bg-black'>
+    <div className='adminNewSongs flex flex-col items-center justify-center p-4 border border-gray-300 gap-4'>
       <p className='text-xl font-semibold text-yellow-300'>Song uploading section</p>
       {/* Song name */}
       <input 
@@ -203,7 +203,7 @@ const AdminNewSong = () => {
         {isImageUploading || isAudioLoading ? (
           <DisableButton />
         ) : (
-          <motion.div onClick={saveSong} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg' whileTap={{scale: 0.75}}>
+          <motion.div onClick={saveSong} className='text-center px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg' whileTap={{scale: 0.75}}>
             Save Song
           </motion.div>
         )}

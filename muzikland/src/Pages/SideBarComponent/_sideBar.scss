@@ -8,6 +8,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 11;
   overflow: auto;
   border-right: 1px solid #e0e0e0;
  
@@ -73,8 +74,8 @@
   display: none;
 }
 
-@media only screen and (max-width: 970px) {
-  .aside-bar {
-    display: none;
-  }
-}
+// @media only screen and (max-width: 970px) {
+//   .aside-bar {
+//     display: none;
+//   }
+// }
