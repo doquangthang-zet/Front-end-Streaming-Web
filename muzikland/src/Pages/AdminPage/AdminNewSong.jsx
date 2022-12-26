@@ -24,13 +24,6 @@ const AdminNewSong = () => {
   const [audioUploadProgress, setAudioUploadProgress] = useState(0);
   const [isAudioLoading, setIsAudioLoading] = useState(false);
 
-  // Album states
-  const [albumImageCover, setAlbumImageCover] = useState(null);
-  const [albumUploadingProgress, setAlbumUploadingProgress] = useState(0);
-  const [isAlbumLoding, setIsAlbumLoding] = useState(false);
-  const [albumName, setAlbumName] = useState("");
-  const [albumCategory, setAlbumCategory] = useState("")
-
   const [{allArtists, allAlbums, allSongs, artistFilter, albumFilter, filterTerm, languageFilter, alertType}, dispatch] = useStateValue();
 
   useEffect(() => {
@@ -57,7 +50,6 @@ const AdminNewSong = () => {
     if(isImage) {
       setIsImageUploading(true);
       setIsAudioLoading(true);
-      setIsAlbumLoding(true);
     }
 
     const deleteRef = ref(storage, url);
@@ -65,11 +57,9 @@ const AdminNewSong = () => {
     .then(() => {
       setSongImageCover(null);
       setAudioImageCover(null);
-      setAlbumImageCover(null);
 
       setIsImageUploading(false);
       setIsAudioLoading(false);
-      setIsAlbumLoding(false);
     })
   };
 
@@ -133,58 +123,6 @@ const AdminNewSong = () => {
       dispatch({ type: actionType.SET_LANGUAGE_FILTER, languageFilter: null });
       dispatch({ type: actionType.SET_ALBUM_FILTER, albumFilter: null });
       dispatch({ type: actionType.SET_FILTER_TERM, filterTerm: null });
-    }
-  };
-
-  const saveAlbum = () => {
-    if(!albumImageCover || !albumName) {
-      // Throw alert 
-      dispatch({
-        type: actionType.SET_ALERT_TYPE,
-        alertType: "danger",
-      })
-
-      setTimeout(() => {
-        dispatch({
-          type: actionType.SET_ALERT_TYPE,
-          alertType: null,
-        })
-      }, 5000);
-    } else {
-      // Save the album
-      setIsAlbumLoding(true);
-      
-      const data = {
-        name: albumName,
-        imageURL: albumImageCover,
-        category: albumCategory,
-      };
-
-      saveNewAlbum(data).then(res => {
-        getAllAlbum().then((albums) => {
-          dispatch({
-            type: actionType.SET_ALL_ALBUMS,
-            allAlbums: albums.album,
-          })
-        })
-      });
-
-      dispatch({
-        type: actionType.SET_ALERT_TYPE,
-        alertType: "success",
-      })
-
-      setTimeout(() => {
-        dispatch({
-          type: actionType.SET_ALERT_TYPE,
-          alertType: null,
-        })
-      }, 5000);
-
-      setAlbumName("");
-      setAlbumCategory("");
-      setIsAlbumLoding(false);
-      setAlbumImageCover(null);
     }
   };
 
@@ -267,57 +205,6 @@ const AdminNewSong = () => {
         ) : (
           <motion.div onClick={saveSong} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg' whileTap={{scale: 0.75}}>
             Save Song
-          </motion.div>
-        )}
-      </div>
-
-      {/* Album uploading */}
-      <p className='text-xl font-semibold text-yellow-300'>Album uploading section</p>
-      <div className='bg-card backdrop:blur-md w-full h-300 rounded-md border-2 border-dotted border-gray-300 cursor-pointer flex justify-center items-center'>
-        {isAlbumLoding && <ImageLoader progress={albumUploadingProgress} />}
-        {!isAlbumLoding && (
-          <>
-            {!albumImageCover ? (
-              <FileUploader updateState={setAlbumImageCover} setProgress={setAlbumUploadingProgress} isLoading={setIsAlbumLoding} isImage={true} />
-            ) : (
-              <div className='relative w-full h-full overflow-hidden rounded-md'>
-                <img src={albumImageCover} className="w-full h-full object-cover" alt="" />
-                <button type='button' className='absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl 
-                cursor-pointer outline-none border-none hover:shadow-md duration-200 transition-all ease-in-out'
-                onClick={() => {deleteFileObject(albumImageCover, true)}}>
-                  <MdDelete className='text-white' />
-                </button>
-              </div>
-            )}
-          </>
-        )}
-      </div>
-
-      <input 
-        type="text" 
-        placeholder='Type album name'
-        className='p-3 w-full rounded-md text-base font-semibold text-yellow-50 outline-none
-         shadow-sm border border-gray-300 bg-transparent'
-        value={albumName}
-        onChange={(e) => {setAlbumName(e.target.value)}}
-      />
-
-      <input 
-        type="text" 
-        placeholder='Type album name'
-        className='p-3 w-full rounded-md text-base font-semibold text-yellow-50 outline-none
-         shadow-sm border border-gray-300 bg-transparent'
-        value={albumCategory}
-        onChange={(e) => {setAlbumCategory(e.target.value)}}
-      />
-
-      {/* Save album button */}
-      <div className='flex items-center justify-center w-60 p-4'>
-        {isAlbumLoding ? (
-          <DisableButton />
-        ) : (
-          <motion.div onClick={saveAlbum} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg' whileTap={{scale: 0.75}}>
-            Save Album
           </motion.div>
         )}
       </div>
