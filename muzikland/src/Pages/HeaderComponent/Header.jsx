@@ -152,95 +152,99 @@ export function Header(props) {
     </div>
 
     {/* Playlist part */}
-    <div className="iconSection">
-      <div className="playlistBtn" onClick={() => setShow(true)}>    
+    {
+      URL.indexOf("dashboard") <= -1 &&
+      <div className="iconSection">
+        <div className="playlistBtn" onClick={() => setShow(true)}>    
 
-        {/* <FontAwesomeIcon className="iconTag" icon={faFolderPlus}></FontAwesomeIcon><p>New Playlist</p> */}
-        <MdPlaylistAdd className="iconTag text-2xl" />
-        <p>New Playlist</p>
-      </div>
+          {/* <FontAwesomeIcon className="iconTag" icon={faFolderPlus}></FontAwesomeIcon><p>New Playlist</p> */}
+          <MdPlaylistAdd className="iconTag text-2xl" />
+          <p>New Playlist</p>
+        </div>
 
-      <Modal show={show} onHide={() => setShow(false)}>
+        <Modal show={show} onHide={() => setShow(false)}>
 
-        <Modal.Header closeButton>
-          <Modal.Title>Create New Playlist</Modal.Title>
-        </Modal.Header>
+          <Modal.Header closeButton>
+            <Modal.Title>Create New Playlist</Modal.Title>
+          </Modal.Header>
 
-        <Modal.Body>
-          <Form>
-            {/* Playlist name */}
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Playlist Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Your Playlist Name"
-                autoFocus
-                value={playlistName}
-                onChange={(e) => setplaylistName(e.target.value)}
-                required
-              />
-            </Form.Group>
+          <Modal.Body>
+            <Form>
+              {/* Playlist name */}
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Playlist Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Your Playlist Name"
+                  autoFocus
+                  value={playlistName}
+                  onChange={(e) => setplaylistName(e.target.value)}
+                  required
+                />
+              </Form.Group>
 
-            {/* Playlist description */}
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Playlist Description</Form.Label>
-              <Form.Control as="textarea" rows={2} value={playlistDescription} placeholder="Enter Playlist Description"
-                onChange={(e) => setPlaylistDescription(e.target.value)} />
-            </Form.Group>
+              {/* Playlist description */}
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Playlist Description</Form.Label>
+                <Form.Control as="textarea" rows={2} value={playlistDescription} placeholder="Enter Playlist Description"
+                  onChange={(e) => setPlaylistDescription(e.target.value)} />
+              </Form.Group>
 
-            {/* Playlist Image */}
-            <Form.Label>Playlist Image Cover</Form.Label>
-            <div className='bg-card backdrop:blur-md w-full h-64 rounded-md border-2 border-dotted border-gray-300 cursor-pointer flex justify-center items-center'>
-              {isPlaylistUploading && (<ImageLoader progress={imageUploadProgress} />)}
-              {!isPlaylistUploading && (
-                <>
-                  {!playlistImageCover ? (
-                    <FileUploader updateState={setPlaylistImageCover} setProgress={setImageUploadProgress} isLoading={setIsPlaylistUploading} isImage={true} />
-                  ) : (
-                    <div className='relative w-full h-full overflow-hidden rounded-md'>
-                      <img src={playlistImageCover} className="w-full h-full object-cover" alt="" />
-                      <button type='button' className='absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl 
-                      cursor-pointer outline-none border-none hover:shadow-md duration-200 transition-all ease-in-out'
-                      onClick={() => {deleteFileObject(playlistImageCover, true)}}>
-                        <MdDelete className='text-white' />
-                      </button>
-                    </div>
-                  )}
-                </>
+              {/* Playlist Image */}
+              <Form.Label>Playlist Image Cover</Form.Label>
+              <div className='bg-card backdrop:blur-md w-full h-64 rounded-md border-2 border-dotted border-gray-300 cursor-pointer flex justify-center items-center'>
+                {isPlaylistUploading && (<ImageLoader progress={imageUploadProgress} />)}
+                {!isPlaylistUploading && (
+                  <>
+                    {!playlistImageCover ? (
+                      <FileUploader updateState={setPlaylistImageCover} setProgress={setImageUploadProgress} isLoading={setIsPlaylistUploading} isImage={true} />
+                    ) : (
+                      <div className='relative w-full h-full overflow-hidden rounded-md'>
+                        <img src={playlistImageCover} className="w-full h-full object-cover" alt="" />
+                        <button type='button' className='absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl 
+                        cursor-pointer outline-none border-none hover:shadow-md duration-200 transition-all ease-in-out'
+                        onClick={() => {deleteFileObject(playlistImageCover, true)}}>
+                          <MdDelete className='text-white' />
+                        </button>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+
+            </Form>
+          </Modal.Body>
+
+          <Modal.Footer>
+            {/* Create button */}
+            <div className='flex items-center justify-center p-4'>
+              {isPlaylistUploading ? (
+                <DisableButton />
+              ) : (
+                <motion.div onClick={savePlaylist} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg cursor-pointer' whileTap={{scale: 0.75}}>
+                  Save Playlist
+                </motion.div>
               )}
             </div>
 
-          </Form>
-        </Modal.Body>
+            <Button variant="secondary" onClick={() => setShow(false)}>
+              Cancel
+            </Button>
 
-        <Modal.Footer>
-          {/* Create button */}
-          <div className='flex items-center justify-center p-4'>
-            {isPlaylistUploading ? (
-              <DisableButton />
-            ) : (
-              <motion.div onClick={savePlaylist} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg cursor-pointer' whileTap={{scale: 0.75}}>
-                Save Playlist
-              </motion.div>
-            )}
-          </div>
-
-          <Button variant="secondary" onClick={() => setShow(false)}>
-            Cancel
-          </Button>
-
-        </Modal.Footer>
-      </Modal>
-        
-      {/* Liked Songs part */}
-      <div className="likedSongsBtn">        
-        <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FontAwesomeIcon className="iconTag text-pink-600" icon={faHeart}></FontAwesomeIcon>Liked Songs</NavLink>
-        
+          </Modal.Footer>
+        </Modal>
+          
+        {/* Liked Songs part */}
+        <div className="likedSongsBtn">        
+          <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FontAwesomeIcon className="iconTag text-pink-600" icon={faHeart}></FontAwesomeIcon>Liked Songs</NavLink>
+          
+        </div>
       </div>
-    </div>
+    }
+    
 
     <div className="personalInfo">
       <img className="iconUser" src={user?.user?.imageURL} referrerPolicy='no-referrer' />

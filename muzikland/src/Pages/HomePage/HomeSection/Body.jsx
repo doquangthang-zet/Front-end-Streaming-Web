@@ -122,13 +122,13 @@ export const AlbumBox = ({data, cate, searchFilter}) => {
                 data && searchFilter ? 
                 data.filter((al) => cate === al.category)
                     .filter(al => al.name.toLowerCase().includes(searchFilter.toLowerCase()))
-                    .map((al, index) => (
-                        <AlbumCard key={al._id} data={al} index={index} />
-                    ))
+                    .map((al, index) => 
+                        cate === undefined ? index < 3 && <AlbumCard key={al._id} data={al} index={index} /> : index < 4 && <AlbumCard key={al._id} data={al} index={index} />
+                    )
                 : data.filter((al) => cate === al.category)
-                    .map((al, index) => (
-                        <AlbumCard key={al._id} data={al} index={index} />
-                    ))
+                    .map((al, index) => 
+                        cate === undefined ? index < 3 && <AlbumCard key={al._id} data={al} index={index} /> : index < 4 && <AlbumCard key={al._id} data={al} index={index} />
+                )
             }
         </div>
     )

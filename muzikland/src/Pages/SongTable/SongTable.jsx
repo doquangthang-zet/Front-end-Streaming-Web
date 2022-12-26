@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import "../../css/main.css";
 import picture from '../../img/Facebook_f_logo_(2019).svg.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
