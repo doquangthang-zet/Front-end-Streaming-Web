@@ -17,14 +17,15 @@
         flex-wrap: nowrap;
 
         .profileCard {
-            width: 150%;
+            width: 100%;
             .cardDetails{
                 text-align: center;
             }
             .profilePicture {
-                width: 500px;
+                width: 350px;
                 border-radius: 50px;
                 margin: 10px;
+                margin-left: 30px;
             }
         }
 
@@ -34,7 +35,7 @@
             }
             .cardBtn {
                 .linkImg {
-                    width: 5%;
+                    width: 7%;
                     display: inline-block;
                     margin: 20px 50px;
                     margin-left: 50px;

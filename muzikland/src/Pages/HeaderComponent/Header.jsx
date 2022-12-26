@@ -222,7 +222,7 @@ export function Header(props) {
             {isPlaylistUploading ? (
               <DisableButton />
             ) : (
-              <motion.div onClick={savePlaylist} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg' whileTap={{scale: 0.75}}>
+              <motion.div onClick={savePlaylist} className='px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg cursor-pointer' whileTap={{scale: 0.75}}>
                 Save Playlist
               </motion.div>
             )}
@@ -246,9 +246,9 @@ export function Header(props) {
       <img className="iconUser" src={user?.user?.imageURL} referrerPolicy='no-referrer' />
       <DropdownButton id="dropdown-basic-button" title={user?.user?.name} >
           <motion.div>
-            <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><Dropdown.Item href="#/action-1">Profile</Dropdown.Item></NavLink>
+            <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub no-underline`}><Dropdown.Item href="#/action-1">Profile</Dropdown.Item></NavLink>
             {user?.user?.role === "admin" && (
-              <NavLink to={"/dashboard/home"}>
+              <NavLink to={"/dashboard/home"} className="no-underline">
                 <Dropdown.Item href="#/action-2">Dashboard</Dropdown.Item>
               </NavLink>
             )}<hr/>

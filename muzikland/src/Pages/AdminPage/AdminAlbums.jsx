@@ -24,7 +24,7 @@ function AdminAlbums() {
   }, []);
 
   return (
-    <div className=' left-64 p-4 flex items-center justify-center flex-col bg-black'>
+    <div className='adminAlbums left-64 p-4 flex items-center justify-center flex-col bg-black'>
       <div className='w-full flex justify-center gap-20 items-center'>
         <NavLink to={"/dashboard/newAlbum"} className="flex items-center justify-center px-4 py-3 border rounded-md border-gray-300 hover:border-gray-500 hover:shadow-md cursor-pointer">
           <IoAdd />

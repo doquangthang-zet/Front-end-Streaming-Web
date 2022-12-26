@@ -1,10 +1,10 @@
 import React, {useContext, useState, useEffect} from "react";
 import "../../css/main.css";
 import {ThemeContext} from "../../api/Theme";
-import {faHome, faExplosion, faSearch, faMusic, faListDots, faUserMusic, faUsers} from "@fortawesome/free-solid-svg-icons";
+import {faMusic, faUsers} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
-import { IoHome, IoTrash } from "react-icons/io5";
+import { IoHome} from "react-icons/io5";
 import { MdAlbum, MdInsertChartOutlined } from "react-icons/md"
 import { TbPlaylist } from "react-icons/tb"
 import { ImProfile } from "react-icons/im"
@@ -12,7 +12,6 @@ import { isActiveStyles, isNotActiveStyles } from "../../utils/styles";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
 import { deletePlaylistById, getAllPlaylist, getUserPlaylist } from "../../api";
-import { Albums } from "../AlbumsPage/Albums";
 import { GiLoveSong } from "react-icons/gi";
 import { FaTeamspeak } from "react-icons/fa";
 import logo from './logomuzik.png';
@@ -130,18 +129,18 @@ export const PlaylistContainer = (data, index) => {
     }
     
     return (
-        <div onClick={() => {chosePlaylist(data)}} className="flex items-center justify-between relative">
+        <div onClick={() => {chosePlaylist(data)}} className="flex items-center justify-between relative singlePlaylist">
             <NavLink to={"/playlist"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><TbPlaylist className="iconTag" /> {data.data.name}</NavLink>
 
             <div className='flex items-center justify-evenly mr-3'>
-                <motion.i whileTap={{scale: 0.75}} className='text-black drop-shadow-md hover:text-purple-600 text-xl' onClick={() => {setIsDelete(true)}}>
-                    <BsTrash />
+                <motion.i whileTap={{scale: 0.75}} className='text-black drop-shadow-md hover:text-purple-600 text-xl cursor-pointer' onClick={() => {setIsDelete(true)}}>
+                    <BsTrash className="songIconTrash" />
                 </motion.i>
             </div>
 
             {isDelete && 
             <motion.div className='absolute bottom-14 right-1 left-1 rounded-md backdrop:blur-md bg-white flex flex-col px-4 py-2 gap-0 items-center justify-center'>
-                <p className='text-xl font-semibold text-center text-headingColor'>Do you want to delete this card?</p>
+                <p className='text-lg font-semibold text-center text-headingColor'>Do you want to delete this Playlist?</p>
                 <div className='flex items-center gap-4'>
                     <motion.button 
                         className='px-2 py-2 text-sm uppercase bg-red-300 rounded-md hover:bg-red-500 cursor-pointer'

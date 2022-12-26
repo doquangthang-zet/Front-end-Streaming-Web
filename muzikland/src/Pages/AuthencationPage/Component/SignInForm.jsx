@@ -8,6 +8,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { validateUser } from "../../../api";
 import { useStateValue } from '../../../context/StateProvider';
 import { actionType } from './../../../context/reducer';
+import {AiOutlineGooglePlus} from "react-icons/ai";
 
 export function SignInForm({setAuth}){
 
@@ -67,11 +68,10 @@ export function SignInForm({setAuth}){
         <Input type="password" placeholder="Password"/>
         </FormContainer>
         <Marginer direction="veritcal" margin={10}/>
-        <MutedLink href="#" onClick={switchToForgetPW}>Forget your password?</MutedLink>
         <Marginer direction="veritcal" margin="1.5em"/>
         <SubmitButton type="submit">SignIn</SubmitButton>
         <Marginer direction="veritcal" margin="1em"/>
-        <MutedLink href="#">Don't have an account? <BoldLink href="#" onClick={switchToSignUp}>SignUp</BoldLink></MutedLink>
-        <div onClick={loginWithGoogle}>Login with Google</div>
+        <div className="signUpNoAccount"><MutedLink href="#" onClick={switchToSignUp}>Don't have an account? <span className="text-black">SignUp</span></MutedLink></div>
+        <div onClick={loginWithGoogle} className="googleLogin text-white">Login with Google <AiOutlineGooglePlus className="iconGooglePlus"/></div>
     </BoxContainer>
 }
