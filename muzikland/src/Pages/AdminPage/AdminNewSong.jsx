@@ -100,6 +100,7 @@ const AdminNewSong = () => {
         language: languageFilter,
         category: filterTerm,
         album: albumFilter,
+        likes: 0,
       };
       saveNewSong(data).then(res => {
         getAllSongs().then((songs) => {

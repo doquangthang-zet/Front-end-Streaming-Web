@@ -17,16 +17,15 @@ export function Songs(){
         <div className="playlistSong">
             <div className="playlistInfo">
                 <div className="playlistImg">
-                    <img src={logo} alt="playlistImg_" />
+                    <img src={currentAlbum.imageURL} alt="playlistImg_" />
                 </div>
                 <div className="playlistDetails">
-                    <span>Explore new songs and find out who you really are!</span>
-                    <h1>MUSIC IS FREEDOM</h1>
-                    <p>This page contains all the songs on the web.</p>
+                    <span>Album</span>
+                    <h1>{currentAlbum.name}</h1>
                 </div>
             </div>
           
-            <SongTable page="allSongs" />
+            <SongTable page="album" />
             
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from 'styled-components';
 import '../../../css/main.css';
 // import { AccountContext } from "../_AccountContext";
@@ -9,7 +9,7 @@ import { faPlay, faLeftLong, faRightLong } from "@fortawesome/free-solid-svg-ico
 
 import { Container, Row, Col } from 'react-grid';
 import { useStateValue } from "../../../context/StateProvider";
-import { getAllSongs } from "../../../api";
+import { getAllAlbum, getAllSongs } from "../../../api";
 import { actionType } from "../../../context/reducer";
 import { NavLink } from "react-router-dom";
 
@@ -35,7 +35,9 @@ const SongContainer = styled.div`
 
 export function BodySection() {
 
-    const [{allSongs}, dispatch] = useStateValue();
+    const [{allSongs, allAlbums}, dispatch] = useStateValue();
+
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         if(!allSongs) {
@@ -46,7 +48,28 @@ export function BodySection() {
                 });
             });
         }
+
+        if(!allAlbums) {
+            getAllAlbum().then((data) => {
+                console.log(data);
+                dispatch({
+                    type: actionType.SET_ALL_ALBUMS,
+                    allAlbums: data.album
+                })
+            })
+        }
+
     }, []);
+
+    useEffect(() => {
+        setCategories([])
+        allAlbums && allAlbums.map(al => {
+            if (categories.indexOf(al.category) === -1 && al.category !== undefined) {
+                setCategories(cur => [...cur, al.category]);
+            }
+        });
+        console.log(categories)
+    }, [allAlbums]);
 
     return (
         <BodyContainer>
@@ -62,134 +85,89 @@ export function BodySection() {
                         
                     </div>
                     
-                    <SongBox data={allSongs} />
+                    <AlbumBox data={allAlbums} cate={undefined} />
                     
                 </Row>
-                <Row className="rowAttribute">
-                    <div className="smallTitleSection"> 
-                        <span>Sleep Albums</span>
-                        <NavLink to={"/album"} className=" no-underline text-black">
-                            <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                            <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
-                        </NavLink>
-                    </div>
-                    <SongBox data={allSongs} />
-                </Row>
-                {/* <Row className="rowAttribute">
-                <div className="smallTitleSection"> 
-                    <span>Mood Albums</span>
-                    <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                    <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
-                    </div>
-                    <Col className="songContainer"><SongContainer>
-
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                </Row>
-                <Row className="rowAttribute">
-                <div className="smallTitleSection"> 
-                    <span>Popular Albums</span>
-                    <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                    <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
-                    </div>
-                    <Col className="songContainer"><SongContainer>
-
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                    <Col className="songContainer"><SongContainer>
-                        <div className="songInfo">
-                            <p>Hello World</p>
-                            <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                            <img className="songImg" src={musicImage} alt="" /></div>
-                    </SongContainer>
-                    </Col>
-                </Row> */}
+                
+                {categories.map((cate, i) => (
+                    <Row className="rowAttribute">
+                       <div className="smallTitleSection"> 
+                            <span>{cate}</span>
+                            <NavLink to={"/album"} className=" no-underline text-black">
+                               <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
+                               <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
+                            </NavLink>
+                        </div>
+                        <AlbumBox data={allAlbums} cate={cate} />
+                    </Row>
+                ))}
             </div>
         </BodyContainer>
     );
 };
 
-export const SongBox = ({data}) => {
+export const AlbumBox = ({data, cate}) => {
     return (
         <div className="d-flex">
-            {data && data.map((song, i) => (
-                <SongCard key={song._id} data={song} index={i} />
-            ))}
+            {
+                data && data.filter((al) => cate === al.category)
+                .map((al, index) => (
+                    <AlbumCard key={al._id} data={al} index={index} />
+                ))
+            }
         </div>
     )
 }
 
-export const SongCard = ({data, index}) => {
-    
-    const [{isSongPlaying, songIndex}, dispatch] = useStateValue();
+export const AlbumCard = ({data, index}) => {
+    const [{allAlbums, currentAlbum}, dispatch] = useStateValue();
 
-    const addToContext = () => {
-        if(!isSongPlaying) {
-            dispatch({
-                type: actionType.SET_ISSONG_PLAYING,
-                isSongPlaying: true,
-            })
-        }
-
-        if (songIndex !== data._id) {
-            dispatch({
-                type: actionType.SET_SONG_INDEX,
-                songIndex: data._id,
-            })
-        }
+    const choseAlbum = (data) => {
+        console.log(data)
+        console.log(data)
+        dispatch({
+            type: actionType.SET_CURRENT_ALBUM,
+            currentAlbum: data,
+        })
     }
+    
+    // const [{isSongPlaying, songIndex}, dispatch] = useStateValue();
+
+    // const addToContext = () => {
+    //     if(!isSongPlaying) {
+    //         dispatch({
+    //             type: actionType.SET_ISSONG_PLAYING,
+    //             isSongPlaying: true,
+    //         })
+    //     }
+
+    //     if (songIndex !== data._id) {
+    //         dispatch({
+    //             type: actionType.SET_SONG_INDEX,
+    //             songIndex: data._id,
+    //         })
+    //     }
+    // }
     return (
-        <Col className="songContainer" onClick={addToContext}>
-            <SongContainer>
-                <div className="songInfo">
-                    <p>{data.name}</p>
-                    <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
-                    <img className="songImg" src={data.imageURL} alt="" referrerPolicy="no-referrer" />
-                </div>
-            </SongContainer>
-        </Col>
+        // <Col className="songContainer">
+        //     <SongContainer>
+        //         <div className="songInfo">
+        //             <p>{data.name}</p>
+        //             <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
+        //             <img className="songImg" src={data.imageURL} alt="" referrerPolicy="no-referrer" />
+        //         </div>
+        //     </SongContainer>
+        // </Col>
+        <NavLink to={"/song"} className=" no-underline text-black" onClick={() => choseAlbum(data)}>
+            <Col className="songContainer">
+                <SongContainer>
+                    <div className="songInfo">
+                        <p>{data.name}</p>
+                        <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
+                        <img className="songImg" src={data.imageURL} alt="" referrerPolicy="no-referrer" />
+                    </div>
+                </SongContainer>
+            </Col>
+        </NavLink>
     )
 }

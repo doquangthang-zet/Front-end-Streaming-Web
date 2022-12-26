@@ -22,7 +22,7 @@ import Modal from 'react-bootstrap/Modal';
 import { decLikes, getAllChartSongs, getAllPlaylist, getAllSongs, getUser, incLikes, removeLikedSongs, removePlaylistSongs, updateLikedSongs, updatePlaylist } from '../../api';
 
 const SongTable = ({page}) => {
-  const [{currentPlaylist, allSongs, user, allChartSongs}, dispatch] = useStateValue();
+  const [{currentPlaylist, currentAlbum, allSongs, user, allChartSongs}, dispatch] = useStateValue();
 
   return (
     <div className='songList'>
@@ -45,7 +45,8 @@ const SongTable = ({page}) => {
           }
 
           {
-            allSongs && page == "allSongs" && allSongs.map((data, i) => (
+            allSongs && currentAlbum && page == "album" && allSongs.filter((song) => currentAlbum.name === song.album)
+            .map((data, i) => (
               <SongCard data={data} index={i} page={page} />
             ))
           } 
@@ -341,7 +342,7 @@ export const SongCard = ({data, index, page}) => {
           }
           
           {
-            page !== "allSongs" && 
+            page !== "album" && 
               page === "likedSongs" &&
               <>
                 <div className='flex items-center justify-evenly mr-3'>
@@ -376,7 +377,7 @@ export const SongCard = ({data, index, page}) => {
           }
 
           {
-            page !== "allSongs" && 
+            page !== "album" && 
               page === "playlist" &&
               <>
                 <div className='flex items-center justify-evenly mr-3'>

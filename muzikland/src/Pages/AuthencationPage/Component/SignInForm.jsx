@@ -41,7 +41,7 @@ export function SignInForm({setAuth}){
                                 });
                             });
                         })
-                        navigate("/", {replace : true});
+                        navigate("/home", {replace : true});
                     } else {
                         setAuth(false);
                         dispatch({
@@ -57,7 +57,7 @@ export function SignInForm({setAuth}){
 
     useEffect(() => {
         if(window.localStorage.getItem("auth") === "true") {
-            navigate("/", {replace: true})
+            navigate("/home", {replace: true})
         }
     }, [])
 

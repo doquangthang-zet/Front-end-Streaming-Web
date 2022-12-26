@@ -7,7 +7,6 @@ import {AboutUs} from '../AboutUsPage/AboutUS';
 import {Songs} from '../SongsPage/Songs';
 import {Albums} from '../AlbumsPage/Albums';
 import {Profile} from '../ProfilePage/Profile';
-import { AlbumsPlaylist } from "../PlaylistPage/AlbumsPlaylist";
 import { SongsPlaylist } from "../PlaylistPage/SongsPlaylist";
 import '../../css/main.css';
 import { useStateValue } from "../../context/StateProvider";
@@ -19,18 +18,9 @@ import { MusicChart } from "../MusicChartPage/MusicChart";
 
 
 export function Home(){
-  const [{user, allUsers, allSongs, allPlaylists, allAlbums, curPlaylist, alertType, allChartSongs}, dispatch] = useStateValue();
+  const [{user, allUsers, allSongs, allPlaylists, allAlbums, alertType, allChartSongs}, dispatch] = useStateValue();
 
   useEffect(() => {
-    // if(!allUsers) {
-    //   getAllUsers().then((data) => {
-    //     console.log(data);
-    //     dispatch({
-    //       type: actionType.SET_ALL_USERS,
-    //       allUsers: data.users
-    //     })
-    //   })
-    // }
 
     if(!allChartSongs) {
       getAllChartSongs().then((data) => {
@@ -91,7 +81,7 @@ export function Home(){
 {/* // <div className="songsPlaylistDisplay"><SongsPlaylist /></div> */}
       <div className="">
         <Routes>
-          <Route path="/" element={<BodySection />} />
+          <Route path="/home" element={<BodySection />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/album" element={<Albums />} />
           <Route path="/profile" element={<Profile />} />

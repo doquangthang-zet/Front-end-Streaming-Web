@@ -4,13 +4,26 @@ import picture from '../../img/Facebook_f_logo_(2019).svg.png';
 import {faPlay} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useStateValue } from "../../context/StateProvider";
-import { getAllPlaylist, getUserPlaylist } from "../../api";
+import { getAllChartSongs, getAllPlaylist, getUserPlaylist } from "../../api";
 import { actionType } from "../../context/reducer";
 import SongTable from "../SongTable/SongTable";
 import logo from "./logo_songpage1.png"
 
 
 export function MusicChart(){
+    const [{allChartSongs}, dispatch] = useStateValue();
+
+    useEffect(() => {
+        if(!allChartSongs) {
+            getAllChartSongs().then((data) => {
+                console.log(data);
+                dispatch({
+                    type: actionType.SET_ALL_CHARTSONGS,
+                    allChartSongs: data.song
+                })
+            })
+          }
+    }, [])
 
     return (
         <div className="playlistSong">

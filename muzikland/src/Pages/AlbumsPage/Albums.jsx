@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../../css/main.css";
 import styled from 'styled-components';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,7 @@ import { Row, Col } from 'react-grid';
 import { useStateValue } from "../../context/StateProvider";
 import { NavLink } from "react-router-dom";
 import { actionType } from "../../context/reducer";
+import { getAllAlbum } from "../../api";
 
 const SongContainer = styled.div`
     width: 200px;
@@ -22,6 +23,17 @@ const SongContainer = styled.div`
 
 export function Albums() {
     const [{allAlbums}, dispatch] = useStateValue();
+
+    useEffect(() => {
+        if(!allAlbums) {
+            getAllAlbum().then((res) => {
+                dispatch({
+                    type: actionType.SET_ALL_ALBUMS,
+                    allAlbums: res.album,
+                })
+            })
+        }
+    }, []);
 
     return (
         <div className="albumsContainer">
@@ -39,9 +51,10 @@ export const AlbumContainer = () => {
 
     const choseAlbum = (data) => {
         console.log(data)
+        console.log(data)
         dispatch({
             type: actionType.SET_CURRENT_ALBUM,
-            currentAlbum: data.data,
+            currentAlbum: data,
         })
     }
 
@@ -49,7 +62,7 @@ export const AlbumContainer = () => {
         <div className="albumsList">
             <Row className="rowAttribute">
                 {allAlbums && allAlbums.map((album, i) => (
-                    <NavLink to={"/song"} className=" no-underline text-black" onClick={choseAlbum(album)}>
+                    <NavLink to={"/song"} className=" no-underline text-black" onClick={() => choseAlbum(album)}>
                         <Col className="songContainer">
                             <SongContainer>
                                 <div className="songInfo">
