@@ -9,7 +9,7 @@ import { faPlay, faLeftLong, faRightLong } from "@fortawesome/free-solid-svg-ico
 
 import { Container, Row, Col } from 'react-grid';
 import { useStateValue } from "../../../context/StateProvider";
-import { getAllAlbum, getAllSongs } from "../../../api";
+import { getAllAlbum, getAllChartSongs, getAllPlaylist, getAllSongs } from "../../../api";
 import { actionType } from "../../../context/reducer";
 import { NavLink } from "react-router-dom";
 
@@ -35,9 +35,10 @@ const SongContainer = styled.div`
 
 export function BodySection() {
 
-    const [{allSongs, allAlbums}, dispatch] = useStateValue();
+    const [{allSongs, allAlbums, searchFilter}, dispatch] = useStateValue();
 
     const [categories, setCategories] = useState([]);
+    console.log(searchFilter)
 
     useEffect(() => {
         if(!allSongs) {
@@ -74,22 +75,27 @@ export function BodySection() {
     return (
         <BodyContainer>
             <div className="bodyHomepage">
-                <Row className="rowAttribute">
-                    <Col><img className="adverImg" src={musicImage} alt="" /></Col>
-                    <div className="titleSection"> 
-                        <span>Top Trending</span>
-                        <NavLink to={"/album"} className=" no-underline text-black">
-                            <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                            <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
-                        </NavLink>
+                {
+                    
+                    <Row className="rowAttribute">
+                        <Col><img className="adverImg" src={musicImage} alt="" /></Col>
+                        <div className="titleSection"> 
+                            <span>Top Trending</span>
+                            <NavLink to={"/album"} className=" no-underline text-black">
+                                <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
+                                <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
+                            </NavLink>
+                            
+                        </div>
                         
-                    </div>
-                    
-                    <AlbumBox data={allAlbums} cate={undefined} />
-                    
-                </Row>
+                        <AlbumBox data={allAlbums} cate={undefined} />
+                        
+                    </Row>
+                }
+                
                 
                 {categories.map((cate, i) => (
+                    
                     <Row className="rowAttribute">
                        <div className="smallTitleSection"> 
                             <span>{cate}</span>
@@ -98,7 +104,7 @@ export function BodySection() {
                                <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
                             </NavLink>
                         </div>
-                        <AlbumBox data={allAlbums} cate={cate} />
+                        <AlbumBox data={allAlbums} cate={cate} searchFilter={searchFilter} />
                     </Row>
                 ))}
             </div>
@@ -106,14 +112,23 @@ export function BodySection() {
     );
 };
 
-export const AlbumBox = ({data, cate}) => {
+export const AlbumBox = ({data, cate, searchFilter}) => {
+    // const [{searchFilter}, dispatch] = useStateValue();
+    
+
     return (
         <div className="d-flex">
             {
-                data && data.filter((al) => cate === al.category)
-                .map((al, index) => (
-                    <AlbumCard key={al._id} data={al} index={index} />
-                ))
+                data && searchFilter ? 
+                data.filter((al) => cate === al.category)
+                    .filter(al => al.name.toLowerCase().includes(searchFilter.toLowerCase()))
+                    .map((al, index) => (
+                        <AlbumCard key={al._id} data={al} index={index} />
+                    ))
+                : data.filter((al) => cate === al.category)
+                    .map((al, index) => (
+                        <AlbumCard key={al._id} data={al} index={index} />
+                    ))
             }
         </div>
     )

@@ -113,14 +113,14 @@ export const AdminUserCard = ({data, index}) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.1 }}
-      className="relative w-full rounded-md flex items-center justify-between py-4 bg-lightOverlay cursor-pointer hover:bg-card hover:shadow-md"
+      className="relative w-full rounded-md flex items-center justify-between py-4 bg-lightOverlay"
     >
       {/* Delete button */}
       {
         data._id !== user?.user._id && (
           <motion.div
             whileTap={{scale: 0.75}}
-            className='absolute left-4 w-8 h-8 rounded-md flex items-center justify-center bg-gray-200'
+            className='absolute left-4 w-8 h-8 rounded-md flex items-center justify-center bg-gray-200 cursor-pointer'
             onClick={() => setisRemoveUser(true)}
           >
             <MdDelete className='text-xl text-red-400 hover:text-red-500' />
@@ -170,7 +170,7 @@ export const AdminUserCard = ({data, index}) => {
           {data.role === "member" ? "Member" : "Admin"}
           {
             data._id !== user?.user._id && (
-              <motion.p whileTap={{scale: 0.75}} onClick={() => setisUserRoleUpdate(true)} className='text-[10px] font-semibold text-textColor p-1 bg-purple-200 rounded-sm hover:shadow-md'>
+              <motion.p whileTap={{scale: 0.75}} onClick={() => setisUserRoleUpdate(true)} className='text-[10px] font-semibold text-textColor p-1 bg-purple-200 rounded-sm hover:shadow-md cursor-pointer'>
                 {data.role === "admin" ? "Demote" : "Promote"}
               </motion.p>
             )

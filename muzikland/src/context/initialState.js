@@ -17,4 +17,5 @@ export const initialState = {
     isSongPlaying: false,
     songIndex: "",
     miniPlayer: false,
+    searchFilter: "",
 };

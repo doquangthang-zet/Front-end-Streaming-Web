@@ -11,7 +11,7 @@ import logo from "./logo_songpage1.png"
 
 
 export function Songs(){
-    const [{currentAlbum, allSongs}, dispatch] = useStateValue();
+    const [{currentAlbum, allSongs, searchFilter}, dispatch] = useStateValue();
 
     return (
         <div className="playlistSong">

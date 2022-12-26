@@ -15,6 +15,7 @@ export const actionType = {
     SET_ARTIST_FILTER: "SET_ARTIST_FILTER",
     SET_ALBUM_FILTER: "SET_ALBUM_FILTER",
     SET_LANGUAGE_FILTER: "SET_LANGUAGE_FILTER",
+    SET_SEARCH_FILTER: "SET_SEARCH_FILTER",
 
     //Player types
     SET_ISSONG_PLAYING: "SET_ISSONG_PLAYING",
@@ -134,6 +135,11 @@ const reducer = (state, action) => {
             languageFilter: action.languageFilter,
             };
         
+        case actionType.SET_SEARCH_FILTER:
+            return {
+                ...state,
+                searchFilter: action.searchFilter,
+            };
 
         //Alert cases
         case actionType.SET_ALERT_TYPE:

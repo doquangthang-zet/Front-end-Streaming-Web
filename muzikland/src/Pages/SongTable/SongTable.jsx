@@ -22,7 +22,7 @@ import Modal from 'react-bootstrap/Modal';
 import { decLikes, getAllChartSongs, getAllPlaylist, getAllSongs, getUser, incLikes, removeLikedSongs, removePlaylistSongs, updateLikedSongs, updatePlaylist } from '../../api';
 
 const SongTable = ({page}) => {
-  const [{currentPlaylist, currentAlbum, allSongs, user, allChartSongs}, dispatch] = useStateValue();
+  const [{currentPlaylist, currentAlbum, allSongs, user, allChartSongs, searchFilter}, dispatch] = useStateValue();
 
   return (
     <div className='songList'>
@@ -39,6 +39,7 @@ const SongTable = ({page}) => {
         <tbody >
           {
             allSongs && currentPlaylist && page == "playlist" && allSongs.filter((song) => currentPlaylist.songs.includes(song._id))
+            .filter(song => song.name.toLowerCase().includes(searchFilter.toLowerCase()))
             .map((data, i) => (
               <SongCard data={data} index={i} page={page} />
             ))
@@ -46,6 +47,7 @@ const SongTable = ({page}) => {
 
           {
             allSongs && currentAlbum && page == "album" && allSongs.filter((song) => currentAlbum.name === song.album)
+            .filter(song => song.name.toLowerCase().includes(searchFilter.toLowerCase()))
             .map((data, i) => (
               <SongCard data={data} index={i} page={page} />
             ))
@@ -53,6 +55,7 @@ const SongTable = ({page}) => {
 
           {
             allSongs && user && page == "likedSongs" && allSongs.filter((song) => user?.user.likedSongs.includes(song._id))
+            .filter(song => song.name.toLowerCase().includes(searchFilter.toLowerCase()))
             .map((data, i) => (
               <SongCard data={data} index={i} page={page} />
             ))

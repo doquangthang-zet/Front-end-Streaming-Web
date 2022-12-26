@@ -9,6 +9,7 @@ import AdminNewSong from './AdminNewSong'
 import AdminSongs from './AdminSongs'
 import AdminUsers from './AdminUsers'
 import { useStateValue } from '../../context/StateProvider'
+import AdminAlbumSongs from './AdminAlbumSongs'
 
 const Admin = () => {
   const [{alertType}, dispatch] = useStateValue();
@@ -25,6 +26,7 @@ const Admin = () => {
             <Route path='/songs' element={<AdminSongs />} />
             {/* <Route path='/artists' element={<AdminArtists />} /> */}
             <Route path='/albums' element={<AdminAlbums />} />
+            <Route path='/albumSongs' element={<AdminAlbumSongs />} />
             <Route path='/newSong' element={<AdminNewSong />} />
             <Route path='/newAlbum' element={<AdminNewSong />} />
           </Routes>

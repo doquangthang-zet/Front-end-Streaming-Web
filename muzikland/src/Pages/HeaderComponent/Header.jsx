@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from 'styled-components';
 
 import '../../css/main.css';
@@ -36,8 +36,19 @@ const HeaderContainer = styled.div`
 
 export function Header(props) {
 
-  const [{ user, alertType, allPlaylists }, dispatch] = useStateValue();
+  const [{ user, alertType, allPlaylists, searchFilter }, dispatch] = useStateValue();
   const navigate = useNavigate();
+
+  const [show, setShow] = useState(false);
+  const [URL, setURL] = useState("");
+
+  // Playlist creation part
+  const [playlistName, setplaylistName] = useState("");
+  const [playlistDescription, setPlaylistDescription] = useState("");
+  const [isPlaylistUploading, setIsPlaylistUploading] = useState(false);
+  const [playlistImageCover, setPlaylistImageCover] = useState(null);
+  const [imageUploadProgress, setImageUploadProgress] = useState(0);
+
 
   const logOut = () => {
     const firebaseAuth = getAuth(app);
@@ -46,14 +57,6 @@ export function Header(props) {
     }).catch((err) => console.log(err));
     navigate("/login", { replace: true });
   }
-
-  const [show, setShow] = useState(false);
-
-  const [playlistName, setplaylistName] = useState("");
-  const [playlistDescription, setPlaylistDescription] = useState("");
-  const [isPlaylistUploading, setIsPlaylistUploading] = useState(false);
-  const [playlistImageCover, setPlaylistImageCover] = useState(null);
-  const [imageUploadProgress, setImageUploadProgress] = useState(0);
 
   const deleteFileObject = (url, isImage) => {
     if(isImage) {
@@ -122,20 +125,31 @@ export function Header(props) {
     }
   };
 
+  useEffect(() => {
+    setURL(window.location.href); // dispay different section depend on URL
+  }, [URL]);
 
   return <HeaderContainer>
     
     {/* Search part */}
     <div className="search">
       <div className="searchInputs">
-        <input type="text" placeholder="Enter a Song or Signer..." />
-        <div className="searchIcon">
+        {URL.indexOf("dashboard") <= -1 && 
+        <input 
+          type="text" 
+          placeholder="Enter a song or album name..."
+          value={searchFilter}
+          onChange={(e) => dispatch({
+            type: actionType.SET_SEARCH_FILTER,
+            searchFilter: e.target.value,
+          })}
+        />}
+        
+        {/* <div className="searchIcon">
           <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
-        </div>
+        </div> */}
       </div>
     </div>
-
-    {/* Genres part */}
 
     {/* Playlist part */}
     <div className="iconSection">

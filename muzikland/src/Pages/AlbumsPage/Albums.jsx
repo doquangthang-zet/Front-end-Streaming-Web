@@ -22,7 +22,8 @@ const SongContainer = styled.div`
 `;
 
 export function Albums() {
-    const [{allAlbums}, dispatch] = useStateValue();
+    const [{allAlbums, searchFilter}, dispatch] = useStateValue();
+    // console.log(searchFilter)
 
     useEffect(() => {
         if(!allAlbums) {
@@ -40,14 +41,15 @@ export function Albums() {
             <div className="albumsGenre">
                 <h1>All Albums</h1>
             </div>
-            
-            <AlbumContainer />
+
+            {<AlbumContainer />}           
         </div>
     )
-}
+} 
 
 export const AlbumContainer = () => {
-    const [{allAlbums, currentAlbum}, dispatch] = useStateValue();
+    const [{allAlbums, currentAlbum, searchFilter}, dispatch] = useStateValue();
+    // console.log(searchFilter)
 
     const choseAlbum = (data) => {
         console.log(data)
@@ -61,21 +63,38 @@ export const AlbumContainer = () => {
     return (
         <div className="albumsList">
             <Row className="rowAttribute">
-                {allAlbums && allAlbums.map((album, i) => (
-                    <NavLink to={"/song"} className=" no-underline text-black" onClick={() => choseAlbum(album)}>
-                        <Col className="songContainer">
-                            <SongContainer>
-                                <div className="songInfo">
-                                    <p>{album.name}</p>
-                                    {/* <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon> */}
-                                    <img className="songImg" src={album.imageURL} alt="" referrerPolicy="no-referrer" />
-                                </div>
-                            </SongContainer>
-                        </Col>
-                    </NavLink>
-                    
-                ))}
-                
+                {
+                    allAlbums && searchFilter ? 
+                        allAlbums.filter(al => al.name.toLowerCase().includes(searchFilter.toLowerCase()))
+                        .map((album, i) => (
+                        <NavLink to={"/song"} className=" no-underline text-black" onClick={() => choseAlbum(album)}>
+                            <Col className="songContainer">
+                                <SongContainer>
+                                    <div className="songInfo">
+                                        <p>{album.name}</p>
+                                        {/* <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon> */}
+                                        <img className="songImg" src={album.imageURL} alt="" referrerPolicy="no-referrer" />
+                                    </div>
+                                </SongContainer>
+                            </Col>
+                        </NavLink>
+                        
+                    ))
+                    : allAlbums.map((album, i) => (
+                        <NavLink to={"/song"} className=" no-underline text-black" onClick={() => choseAlbum(album)}>
+                            <Col className="songContainer">
+                                <SongContainer>
+                                    <div className="songInfo">
+                                        <p>{album.name}</p>
+                                        <FontAwesomeIcon className="iconAttribute" icon={faPlay}></FontAwesomeIcon>
+                                        <img className="songImg" src={album.imageURL} alt="" referrerPolicy="no-referrer" />
+                                    </div>
+                                </SongContainer>
+                            </Col>
+                        </NavLink>
+                        
+                    ))
+                }
             </Row>
         </div>
     )

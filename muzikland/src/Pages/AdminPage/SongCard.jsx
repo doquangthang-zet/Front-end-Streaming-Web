@@ -6,10 +6,12 @@ import { useStateValue } from '../../context/StateProvider';
 import { actionType } from '../../context/reducer';
 import { deleteObject, ref } from 'firebase/storage';
 import { storage } from '../../config/firebase.config';
+import { useNavigate } from 'react-router-dom';
 
 const SongCard = ({data, index, type}) => {
     const [isDelete, setIsDelete] = useState(false);
-    const [{alertType, allSongs, allAlbums, songIndex, isSongPlaying}, dispatch] = useStateValue();
+    const [{alertType, allSongs, allAlbums, songIndex, isSongPlaying, currentAlbum}, dispatch] = useStateValue();
+    const navigate = useNavigate();
 
     const deleteCard = (data) => {
         if(type === "song") {
@@ -109,11 +111,22 @@ const SongCard = ({data, index, type}) => {
         // }
     }
 
+    const chooseAlbum = (data) => {
+        console.log(data)
+        console.log(data)
+        dispatch({
+            type: actionType.SET_CURRENT_ALBUM,
+            currentAlbum: data,
+        })
+        console.log(currentAlbum)
+        navigate("/dashboard/albumSongs");
+    }
+
     return (
         <motion.div 
             className='relative w-40 min-w-210 px-2 py-4 cursor-pointer hover:bg-card
             bg-gray-100 shadow-md rounded-lg flex flex-col items-center'
-            onClick={type === "song" && addToContext}
+            onClick={type === "song" ? addToContext : () => chooseAlbum(data)}
         >
             <div className='h-40 min-h-[160px] w-40 min-w-[160px] rounded-lg drop-shadow-lg relative overflow-hidden'>
                 <motion.img
