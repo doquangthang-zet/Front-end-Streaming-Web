@@ -44,7 +44,6 @@
 .titleSection {
   position: absolute;
   background-color: transparent;
-  margin: 30px;
   margin-left: 35%;
 }
 .titleSection span {
@@ -60,11 +59,18 @@
 .titleSection .seeMore:hover {
   cursor: pointer;
 }
+.titleSection a:hover {
+  background-color: transparent !important;
+}
+
+.d-flex a:hover {
+  background-color: transparent;
+}
 
 .smallTitleSection {
   position: absolute;
   background-color: transparent;
-  margin: 30px 0;
+  margin: 15px 0;
 }
 .smallTitleSection span {
   font-size: 25px;
@@ -133,6 +139,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 11;
   overflow: auto;
   border-right: 1px solid #e0e0e0;
 }
@@ -191,11 +198,6 @@
   display: none;
 }
 
-@media only screen and (max-width: 970px) {
-  .aside-bar {
-    display: none;
-  }
-}
 .styleLogo {
   width: 6%;
   height: 70%;
@@ -216,12 +218,12 @@
 .search input {
   background-color: white;
   border: 0;
-  border-radius: 2px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-radius: 19px;
+  padding: 15px;
   font-size: 18px;
-  height: 30px;
+  height: 40px;
   width: 600px;
+  box-shadow: 1px 5px 5px black;
 }
 
 .searchIcon {
@@ -361,6 +363,9 @@ a:hover {
 .developer .developer-profile .profileDetails p {
   margin-left: 40px;
 }
+.developer .developer-profile .profileDetails .cardBtn a:hover {
+  background-color: transparent;
+}
 .developer .developer-profile .profileDetails .cardBtn .linkImg {
   width: 7%;
   display: inline-block;
@@ -444,11 +449,15 @@ a:hover {
   background: radial-gradient(circle, rgb(117, 140, 209) 24%, rgb(97, 126, 212) 52%, rgb(124, 146, 210) 89%, rgb(205, 176, 189) 100%);
 }
 .albumsContainer .albumsGenre h1 {
-  margin-left: 20px;
+  margin-left: 40px;
+  padding-top: 30px;
 }
 .albumsContainer .albumsList .css-1gqikdj-Row {
   margin-left: 0;
   margin-right: 0;
+}
+.albumsContainer .albumsList a:hover {
+  background-color: transparent;
 }
 
 .userProfile {
@@ -517,9 +526,6 @@ a:hover {
   margin-left: 250px;
   background: rgb(117, 140, 209);
   background: radial-gradient(circle, rgb(117, 140, 209) 24%, rgb(97, 126, 212) 52%, rgb(124, 146, 210) 89%, rgb(205, 176, 189) 100%);
-}
-.albumsContainer .albumsGenre h1 {
-  margin-left: 20px;
 }
 
 .playlistSong {
@@ -641,7 +647,7 @@ a:hover {
   cursor: pointer;
 }
 
-.adminUsers, .adminSongs, .adminAlbums {
+.adminUsers, .adminSongs, .adminAlbums, .adminNewAlbums, .adminNewSongs {
   background: rgb(12, 41, 125);
   background: radial-gradient(circle, rgb(12, 41, 125) 0%, rgb(37, 37, 37) 100%);
 }/*# sourceMappingURL=main.css.map */

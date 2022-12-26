@@ -51,8 +51,8 @@ export function AboutUs() {
                     <p>I love designing fully responsive websites.</p>
                     <p>I have a keen interest in developing projects, whenever I want to learn something new.</p>
                     <div className="cardBtn">
-                        <img src={facebook} className="linkImg" alt="Facebook" />
-                        <img src={github} className="linkImg" alt="Github" />
+                    <a href="https://www.facebook.com/profile.php?id=100009346072596" target="_blank"><img src={facebook} className="linkImg" alt="Facebook" /></a>
+                    <a href="https://github.com/doquangthang-zet" target="_blank"><img src={github} className="linkImg" alt="Facebook" /></a>
                     </div>
                 </div>
             </div>

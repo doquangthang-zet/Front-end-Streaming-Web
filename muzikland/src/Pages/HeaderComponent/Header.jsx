@@ -30,6 +30,8 @@ const HeaderContainer = styled.div`
     background: linear-gradient(90deg, rgba(102,51,153,1) 0%, rgba(102,51,153,1) 43%, rgba(0,212,255,0.1) 100%);
     display: flex;
     flex-direction: row;
+    box-shadow: 10px 8px 15px lightgrey;    position: relative;
+    z-index: 10;
 `;
 
 

@@ -27,11 +27,11 @@ export function Profile(){
             <div className="userCard">
                 <div className="userImg"><img src={user?.user.imageURL} alt="userImage" className="w-100"/></div>
                 <div className="userName">
-                    <h1>{user?.user.name}</h1>
+                    <h1 className="text-white">{user?.user.name}</h1>
                 </div>
             </div>
             <div className="userLoveSongs">
-                <h3>
+                <h3 className="text-white">
                     Your Loved Songs <FontAwesomeIcon className="iconHeart" icon={faHeart}></FontAwesomeIcon>
                 </h3>
                 <div className="lovedSongs">

@@ -22,7 +22,6 @@
 .titleSection{
     position: absolute;
     background-color: transparent;
-    margin: 30px;
     margin-left: 35%;
     span{
         font-size: 25px;
@@ -37,12 +36,23 @@
             cursor: pointer;
         }
     }
+    a{
+        &:hover{
+            background-color: transparent!important;
+        }
+    }
 }
-
+.d-flex{
+    a{
+        &:hover{
+            background-color: transparent;
+        }
+    }
+}
 .smallTitleSection{
     position: absolute;
     background-color: transparent;
-    margin: 30px 0;
+    margin: 15px 0;
     span{
         font-size: 25px;
         margin: 60px 30px;
