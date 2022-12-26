@@ -433,7 +433,12 @@ export const SongCard = ({data, index, page}) => {
                 <Modal.Title>Add to Playlist</Modal.Title>
               </Modal.Header>
 
-              <Modal.Body>Do you want to add this song to your Playlist?</Modal.Body>
+              {
+                allPlaylists.filter(pl => pl.user_id === user?.user._id).length <= 0 ?
+                <Modal.Body>You don't have any playlist. Please create one!</Modal.Body>
+                : <Modal.Body>Do you want to add this song to your Playlist?</Modal.Body>
+              }
+              
 
               <Modal.Body>
                 <Form.Select onChange={(e) => setPlaylistToAdd(e.target.value)}>
