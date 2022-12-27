@@ -7,6 +7,8 @@ import {ForgetPW} from "./Component/ForgetPassword";
 import { AccountContext } from "./_AccountContext";
 import musicImage from "../AuthencationPage/music-cool.gif";
 import imgAttribute from "../../css/main.css";
+import Alert from "../AdminPage/Alert";
+import { useStateValue } from "../../context/StateProvider";
 
 
 const FrameContainer = styled.div`
@@ -145,6 +147,8 @@ export function AccountBox({setAuth}){
 
     const contextValue = {switchToSignUp, switchToSignIn, switchToForgetPW};
 
+    const [{alertType}, dispatch] = useStateValue();
+
     return (
     <AccountContext.Provider value={contextValue}>
     
@@ -179,7 +183,7 @@ export function AccountBox({setAuth}){
     </BoxContainer>
     <img className="imgAttribute" src={musicImage}/>
     </FrameContainer>
-    
+    {alertType && (<Alert type={alertType} />)}
     </AccountContext.Provider>
     );
 }

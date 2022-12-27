@@ -88,6 +88,7 @@ export const PlaylistContainer = (data, index) => {
             type: actionType.SET_CURRENT_PLAYLIST,
             currentPlaylist: data.data,
         })
+        // sessionStorage.setItem("curPlaylist", JSON.stringify(data.data));
     }
 
     const deleteCard = (data) => {
