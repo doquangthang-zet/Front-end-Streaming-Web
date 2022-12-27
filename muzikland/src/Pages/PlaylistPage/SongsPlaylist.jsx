@@ -22,6 +22,14 @@ export function SongsPlaylist(){
                 })
             })
         }
+
+        // if(sessionStorage.getItem("curPlaylist")) {
+        //     console.log(JSON.parse(sessionStorage.getItem("curPlaylist")))
+        //     dispatch({
+        //         type: actionType.SET_CURRENT_PLAYLIST,
+        //         currentPlaylist: JSON.parse(sessionStorage.getItem("curPlaylist")),
+        //     })
+        // }
     }, [])
 
     return (

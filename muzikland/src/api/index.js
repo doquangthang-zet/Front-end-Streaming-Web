@@ -16,6 +16,24 @@ export const validateUser = async (token) => {
     }
 };
 
+export const signUp = async (data) => {
+    try {
+        const res = axios.post(`${baseUrl}api/users/signup`, {...data});
+        return (await res).data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const signIn = async (data) => {
+    try {
+        const res = axios.post(`${baseUrl}api/users/login`, {...data});
+        return (await res).data;
+    } catch (error) {
+        return null;
+    }
+}
+
 export const getAllUsers = async () => {
     try {
         const res = await axios.get(`${baseUrl}api/users/getUsers`);

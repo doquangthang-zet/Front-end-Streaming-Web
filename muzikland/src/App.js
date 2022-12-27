@@ -36,7 +36,7 @@ function App() {
 
   useEffect(() => {
       firebaseAuth.onAuthStateChanged((userCred) => {
-          if(userCred) {
+          if(userCred || localStorage.getItem("user")) {
               userCred.getIdToken().then((token) => {
                   // console.log(token)
                   // window.localStorage.setItem("auth", "true");

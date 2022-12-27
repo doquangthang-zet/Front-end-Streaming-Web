@@ -57,6 +57,7 @@ export function Header(props) {
     firebaseAuth.signOut().then(() => {
       window.localStorage.setItem("auth", "false");
     }).catch((err) => console.log(err));
+    localStorage.removeItem("user");
     navigate("/login", { replace: true });
   }
 

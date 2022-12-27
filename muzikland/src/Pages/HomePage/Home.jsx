@@ -18,7 +18,7 @@ import { MusicChart } from "../MusicChartPage/MusicChart";
 
 
 export function Home(){
-  const [{user, allUsers, allSongs, allPlaylists, allAlbums, alertType, allChartSongs}, dispatch] = useStateValue();
+  const [{user, allUsers, allSongs, allPlaylists, allAlbums, alertType, allChartSongs, currentPlaylist, currentAlbum}, dispatch] = useStateValue();
 
   useEffect(() => {
 
@@ -59,6 +59,13 @@ export function Home(){
           type: actionType.SET_ALL_PLAYLISTS,
           allPlaylists: data.playlist
         })
+      })
+    }
+
+    if (localStorage.getItem("user")) {
+      dispatch({
+        type: actionType.SET_USER,
+        user: JSON.parse(localStorage.getItem("user")),
       })
     }
 
