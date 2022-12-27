@@ -128,7 +128,7 @@ const AdminNewSong = () => {
 
   return (
     <div className='adminNewSongs flex flex-col items-center justify-center p-4 border border-gray-300 gap-4'>
-      <p className='text-xl font-semibold text-yellow-300'>Song uploading section</p>
+      <p className='text-3xl font-semibold text-yellow-300'>Song uploading section</p>
       {/* Song name */}
       <input 
         type="text" 
@@ -149,7 +149,7 @@ const AdminNewSong = () => {
         onChange={(e) => {setArtistName(e.target.value)}}
       />
 
-      <div className='flex w-full justify-between items-center flex-wrap gap-4'>
+      <div className='filterSongOptions flex w-full justify-between items-center flex-wrap gap-4'>
         {/* <FilterButton filterData={allArtists} flag={"Artist"} /> */}
         <FilterButton filterData={allAlbums} flag={"Album"} />
         <FilterButton filterData={filterByLanguage} flag={"Language"} />
@@ -203,7 +203,7 @@ const AdminNewSong = () => {
         {isImageUploading || isAudioLoading ? (
           <DisableButton />
         ) : (
-          <motion.div onClick={saveSong} className='text-center px-8 py-2 rounded-md w-full text-white bg-purple-800 hover:shadow-lg' whileTap={{scale: 0.75}}>
+          <motion.div onClick={saveSong} className='px-8 py-2 rounded-md w-full text-white text-center cursor-pointer bg-purple-800 hover:text-lg hover:bg-yellow-500' whileTap={{scale: 0.75}}>
             Save Song
           </motion.div>
         )}

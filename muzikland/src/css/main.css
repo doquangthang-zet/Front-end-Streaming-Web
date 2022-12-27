@@ -16,6 +16,9 @@
   margin-bottom: 3px;
 }
 
+.signUpNoAccount .joghsM {
+  color: blue;
+}
 .signUpNoAccount a:hover {
   background-color: transparent;
   font-size: 16px;
@@ -139,7 +142,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 11;
+  z-index: 1;
   overflow: auto;
   border-right: 1px solid #e0e0e0;
 }
@@ -650,4 +653,26 @@ a:hover {
 .adminUsers, .adminSongs, .adminAlbums, .adminNewAlbums, .adminNewSongs {
   background: rgb(12, 41, 125);
   background: radial-gradient(circle, rgb(12, 41, 125) 0%, rgb(37, 37, 37) 100%);
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.adminHome a:hover {
+  background-color: transparent;
+  box-shadow: 5px 10px 10px black;
+  border-radius: 5px;
+}
+
+.adminNewSongs .filterSongOptions ::-webkit-scrollbar-thumb {
+  display: none;
+}
+.adminNewSongs .filterSongOptions ::-webkit-scrollbar-track {
+  display: none;
+}
+
+.adminNewSongs > div > div > div {
+  background-color: aliceblue;
+  width: 100%;
 }/*# sourceMappingURL=main.css.map */

@@ -27,8 +27,8 @@ const AdminSongs = () => {
   return (
     <div className='adminSongs left-64 p-4 flex items-center justify-center flex-col'>
       <div className='w-full flex justify-center gap-20 items-center'>
-        <NavLink to={"/dashboard/newSong"} className="flex items-center justify-center px-4 py-3 border rounded-md border-gray-300 hover:border-gray-500 hover:shadow-md cursor-pointer">
-          <IoAdd />
+        <NavLink to={"/dashboard/newSong"} className="flex items-center justify-center p-3 border rounded-md border-gray-300 hover:border-gray-500 hover:shadow-md cursor-pointer">
+          <IoAdd className='text-2xl' />
         </NavLink>
         <input 
           type="text" 

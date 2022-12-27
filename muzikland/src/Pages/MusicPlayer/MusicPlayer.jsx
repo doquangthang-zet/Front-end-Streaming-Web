@@ -85,7 +85,7 @@ const MusicPlayer = () => {
     }, [songIndex]);
 
 return (
-    <div className='w-full flex items-center gap-3'>
+        <div className='w-full flex items-center gap-3 ml-60'>
         <div className={`w-full full items-center gap-3 p-4 ${
           miniPlayer ? "absolute top-40" : "flex relative"
         }`}>
@@ -157,6 +157,7 @@ return (
             )}
         </div>
     </div>
+    
 )
 }
 

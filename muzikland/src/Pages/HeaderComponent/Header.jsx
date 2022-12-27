@@ -31,7 +31,7 @@ const HeaderContainer = styled.div`
     display: flex;
     flex-direction: row;
     box-shadow: 10px 8px 15px lightgrey;    position: relative;
-    z-index: 10;
+    z-index: 1;
 `;
 
 

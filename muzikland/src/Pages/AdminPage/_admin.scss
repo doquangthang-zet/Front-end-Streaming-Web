@@ -2,3 +2,34 @@
 background: rgb(12,41,125);
 background: radial-gradient(circle, rgba(12,41,125,1) 0%, rgba(37,37,37,1) 100%);
 }
+
+a{
+    text-decoration: none!important;
+}
+
+.adminHome{
+    a{
+        &:hover{
+            background-color: transparent;
+            box-shadow: 5px 10px 10px black;
+            border-radius: 5px;
+        }
+    }
+}
+
+
+.adminNewSongs{
+    .filterSongOptions{
+        ::-webkit-scrollbar-thumb{
+            display: none;
+        }
+        ::-webkit-scrollbar-track{
+            display: none;
+        }
+    }
+}
+
+.adminNewSongs > div > div > div {
+    background-color: aliceblue;
+    width: 100%;
+}

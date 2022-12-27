@@ -101,8 +101,8 @@ const AdminNewAlbum = () => {
   return (
     <div className='adminNewAlbums flex flex-col items-center justify-center p-4 border border-gray-300 gap-4 pt-5'>
         {/* Album uploading */}
-        <p className='text-xl font-semibold text-yellow-300'>Album uploading section</p>
-        <div className='bg-card backdrop:blur-md w-full h-300 rounded-md border-2 border-dotted border-gray-300 cursor-pointer flex justify-center items-center'>
+        <p className='text-3xl font-semibold text-yellow-300'>Album uploading section</p>
+        <div className='bg-card backdrop:blur-md w-full h-300 rounded-md border-2 border-dotted border-gray-300 cursor-pointer flex justify-center items-center mb-4'>
             {isAlbumLoding && <ImageLoader progress={albumUploadingProgress} />}
             {!isAlbumLoding && (
             <>
@@ -145,7 +145,7 @@ const AdminNewAlbum = () => {
             {isAlbumLoding ? (
             <DisableButton />
             ) : (
-            <motion.div onClick={saveAlbum} className='px-8 py-2 rounded-md w-full text-white text-center cursor-pointer bg-purple-800 hover:shadow-lg' whileTap={{scale: 0.75}}>
+            <motion.div onClick={saveAlbum} className='px-8 py-2 rounded-md w-full text-white text-center cursor-pointer bg-purple-800 hover:text-lg hover:bg-yellow-500' whileTap={{scale: 0.75}}>
                 Save Album
             </motion.div>
             )}

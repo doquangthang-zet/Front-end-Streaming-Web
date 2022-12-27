@@ -56,7 +56,7 @@ const AdminHome = () => {
   }, []);
 
   return (
-    <div className='p-6 flex items-center justify-evenly flex-wrap h-96'>
+    <div className='adminHome p-6 flex items-center justify-evenly flex-wrap h-96'>
       <NavLink to={"../users"} className="no-underline">
         <DashboardCard icon={<FaUsers className="text-3xl text-textColor" />} name={"Users"} count={allUsers?.length > 0 ? allUsers.length : 0} />
       </NavLink>
