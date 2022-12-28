@@ -38,11 +38,11 @@ const HeaderContainer = styled.div`
 
 export function Header(props) {
 
-  const [{ user, alertType, allPlaylists, searchFilter }, dispatch] = useStateValue();
+  const [{ user, alertType, allPlaylists, searchFilter, URL }, dispatch] = useStateValue();
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
-  const [URL, setURL] = useState("");
+  // const [URL, setURL] = useState("");
 
   // Playlist creation part
   const [playlistName, setplaylistName] = useState("");
@@ -129,7 +129,17 @@ export function Header(props) {
   };
 
   useEffect(() => {
-    setURL(window.location.href); // dispay different section depend on URL
+  //   setURL(window.location.href); // dispay different section depend on URL
+  //   console.log(URL)
+  //   console.log(URL.indexOf("home"))
+  //   console.log(URL.indexOf("about"))
+    // if(!URL) {
+      // dispatch({
+      //   type: actionType.SET_URL,
+      //   URL: window.location.href,
+      // })
+   
+    console.log(URL)
   }, [URL]);
 
   return <HeaderContainer>
@@ -137,7 +147,7 @@ export function Header(props) {
     {/* Search part */}
     <div className="search">
       <div className="searchInputs">
-        {URL.indexOf("dashboard") <= -1 && 
+        {URL.indexOf("home") <= -1 && URL.indexOf("about") <= -1 && URL.indexOf("home") <= -1 && 
         <input 
           type="text" 
           placeholder="Enter a song or album name..."

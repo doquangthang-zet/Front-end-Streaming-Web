@@ -3,7 +3,7 @@ import "../../css/main.css";
 import {ThemeContext} from "../../api/Theme";
 import {faMusic, faUsers} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { IoHome} from "react-icons/io5";
 import { MdAlbum, MdInsertChartOutlined } from "react-icons/md"
 import { TbPlaylist } from "react-icons/tb"
@@ -18,6 +18,8 @@ import logo from './logomuzik.png';
 import { BsTrash } from "react-icons/bs";
 import {motion} from 'framer-motion';
 import { AiOutlineHome } from "react-icons/ai";
+import { deleteObject, ref } from "firebase/storage";
+import { storage } from "../../config/firebase.config";
 
 export function SideBar({playlists}) {
     const useStyle = useContext(ThemeContext);
@@ -54,11 +56,11 @@ export function SideBar({playlists}) {
                             <span>LIBRARY</span>
                         </p>
                         <NavLink to={"/home"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><AiOutlineHome className="iconTag"/> Home</NavLink>
-                        <NavLink to={"/about"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FaTeamspeak className="iconTag" /> About Us</NavLink>
                         {/* <NavLink to={"/song"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><GiLoveSong className="iconTag" /> Songs</NavLink> */}
                         <NavLink to={"/album"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><MdAlbum className="iconTag" /> Albums</NavLink>
                         <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><ImProfile className='iconTag' /> Profile</NavLink>
                         <NavLink to={"/musicChart"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><MdInsertChartOutlined className='iconTag' /> Music Chart</NavLink>
+                        <NavLink to={"/about"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><FaTeamspeak className="iconTag" /> About Us</NavLink>
                     </div>
                     
                     <div className="aside-bar-container playlist">
@@ -81,6 +83,7 @@ export function SideBar({playlists}) {
 export const PlaylistContainer = (data, index) => {
     const [{currentPlaylist}, dispatch] = useStateValue();
     const [isDelete, setIsDelete] = useState(false);
+    const navigate = useNavigate();
 
     const chosePlaylist = (data) => {
         console.log(data)
@@ -91,7 +94,13 @@ export const PlaylistContainer = (data, index) => {
         // sessionStorage.setItem("curPlaylist", JSON.stringify(data.data));
     }
 
+    const deleteFileObject = (url, isImage) => {
+        const deleteRef = ref(storage, url);
+        deleteObject(deleteRef);
+    };
+
     const deleteCard = (data) => {
+        deleteFileObject(data.imageURL, true);
         deletePlaylistById(data._id).then((res) => {
             if(res.data) {
                 dispatch({
@@ -126,6 +135,8 @@ export const PlaylistContainer = (data, index) => {
                 }, 4000)
             }
         })
+
+        navigate("/");
         setIsDelete(false);
     }
     

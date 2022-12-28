@@ -5,9 +5,18 @@ import outlook from "../../img/Microsoft_Office_Outlook_(2018–present).svg.png
 import gmail from "../../img/Gmail-logo.png";
 import github from "../../img/github-logo.png";
 import avaDev from "../../img/music-head-phones.gif";
+import { useEffect } from "react";
+import { useStateValue } from "../../context/StateProvider";
+import { actionType } from "../../context/reducer";
 
 export function AboutUs() {
-
+const [{URL}, dispatch] = useStateValue();
+    useEffect(() => {
+        dispatch({
+            type: actionType.SET_URL,
+            URL: window.location.href,
+          })
+    }, [])
     return (
         <div className="developer">
             <h3>Developer Page Where To Know Us</h3>

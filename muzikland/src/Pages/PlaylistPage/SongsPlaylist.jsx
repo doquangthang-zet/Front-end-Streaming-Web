@@ -10,7 +10,7 @@ import SongTable from "../SongTable/SongTable";
 
 
 export function SongsPlaylist(){
-    const [{currentPlaylist, allSongs}, dispatch] = useStateValue();
+    const [{currentPlaylist, allSongs, URL}, dispatch] = useStateValue();
 
     useEffect(() => {
         if(!allSongs) {
@@ -22,6 +22,11 @@ export function SongsPlaylist(){
                 })
             })
         }
+
+        dispatch({
+            type: actionType.SET_URL,
+            URL: window.location.href,
+          })
 
         // if(sessionStorage.getItem("curPlaylist")) {
         //     console.log(JSON.parse(sessionStorage.getItem("curPlaylist")))

@@ -49,17 +49,24 @@ const AdminNewSong = () => {
   const deleteFileObject = (url, isImage) => {
     if(isImage) {
       setIsImageUploading(true);
+      
+    } else {
       setIsAudioLoading(true);
     }
 
     const deleteRef = ref(storage, url);
     deleteObject(deleteRef)
     .then(() => {
-      setSongImageCover(null);
-      setAudioImageCover(null);
-
-      setIsImageUploading(false);
-      setIsAudioLoading(false);
+      if(isImage) {
+        setSongImageCover(null);
+        setIsImageUploading(false);
+        
+      } else {
+        setAudioImageCover(null);
+        setIsAudioLoading(false);
+      }
+        
+      
     })
   };
 
@@ -164,7 +171,7 @@ const AdminNewSong = () => {
             {!songImageCover ? (
               <FileUploader updateState={setSongImageCover} setProgress={setImageUploadProgress} isLoading={setIsImageUploading} isImage={true} />
             ) : (
-              <div className='relative w-full h-full overflow-hidden rounded-md'>
+              <div className='relative h-full overflow-hidden rounded-md'>
                 <img src={songImageCover} className="w-full h-full object-cover" alt="" />
                 <button type='button' className='absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl 
                 cursor-pointer outline-none border-none hover:shadow-md duration-200 transition-all ease-in-out'
@@ -214,11 +221,11 @@ const AdminNewSong = () => {
 
 export const ImageLoader = (progress) => {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-20 h-20 flex flex-col items-center justify-center">
       <p className="text-xl font-semibold text-yellow-200 z-10">
         {Math.round(progress) >= 0 && <>{`${Math.round(progress)}%`}</>}
       </p>
-      <div className="w-20 h-20 min-w-[40px] bg-red-600  animate-ping  rounded-full flex items-center justify-center relative">
+      <div className="w-20 h-20 bg-red-600  animate-ping  rounded-full flex items-center justify-center relative">
         <div className="absolute inset-0 rounded-full bg-red-600 blur-xl "></div>
       </div>
     </div>

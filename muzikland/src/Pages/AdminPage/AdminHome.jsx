@@ -53,6 +53,10 @@ const AdminHome = () => {
       })
     }
 
+    dispatch({
+      type: actionType.SET_URL,
+      URL: window.location.href,
+    })
   }, []);
 
   return (

@@ -12,6 +12,7 @@ import { useStateValue } from "../../../context/StateProvider";
 import { getAllAlbum, getAllChartSongs, getAllPlaylist, getAllSongs } from "../../../api";
 import { actionType } from "../../../context/reducer";
 import { NavLink } from "react-router-dom";
+import { all } from "axios";
 
 const BodyContainer = styled.div`
 margin-top: 40px;
@@ -60,15 +61,26 @@ export function BodySection() {
             })
         }
 
+        dispatch({
+            type: actionType.SET_URL,
+            URL: window.location.href,
+          })
     }, []);
 
     useEffect(() => {
         setCategories([])
-        allAlbums && allAlbums.map(al => {
-            if (categories.indexOf(al.category) === -1 && al.category !== undefined) {
-                setCategories(cur => [...cur, al.category]);
+        // allAlbums && allAlbums.map(al => {
+        //     if (categories.indexOf(al.category) === -1 && al.category !== "Top Trendings") {
+        //         setCategories(cur => [...cur, al.category]);
+        //         console.log(categories)
+        //     }
+        // });
+
+        allAlbums && setCategories(allAlbums.map(al => {
+            if(al.category !== "Top Trendings") {
+                return al.category;
             }
-        });
+        }).filter((value, index, self) => self.indexOf(value) === index))
         console.log(categories)
     }, [allAlbums]);
 
@@ -76,11 +88,10 @@ export function BodySection() {
         <BodyContainer>
             <div className="bodyHomepage">
                 {
-                    
                     <Row className="rowAttribute">
                         <Col><img className="adverImg" src={musicImage} alt="" /></Col>
                         <div className="titleSection"> 
-                            <span>Top Trending</span>
+                            <span>Top Trendings</span>
                             <NavLink to={"/album"} className=" no-underline text-black">
                                 <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
                                 <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
@@ -88,7 +99,7 @@ export function BodySection() {
                             
                         </div>
                         
-                        <AlbumBox data={allAlbums} cate={undefined} />
+                        <AlbumBox data={allAlbums} cate={"Top Trendings"} />
                         
                     </Row>
                 }
@@ -123,11 +134,11 @@ export const AlbumBox = ({data, cate, searchFilter}) => {
                 data.filter((al) => cate === al.category)
                     .filter(al => al.name.toLowerCase().includes(searchFilter.toLowerCase()))
                     .map((al, index) => 
-                        cate === undefined ? index < 3 && <AlbumCard key={al._id} data={al} index={index} /> : index < 4 && <AlbumCard key={al._id} data={al} index={index} />
+                        cate === "Top Trendings" ? index < 3 && <AlbumCard key={al._id} data={al} index={index} /> : index < 4 && <AlbumCard key={al._id} data={al} index={index} />
                     )
                 : data.filter((al) => cate === al.category)
                     .map((al, index) => 
-                        cate === undefined ? index < 3 && <AlbumCard key={al._id} data={al} index={index} /> : index < 4 && <AlbumCard key={al._id} data={al} index={index} />
+                        cate === "Top Trendings" ? index < 3 && <AlbumCard key={al._id} data={al} index={index} /> : index < 4 && <AlbumCard key={al._id} data={al} index={index} />
                 )
             }
         </div>

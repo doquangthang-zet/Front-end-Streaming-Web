@@ -24,6 +24,7 @@ export const actionType = {
 
     //Alert Types
     SET_ALERT_TYPE: "SET_ALERT_TYPE",
+    SET_URL: "SET_URL",
 }
 
 const reducer = (state, action) => {
@@ -146,6 +147,12 @@ const reducer = (state, action) => {
             return {
             ...state,
             alertType: action.alertType,
+        };
+
+        case actionType.SET_URL:
+            return {
+            ...state,
+            URL: action.URL,
         };
 
         default :

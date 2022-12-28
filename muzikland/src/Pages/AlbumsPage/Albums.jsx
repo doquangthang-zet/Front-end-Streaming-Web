@@ -22,7 +22,7 @@ const SongContainer = styled.div`
 `;
 
 export function Albums() {
-    const [{allAlbums, searchFilter}, dispatch] = useStateValue();
+    const [{allAlbums, searchFilter, URL}, dispatch] = useStateValue();
     // console.log(searchFilter)
 
     useEffect(() => {
@@ -34,6 +34,11 @@ export function Albums() {
                 })
             })
         }
+
+        dispatch({
+            type: actionType.SET_URL,
+            URL: window.location.href,
+          })
     }, []);
 
     return (

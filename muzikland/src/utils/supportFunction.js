@@ -6,10 +6,10 @@ export const filters = [
   ];
   
   export const filterByLanguage = [
-    { id: 1, name: "Tamil", value: "tamil" },
+    { id: 1, name: "Japanese", value: "japanese" },
     { id: 2, name: "English", value: "english" },
-    { id: 3, name: "Malayalam", value: "malayalam" },
-    { id: 4, name: "Telungu", value: "Telungu" },
-    { id: 5, name: "Hindi", value: "hindi" },
+    { id: 3, name: "Korean", value: "korean" },
+    { id: 4, name: "Vietnam", value: "vietnam" },
+    { id: 5, name: "Chinese", value: "chinese" },
   ];
 

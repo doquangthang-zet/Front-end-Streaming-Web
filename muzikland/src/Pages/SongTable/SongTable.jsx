@@ -20,6 +20,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { decLikes, getAllChartSongs, getAllPlaylist, getAllSongs, getUser, incLikes, removeLikedSongs, removePlaylistSongs, updateLikedSongs, updatePlaylist } from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 const SongTable = ({page}) => {
   const [{currentPlaylist, currentAlbum, allSongs, user, allChartSongs, searchFilter}, dispatch] = useStateValue();
@@ -79,6 +80,8 @@ export const SongCard = ({data, index, page}) => {
   const [{isSongPlaying, songIndex, allPlaylists, alertType, user, currentPlaylist}, dispatch] = useStateValue();
   const [URL, setURL] = useState("");
   const [playlistToAdd, setPlaylistToAdd] = useState("");
+
+  const navigate = useNavigate();
 
   //test modal add to playlist
   const [show, setShow] = useState(false);
@@ -254,6 +257,7 @@ export const SongCard = ({data, index, page}) => {
         })
       }, 4000);
     }
+    setIsDelete(false);
   };
 
   const deleteSongPlaylist = () => {
@@ -306,6 +310,7 @@ export const SongCard = ({data, index, page}) => {
       }
     })
 
+    navigate("/home");
     setIsDelete(false);
   }
 
@@ -328,18 +333,21 @@ export const SongCard = ({data, index, page}) => {
                 <motion.div
                   initial={{opacity: 0, scale: 0.5}} 
                   animate={{opacity: 1, scale: 1}}
-                  exit={{opacity: 0, scale: 0.5}}   
+                  exit={{opacity: 0, scale: 0.5}}  
+                  className="flex" 
                 >
+                  {page === "musicChart" && <span>{data.likes}</span>}
                   <AiFillHeart className='songIconHeart mr-4 text-pink-600 text-2xl cursor-pointer' onClick={dislike} />
-                  {/* <p>{data.likes}</p> */}
                 </motion.div> : 
                 <motion.div
                   initial={{opacity: 0, scale: 0.5}} 
                   animate={{opacity: 1, scale: 1}}
-                  exit={{opacity: 0, scale: 0.5}}     
+                  exit={{opacity: 0, scale: 0.5}}   
+                  className="flex"   
                 >
+                  {page === "musicChart" && <span>{data.likes}</span>}
                   <FiHeart className='songIconHeart text-2xl mr-4' onClick={like} />
-                  {/* <p>{data.likes}</p> */}
+                  
                 </motion.div>
             )
           }

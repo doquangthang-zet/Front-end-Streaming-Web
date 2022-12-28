@@ -11,8 +11,14 @@ import logo from "./logo_songpage1.png"
 
 
 export function Songs(){
-    const [{currentAlbum, allSongs, searchFilter}, dispatch] = useStateValue();
+    const [{currentAlbum, allSongs, searchFilter, URL}, dispatch] = useStateValue();
 
+    useEffect(() => {
+        dispatch({
+            type: actionType.SET_URL,
+            URL: window.location.href,
+          })
+    }, []);
     return (
         <div className="playlistSong">
             <div className="playlistInfo">

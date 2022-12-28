@@ -18,4 +18,5 @@ export const initialState = {
     songIndex: "",
     miniPlayer: false,
     searchFilter: "",
+    URL:"",
 };

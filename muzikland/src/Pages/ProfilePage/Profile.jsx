@@ -8,7 +8,7 @@ import { getAllChartSongs, getAllSongs } from "../../api";
 import { actionType } from "../../context/reducer";
 
 export function Profile(){
-    const [{user, allSongs}, dispatch] = useStateValue();
+    const [{user, allSongs, URL}, dispatch] = useStateValue();
 
     useEffect(() => {
         if(!allSongs) {
@@ -20,6 +20,11 @@ export function Profile(){
                 })
             })
         }
+
+        dispatch({
+            type: actionType.SET_URL,
+            URL: window.location.href,
+          })
     }, [])
 
     return (

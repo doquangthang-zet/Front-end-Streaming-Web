@@ -31,7 +31,7 @@ function App() {
   const navigate = useNavigate();
   const firebaseAuth = getAuth(app);
 
-  const [{user, isSongPlaying}, dispatch] = useStateValue();
+  const [{user, isSongPlaying, URL}, dispatch] = useStateValue();
   const [auth, setAuth] = useState(false || window.localStorage.getItem("auth") === true);
 
   useEffect(() => {
@@ -57,6 +57,13 @@ function App() {
               navigate("/login");
           }
       })
+
+      if(!URL) {
+        dispatch({
+          type: actionType.SET_URL,
+          URL: window.location.href,
+        })
+      }
   }, [])
   return (
     <AnimatePresence exitBeforeEnter>
