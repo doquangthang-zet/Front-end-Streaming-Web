@@ -31,5 +31,7 @@ a{
 
 .adminNewSongs > div > div > div {
     background-color: aliceblue;
-    width: 100%;
+    &:last-child{
+        width: 150px!important;
+    }
 }
