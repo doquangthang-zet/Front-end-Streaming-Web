@@ -119,7 +119,7 @@ return (
                 <AudioPlayer 
                     src={allSongs.filter((song) => song._id == songIndex)[0].songURL}
                     onPlay={() => {console.log("is playing")}}
-                    autoPlay={false}
+                    autoPlay={true}
                     showSkipControls={true}
                     onClickNext={nextTrack}
                     onClickPrevious={previousTrack}

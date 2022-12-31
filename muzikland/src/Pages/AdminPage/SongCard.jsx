@@ -124,10 +124,10 @@ const SongCard = ({data, index, type}) => {
 
     return (
         <motion.div 
-            className='relative w-40 min-w-210 px-2 py-4 cursor-pointer hover:bg-card
+            className='relative w-40 min-w-210 px-2 py-4
             bg-gray-100 shadow-md rounded-lg flex flex-col items-center'
         >
-            <div className='h-40 min-h-[160px] w-40 min-w-[160px] rounded-lg drop-shadow-lg relative overflow-hidden'>
+            <div className='h-40 min-h-[160px] w-40 min-w-[160px] rounded-lg drop-shadow-lg relative overflow-hidden cursor-pointer'>
                 <motion.img
                 whileHover={{scale: 1.05}}
                     src={data.imageURL}
@@ -142,13 +142,13 @@ const SongCard = ({data, index, type}) => {
             </p>
 
             <div className='w-full absolute bottom-3 flex items-center justify-evenly px-4'>
-                <motion.i whileTap={{scale: 0.75}} className='text-base text-red-400 drop-shadow-md hover:text-red-600' onClick={() => {setIsDelete(true)}}>
+                <motion.i whileTap={{scale: 0.75}} className='text-base text-red-400 drop-shadow-md hover:text-red-600 cursor-pointer' onClick={() => {setIsDelete(true)}}>
                     <IoTrash />
                 </motion.i>
             </div>
 
             {isDelete && 
-            <motion.div className='absolute inset-0 backdrop:blur-md bg-cardOverlay flex flex-col px-4 py-2 gap-0 items-center justify-center'>
+            <motion.div className='absolute inset-0 backdrop:blur-md bg-white flex flex-col px-4 py-2 gap-0 items-center justify-center rounded-lg'>
                 <p className='text-xl font-semibold text-center text-headingColor'>Do you want to delete this card?</p>
                 <div className='flex items-center gap-4'>
                     <motion.button 

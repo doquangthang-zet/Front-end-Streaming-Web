@@ -125,7 +125,7 @@
   transition: all 500ms;
 }
 .songInfo:hover .iconAttribute {
-  color: green;
+  color: #663399;
 }
 
 .musicDisplay {
