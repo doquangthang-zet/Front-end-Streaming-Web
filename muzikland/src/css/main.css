@@ -674,5 +674,7 @@ a {
 
 .adminNewSongs > div > div > div {
   background-color: aliceblue;
-  /* width: 100%; */
+}
+.adminNewSongs > div > div > div:last-child {
+  width: 150px !important;
 }/*# sourceMappingURL=main.css.map */
