@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import '../../css/main.css';
 // import { AccountContext } from "../_AccountContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faFolderPlus, faHeart} from "@fortawesome/free-solid-svg-icons";
+import { faHeart} from "@fortawesome/free-solid-svg-icons";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useStateValue } from "../../context/StateProvider";

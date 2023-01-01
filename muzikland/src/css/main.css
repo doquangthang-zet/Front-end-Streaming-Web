@@ -125,7 +125,7 @@
   transition: all 500ms;
 }
 .songInfo:hover .iconAttribute {
-  color: #663399;
+  color: green;
 }
 
 .musicDisplay {
@@ -306,6 +306,7 @@ a:hover {
 .personalInfo {
   width: 180px;
   text-align: center;
+  margin-bottom: 20px;
 }
 .personalInfo p {
   display: inline-block;

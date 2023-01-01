@@ -92,10 +92,6 @@ export function BodySection() {
                         <Col><img className="adverImg" src={musicImage} alt="" /></Col>
                         <div className="titleSection"> 
                             <span>Top Trendings</span>
-                            <NavLink to={"/album"} className=" no-underline text-black">
-                                <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                                <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
-                            </NavLink>
                             
                         </div>
                         
@@ -110,10 +106,6 @@ export function BodySection() {
                     <Row className="rowAttribute">
                        <div className="smallTitleSection"> 
                             <span>{cate}</span>
-                            <NavLink to={"/album"} className=" no-underline text-black">
-                               <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                               <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
-                            </NavLink>
                         </div>
                         <AlbumBox data={allAlbums} cate={cate} searchFilter={searchFilter} />
                     </Row>
