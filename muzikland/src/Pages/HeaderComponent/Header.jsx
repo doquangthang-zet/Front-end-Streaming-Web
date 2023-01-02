@@ -271,7 +271,7 @@ export function Header(props) {
             <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub no-underline`}><Dropdown.Item href="#/action-1">Profile</Dropdown.Item></NavLink>
             {user?.user?.role === "admin" && (
               <NavLink to={"/dashboard/home"} className="no-underline">
-                <Dropdown.Item href="#/action-2">Dashboard</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Admin Dashboard</Dropdown.Item>
               </NavLink>
             )}<hr/>
             <Dropdown.Item href="#/action-3" onClick={logOut}>Log Out</Dropdown.Item>
