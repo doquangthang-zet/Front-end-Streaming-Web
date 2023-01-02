@@ -1,12 +1,16 @@
+/*************************************************************** 
+*Title: Body Page
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React, { useContext, useEffect, useState } from "react";
 import styled from 'styled-components';
 import '../../../css/main.css';
-// import { AccountContext } from "../_AccountContext";
 import musicImage from "../../../img/music-head-phones.gif";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faLeftLong, faRightLong } from "@fortawesome/free-solid-svg-icons";
-
 import { Container, Row, Col } from 'react-grid';
 import { useStateValue } from "../../../context/StateProvider";
 import { getAllAlbum, getAllChartSongs, getAllPlaylist, getAllSongs } from "../../../api";
@@ -92,11 +96,9 @@ export function BodySection() {
                         <Col><img className="adverImg" src={musicImage} alt="" /></Col>
                         <div className="titleSection"> 
                             <span>Top Trendings</span>
-                            <NavLink to={"/album"} className=" no-underline text-black">
-                                <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                                <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
+                            <NavLink to={"/album"} className="no-underline text-black inline-block">
+                                <p className="cursor-pointer hover:text-xl">SEE MORE</p>
                             </NavLink>
-                            
                         </div>
                         
                         <AlbumBox data={allAlbums} cate={"Top Trendings"} />
@@ -110,10 +112,6 @@ export function BodySection() {
                     <Row className="rowAttribute">
                        <div className="smallTitleSection"> 
                             <span>{cate}</span>
-                            <NavLink to={"/album"} className=" no-underline text-black">
-                               <FontAwesomeIcon className="seeMore" icon={faLeftLong}></FontAwesomeIcon>
-                               <FontAwesomeIcon className="seeMore" icon={faRightLong}></FontAwesomeIcon>
-                            </NavLink>
                         </div>
                         <AlbumBox data={allAlbums} cate={cate} searchFilter={searchFilter} />
                     </Row>

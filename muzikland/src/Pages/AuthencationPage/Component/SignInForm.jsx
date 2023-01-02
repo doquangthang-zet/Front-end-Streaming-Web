@@ -1,3 +1,10 @@
+/*************************************************************** 
+*Title: Sign In Page
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React, { useContext, useEffect, useState } from "react";
 import { BoldLink, BoxContainer, FormContainer, Input, MutedLink, SubmitButton } from "./Common";
 import {Marginer} from "../../Marginer";

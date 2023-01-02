@@ -1,10 +1,15 @@
+/*************************************************************** 
+*Title: Header component
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React, { useContext, useEffect, useState } from "react";
 import styled from 'styled-components';
-
 import '../../css/main.css';
-// import { AccountContext } from "../_AccountContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faFolderPlus, faHeart} from "@fortawesome/free-solid-svg-icons";
+import { faHeart} from "@fortawesome/free-solid-svg-icons";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useStateValue } from "../../context/StateProvider";
@@ -266,7 +271,7 @@ export function Header(props) {
             <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub no-underline`}><Dropdown.Item href="#/action-1">Profile</Dropdown.Item></NavLink>
             {user?.user?.role === "admin" && (
               <NavLink to={"/dashboard/home"} className="no-underline">
-                <Dropdown.Item href="#/action-2">Dashboard</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Admin Dashboard</Dropdown.Item>
               </NavLink>
             )}<hr/>
             <Dropdown.Item href="#/action-3" onClick={logOut}>Log Out</Dropdown.Item>

@@ -1,9 +1,15 @@
+/*************************************************************** 
+*Title: Authentication Page
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { SignInForm } from "./Component/SignInForm";
 import {motion} from "framer-motion";
 import { SignUpForm } from "./Component/SignUpForm";
-import {ForgetPW} from "./Component/ForgetPassword";
 import { AccountContext } from "./_AccountContext";
 import musicImage from "../AuthencationPage/music-cool.gif";
 import imgAttribute from "../../css/main.css";
@@ -177,7 +183,6 @@ export function AccountBox({setAuth}){
         <InnerContainer>
         {active === "signin" && <SignInForm setAuth={setAuth} />}
         {active === "signup" && <SignUpForm/>}
-        {active === "forgetpw" && <ForgetPW/>}
         </InnerContainer>
         {/* <img src={musicImage}/> */}
     </BoxContainer>

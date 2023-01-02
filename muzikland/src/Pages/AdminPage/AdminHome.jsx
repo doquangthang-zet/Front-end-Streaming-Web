@@ -1,3 +1,10 @@
+/*************************************************************** 
+*Title: Admin Home Page
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React from 'react';
 import { useEffect } from 'react';
 import { getAllAlbum, getAllArtists, getAllPlaylist, getAllSongs, getAllUsers } from '../../api';
@@ -6,7 +13,6 @@ import { useStateValue } from '../../context/StateProvider';
 import { bgColors } from "../../utils/styles";
 import { FaUsers } from "react-icons/fa";
 import { GiLoveSong, GiMusicalNotes } from "react-icons/gi";
-import { RiUserStarFill } from "react-icons/ri";
 import { NavLink } from 'react-router-dom';
 
 const AdminHome = () => {

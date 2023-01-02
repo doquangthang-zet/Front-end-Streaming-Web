@@ -1,10 +1,15 @@
+/*************************************************************** 
+*Title: Admin New Albums Page
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React, {useState} from 'react'
 import { useEffect } from 'react';
-import { getAllAlbum, getAllArtists, getAllSongs, saveNewAlbum, saveNewSong } from '../../api';
+import { getAllAlbum, saveNewAlbum } from '../../api';
 import { actionType } from '../../context/reducer';
 import { useStateValue } from '../../context/StateProvider';
-import { filterByLanguage, filters } from '../../utils/supportFunction';
-import FilterButton from './FilterButton';
 import { BiCloudUpload } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import {deleteObject, getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage';
