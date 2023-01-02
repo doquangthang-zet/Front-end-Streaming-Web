@@ -1,8 +1,13 @@
+/*************************************************************** 
+*Title: Header component
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React, { useContext, useEffect, useState } from "react";
 import styled from 'styled-components';
-
 import '../../css/main.css';
-// import { AccountContext } from "../_AccountContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart} from "@fortawesome/free-solid-svg-icons";
 import Dropdown from 'react-bootstrap/Dropdown';

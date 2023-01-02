@@ -1,8 +1,13 @@
+/*************************************************************** 
+*Title: About Us Page
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React from "react";
 import "../../css/main.css";
 import facebook from "../../img/Facebook_f_logo_(2019).svg.png";
-import outlook from "../../img/Microsoft_Office_Outlook_(2018–present).svg.png";
-import gmail from "../../img/Gmail-logo.png";
 import github from "../../img/github-logo.png";
 import avaDev from "../../img/music-head-phones.gif";
 import { useEffect } from "react";
@@ -25,7 +30,7 @@ const [{URL}, dispatch] = useStateValue();
                 <div className="profileCard">
                     <img src={avaDev} className="profilePicture" alt="profilePicture_" />
                     <div className="cardDetails">
-                        <h4>Do Quang Thang</h4>
+                        <h4>Nguyen A Luy</h4>
                         <p>Full-stack developer</p>
                         <p>Experienced Coder</p>
                     </div>

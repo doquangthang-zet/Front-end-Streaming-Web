@@ -1,3 +1,10 @@
+/*************************************************************** 
+*Title: About Users Page
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React, {useState, useEffect} from 'react'
 import { useStateValue } from '../../context/StateProvider'
 import { motion } from 'framer-motion'

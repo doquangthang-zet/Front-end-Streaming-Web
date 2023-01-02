@@ -1,3 +1,10 @@
+/*************************************************************** 
+*Title: Side Bar component
+*Author: Luy Nguyen, Thang Do
+*Date: 20 Dec 2022
+*Code version: V1 
+*Availability: https://github.com/doquangthang-zet/Front-end-Streaming-Web/tree/main/muzikland 
+****************************************************************/ 
 import React, {useContext, useState, useEffect} from "react";
 import "../../css/main.css";
 import {ThemeContext} from "../../api/Theme";
