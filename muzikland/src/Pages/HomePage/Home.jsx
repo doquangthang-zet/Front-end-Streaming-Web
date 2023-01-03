@@ -94,7 +94,7 @@ export function Home(){
 {/* // <div className="songsPlaylistDisplay"><SongsPlaylist /></div> */}
       <div className="">
         <Routes>
-          <Route path="/home" element={<BodySection />} />
+          <Route path="/" element={<BodySection />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/album" element={<Albums />} />
           <Route path="/profile" element={<Profile />} />
