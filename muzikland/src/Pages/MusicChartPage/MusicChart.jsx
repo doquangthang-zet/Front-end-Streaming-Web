@@ -18,7 +18,7 @@ import logo from "./logo_songpage1.png"
 
 
 export function MusicChart(){
-    const [{allChartSongs, user, URL}, dispatch] = useStateValue();
+    const [{allChartSongs, user, URL, searchFilter}, dispatch] = useStateValue();
 
     useEffect(() => {
         if(!allChartSongs) {

@@ -15,7 +15,7 @@ import { Container, Row, Col } from 'react-grid';
 import { useStateValue } from "../../../context/StateProvider";
 import { getAllAlbum, getAllChartSongs, getAllPlaylist, getAllSongs } from "../../../api";
 import { actionType } from "../../../context/reducer";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { all } from "axios";
 
 const BodyContainer = styled.div`
@@ -39,8 +39,8 @@ const SongContainer = styled.div`
 
 
 export function BodySection() {
-
-    const [{allSongs, allAlbums, searchFilter}, dispatch] = useStateValue();
+    const navigate = useNavigate();
+    const [{allSongs, allAlbums, searchFilter, user}, dispatch] = useStateValue();
 
     const [categories, setCategories] = useState([]);
     console.log(searchFilter)
@@ -68,7 +68,14 @@ export function BodySection() {
         dispatch({
             type: actionType.SET_URL,
             URL: window.location.href,
-          })
+        })
+        
+        if (localStorage.getItem("user")) {
+            dispatch({
+                type: actionType.SET_USER,
+                user: JSON.parse(localStorage.getItem("user")),
+            })
+        }
     }, []);
 
     useEffect(() => {

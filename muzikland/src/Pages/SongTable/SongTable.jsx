@@ -70,7 +70,9 @@ const SongTable = ({page}) => {
           } 
 
           {
-            allChartSongs && page == "musicChart" && allChartSongs.map((data, i) => (
+            allChartSongs && page == "musicChart" && allChartSongs
+            .filter(song => song.name.toLowerCase().includes(searchFilter.toLowerCase()))
+            .map((data, i) => (
               <SongCard data={data} index={i} page={page} />
             ))
           } 
