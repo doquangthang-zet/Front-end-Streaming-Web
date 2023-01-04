@@ -82,19 +82,9 @@ export function Home(){
     <section>
       <Header/>
       <SideBar playlists={allPlaylists} />
-      {/* <div className="musicDisplay"><BodySection/></div>  */}
-      {/* <div className="aboutUsDisplay"><AboutUs/></div> */}
-      {/* <div className="songsDisplay"><Songs/></div> */}
-      {/* <div className="albumsDisplay"><Albums/></div> */}
-      {/* <div className="profileDisplay"><Profile/></div> */}
-      {/* <div className="albumsPlaylistDisplay"><AlbumsPlaylist/></div>
-      {/* {curPlaylist && (
-         
-//       )} */}
-{/* // <div className="songsPlaylistDisplay"><SongsPlaylist /></div> */}
       <div className="">
         <Routes>
-          <Route path="/" element={<BodySection />} />
+          <Route path="/home" element={<BodySection />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/album" element={<Albums />} />
           <Route path="/profile" element={<Profile />} />

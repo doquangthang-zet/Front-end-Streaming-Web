@@ -73,12 +73,6 @@ export function BodySection() {
 
     useEffect(() => {
         setCategories([])
-        // allAlbums && allAlbums.map(al => {
-        //     if (categories.indexOf(al.category) === -1 && al.category !== "Top Trendings") {
-        //         setCategories(cur => [...cur, al.category]);
-        //         console.log(categories)
-        //     }
-        // });
 
         allAlbums && setCategories(allAlbums.map(al => {
             if(al.category !== "Top Trendings") {

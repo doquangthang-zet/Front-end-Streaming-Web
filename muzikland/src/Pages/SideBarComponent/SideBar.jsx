@@ -43,7 +43,7 @@ export function SideBar({playlists}) {
             {URL.indexOf("dashboard") > -1 ? (
                 <aside style={useStyle.component} className={"aside-bar flex items-center justify-center"}>
                     <div className="aside-bar-container h-screen">
-                        <NavLink to={"/"}><img className="w-1/3 mx-auto mt-3" src={logo} /></NavLink>
+                        <NavLink to={"/home"}><img className="w-1/3 mx-auto mt-3" src={logo} /></NavLink>
                         <p className={"p1 mt-16"}>
                             <span>ADMIN DASHBOARD</span>
                         </p>
@@ -57,12 +57,12 @@ export function SideBar({playlists}) {
             ) : (
                 <aside style={useStyle.component} className={"aside-bar"}>
                     <div className="aside-bar-container">
-                        <NavLink to={"/"}><img className="w-1/3 mx-auto mt-3" src={logo} /></NavLink>
+                        <NavLink to={"/home"}><img className="w-1/3 mx-auto mt-3" src={logo} /></NavLink>
                         
                         <p className={"p1"}>
                             <span>LIBRARY</span>
                         </p>
-                        <NavLink to={"/"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><AiOutlineHome className="iconTag"/> Home</NavLink>
+                        <NavLink to={"/home"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><AiOutlineHome className="iconTag"/> Home</NavLink>
                         {/* <NavLink to={"/song"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><GiLoveSong className="iconTag" /> Songs</NavLink> */}
                         <NavLink to={"/album"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><MdAlbum className="iconTag" /> Albums</NavLink>
                         <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub`}><ImProfile className='iconTag' /> Profile</NavLink>
