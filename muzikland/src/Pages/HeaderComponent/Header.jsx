@@ -266,15 +266,17 @@ export function Header(props) {
 
     <div className="personalInfo">
       <img className="iconUser" src={user?.user?.imageURL} referrerPolicy='no-referrer' />
-      <DropdownButton id="dropdown-basic-button" title={user?.user?.name} >
+      <DropdownButton 
+      id="dropdown-basic-button" 
+      title={user ? user?.user?.name : " "} >
           <motion.div>
-            <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub no-underline`}><Dropdown.Item href="/">Profile</Dropdown.Item></NavLink>
+            <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub no-underline`}><div className="flex justify-start items-center pl-4 text-black">Profile</div></NavLink>
             {user?.user?.role === "admin" && (
               <NavLink to={"/dashboard/home"} className="no-underline">
-                <Dropdown.Item href="/">Admin Dashboard</Dropdown.Item>
+                <div className="flex justify-center items-center text-black">Admin Dashboard</div>
               </NavLink>
             )}<hr/>
-            <Dropdown.Item href="/" onClick={logOut}>Log Out</Dropdown.Item>
+            <div className="flex justify-start items-center pl-4 text-black" onClick={logOut}>Log Out</div>
           </motion.div>
       </DropdownButton>
 
