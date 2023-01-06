@@ -62,7 +62,9 @@ export function Header(props) {
     firebaseAuth.signOut().then(() => {
       window.localStorage.setItem("auth", "false");
     }).catch((err) => console.log(err));
-    localStorage.removeItem("user");
+    if(window.localStorage.getItem("user")) {
+      localStorage.removeItem("user");
+    }
     navigate("/login", { replace: true });
   }
 
@@ -270,13 +272,13 @@ export function Header(props) {
       id="dropdown-basic-button" 
       title={user ? user?.user?.name : " "} >
           <motion.div>
-            <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub no-underline`}><div className="flex justify-start items-center pl-4 text-black">Profile</div></NavLink>
+            <NavLink to={"/profile"} className={`${({isActive}) => isActive ? isActiveStyles: isNotActiveStyles} lib-sub no-underline`}><div className="flex justify-start items-center pl-4 pb-1 pt-1 text-black cursor-pointer hover:bg-gray-300">Profile</div></NavLink>
             {user?.user?.role === "admin" && (
-              <NavLink to={"/dashboard/home"} className="no-underline">
-                <div className="flex justify-center items-center text-black">Admin Dashboard</div>
+              <NavLink to={"/dashboard/home"} className="no-underline cursor-pointer">
+                <div className="flex justify-center items-center text-black pb-1 pt-1 hover:bg-gray-300">Admin Dashboard</div>
               </NavLink>
             )}<hr/>
-            <div className="flex justify-start items-center pl-4 text-black" onClick={logOut}>Log Out</div>
+            <div className="flex justify-start items-center pl-4 text-black cursor-pointer pb-1 pt-1 hover:bg-gray-300" onClick={logOut}>Log Out</div>
           </motion.div>
       </DropdownButton>
 
